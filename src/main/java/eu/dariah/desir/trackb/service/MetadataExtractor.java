@@ -52,7 +52,8 @@ public class MetadataExtractor {
 		// The GrobidHomeFinder can be instantiate without parameters to verify the grobid home in the standard
 		// location (classpath, ../grobid-home, ../../grobid-home)
 
-		// If the location is customized: 
+		// If the location is customized:
+		LOG.debug("instantiating GROBID home finder with " + this.grobidHome);
 		final GrobidHomeFinder grobidHomeFinder = new GrobidHomeFinder(Collections.singletonList(this.grobidHome));
 
 		//The GrobidProperties needs to be instantiate using the correct grobidHomeFinder or it will use the default 
