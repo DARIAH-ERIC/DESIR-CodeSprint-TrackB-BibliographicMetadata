@@ -4,6 +4,8 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.fail;
 
+import java.io.File;
+import java.net.URL;
 import java.util.List;
 
 import org.junit.Test;
@@ -28,10 +30,21 @@ public class MetadataExtractorTest {
 	
 	/**
 	 * Test method for {@link eu.dariah.desir.trackb.service.MetadataExtractor#extractItems(java.io.File)}.
+	 * @throws Exception 
 	 */
 	@Test
-	public void testExtractItemsFile() {
-		//fail("Not yet implemented");
+	public void testExtractItemsFile() throws Exception {
+		final URL url = this.getClass().getClassLoader().getResource("hube2018towards.pdf");
+		assertNotNull(url);
+		final File file = new File(url.getFile());
+		assertNotNull(file);
+		final List<YetAnotherBibliographicItem> output = this.extractor.extractItems(file);
+		
+		assertNotNull(output);
+		final YetAnotherBibliographicItem item = output.get(0);
+		assertNotNull(item);
+		assertEquals("Echo chambers online?: Politically motivated selective exposure among internet news users", item.getTitle());
+		
 	}
 
 	/**
