@@ -2,6 +2,7 @@ package eu.dariah.desir.trackb.controller;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -27,18 +28,18 @@ public class ExtractionController {
      * @param text
      * @return
      */
-    @PostMapping(value="/extract")
+    @PostMapping(value="/extract", produces = {MediaType.APPLICATION_JSON_UTF8_VALUE})
     public @ResponseBody String handleFileUpload(
             @RequestParam(value = "file", required = false) MultipartFile file,
             @RequestParam(value = "text", required = false) String text) {
         try {
-            if (file.isEmpty() && text.isEmpty()) {
+            if (file == null && text == null) {
                 throw new InvalidParameterException("The request does not contain a file nor a text string. We need one or " +
                         "the other.");
-            } else if (!file.isEmpty() && text != null) {
+            } else if (file != null && text != null) {
                 throw new InvalidParameterException("The request does contain both a file and a text string. We only need one or the other.");
             }
-            if (!file.isEmpty()) {
+            if (file != null) {
                 //handle file upload
                 String file_name = file.getName();
                 try {
@@ -48,13 +49,13 @@ public class ExtractionController {
                 } catch (Exception e) {
                     LOG.error("Failed to upload " + file_name + " => " + e.getMessage());
                 }
-            } else if (!text.isEmpty()) {
+            } else if (text != null) {
                     //handle string
             }
         } catch (InvalidParameterException ipe) {
             LOG.error("Error with parameters: ", ipe);
         }
-        return null;
+        return "{}";
     }
 }
 
