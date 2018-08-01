@@ -1,6 +1,5 @@
 package eu.dariah.desir.trackb.controller;
 
-import eu.dariah.desir.trackb.service.MetadataExtractor;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -11,19 +10,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
 import org.springframework.mock.web.MockMultipartFile;
-import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.TestContext;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 
-import java.io.File;
-import java.util.Arrays;
-
-import static org.mockito.Mockito.*;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 import static org.junit.Assert.assertNotNull;
 
@@ -37,9 +29,6 @@ public class ExtractionControllerTest {
 
     private MockMvc mockMvc;
 
-//    @Autowired
-//    private MetadataExtractor metadataExtractorMock;
-
     @Autowired
     private WebApplicationContext webApplicationContext;
 
@@ -49,27 +38,18 @@ public class ExtractionControllerTest {
         mockMvc = MockMvcBuilders.webAppContextSetup(webApplicationContext).build();
     }
 
-//    @Test
+    @Test
     public void extractTest() throws Exception {
-//        when(metadataExtractorMock.findAll()).thenReturn(Arrays.asList(first, second));
-
-        MockMultipartFile pdfFile = new MockMultipartFile("file", "filename.txt", MediaType.APPLICATION_PDF_VALUE,
+        MockMultipartFile pdfFile = new MockMultipartFile("file", "filename.pdf", MediaType.APPLICATION_PDF_VALUE,
                 ("some PDF data").getBytes());
         assertNotNull(mockMvc);
 
-        mockMvc.perform(post("/extract", pdfFile)
+        mockMvc.perform(MockMvcRequestBuilders
+                .multipart("/extract")
+                .file(pdfFile)
                 .contentType(MediaType.MULTIPART_FORM_DATA))
                 .andExpect(status().isOk())
-                .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE));
-//                .andExpect(jsonPath("$", hasSize(2)))
-//                .andExpect(jsonPath("$[0].id", is(1)))
-//                .andExpect(jsonPath("$[0].description", is("Lorem ipsum")))
-//                .andExpect(jsonPath("$[0].title", is("Foo")))
-//                .andExpect(jsonPath("$[1].id", is(2)))
-//                .andExpect(jsonPath("$[1].description", is("Lorem ipsum")))
-//                .andExpect(jsonPath("$[1].title", is("Bar")));
-
-//        verify(metadataExtractorMock, times(1)).findAll();
-//        verifyNoMoreInteractions(metadataExtractorMock);
+                .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
+                .andExpect(content().json("{}"));
     }
 }
