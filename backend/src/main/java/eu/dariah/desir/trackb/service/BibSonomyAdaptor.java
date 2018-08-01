@@ -23,14 +23,14 @@ import eu.dariah.desir.trackb.model.YetAnotherBibliographicItem;
 @Service
 public class BibSonomyAdaptor {
 	
-	@Value("${bibsonomy.api.user}")
-	private String bibsonomyApiUser;
-
-	@Value("${bibsonomy.api.key}")
-	private String bibsonomyApiKey;
-	
-	@Value("${bibsonomy.api.url}")
-	private String bibsonomyApiUrl;
+//	@Value("${bibsonomy.api.user}")
+//	private String bibsonomyApiUser;
+//
+//	@Value("${bibsonomy.api.key}")
+//	private String bibsonomyApiKey;
+//
+//	@Value("${bibsonomy.api.url}")
+//	private String bibsonomyApiUrl;
 
 	private LogicInterface bibsonomy;
 	
@@ -48,8 +48,8 @@ public class BibSonomyAdaptor {
 	 */
 	@PostConstruct
 	public void init() {
-    	final RestLogicFactory rlf = new RestLogicFactory(this.bibsonomyApiUrl);
-    	final LogicInterface logic = rlf.getLogicAccess(this.bibsonomyApiUser, this.bibsonomyApiKey);
+//    	final RestLogicFactory rlf = new RestLogicFactory(this.bibsonomyApiUrl);
+//    	final LogicInterface logic = rlf.getLogicAccess(this.bibsonomyApiUser, this.bibsonomyApiKey);
 	}
 
 	
@@ -61,10 +61,10 @@ public class BibSonomyAdaptor {
 	 */
 	public void storeItems(final List<YetAnotherBibliographicItem> items, final Set<String> tags) {
 		// convert model
-		final List<Post<? extends Resource>> posts = converter.convertToPosts(items, this.bibsonomyApiUser, tags);
-
-		// call API
-		final List<String> result = bibsonomy.createPosts(posts);
+//		final List<Post<? extends Resource>> posts = converter.convertToPosts(items, this.bibsonomyApiUser, tags);
+//
+//		// call API
+//		final List<String> result = bibsonomy.createPosts(posts);
 		
 		// FIXME: do error handling using messages in result
 
