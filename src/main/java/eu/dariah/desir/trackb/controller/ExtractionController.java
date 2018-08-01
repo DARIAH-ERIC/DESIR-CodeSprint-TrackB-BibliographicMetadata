@@ -43,7 +43,7 @@ public class ExtractionController {
 
         GrobidModelConverter converter = new GrobidModelConverter();
         MetadataExtractor me = new MetadataExtractor(converter);
-        List<YetAnotherBibliographicItem> bib_list = null;
+        List<YetAnotherBibliographicItem> bib_list;
 
         try {
             if (file == null && text == null) {
@@ -54,7 +54,7 @@ public class ExtractionController {
             }
             if (file != null) {
                 String fileName = file.getName();
-                File json_file = null;
+                File json_file;
                 try {
                     json_file = new File(System.getProperty("java.io.tmpdir") + "/" + file.getName());
                     file.transferTo(json_file);
