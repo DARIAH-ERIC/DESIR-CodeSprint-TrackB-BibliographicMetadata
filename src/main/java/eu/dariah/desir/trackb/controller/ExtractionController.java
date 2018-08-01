@@ -5,6 +5,8 @@ import com.fasterxml.jackson.databind.MapperFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import eu.dariah.desir.trackb.json.JsonViews;
 import eu.dariah.desir.trackb.model.YetAnotherBibliographicItem;
+import eu.dariah.desir.trackb.service.BibSonomyAdaptor;
+import eu.dariah.desir.trackb.service.BibSonomyModelConverter;
 import eu.dariah.desir.trackb.service.GrobidModelConverter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -17,12 +19,13 @@ import eu.dariah.desir.trackb.service.MetadataExtractor;
 
 import java.io.File;
 import java.security.InvalidParameterException;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
  * Created by hube on 8/1/2018.
  *
- * This controller manages the extraction of bibliographic data from json and pdf files
+ * This controller manages the extraction of bibliographic data from json and pdf files and the storing in BibSonomy.
  */
 
 @Controller
@@ -30,6 +33,51 @@ public class ExtractionController {
 
     private static final Logger LOG = LoggerFactory.getLogger(ExtractionController.class);
     private static final String ERROR_JSON = "{\"error\": true}";
+
+    /**
+     * @param file
+     * @return
+     */
+    @PostMapping(value="/store")
+    public @ResponseBody String storeInBibSonomy(
+            @RequestParam(value = "file", required = false) MultipartFile file) {
+
+        GrobidModelConverter converter = new GrobidModelConverter();
+        MetadataExtractor me = new MetadataExtractor(converter);
+        List<YetAnotherBibliographicItem> bib_list;
+        BibSonomyModelConverter bs_converter = new BibSonomyModelConverter();
+        BibSonomyAdaptor adaptor = new BibSonomyAdaptor(bs_converter);
+        List<String> tags = new ArrayList<>(); // ?
+
+        try {
+            if (file != null) {
+                String fileName = file.getName();
+                File json_file;
+                try {
+                    json_file = new File(System.getProperty("java.io.tmpdir") + "/" + file.getName());
+                    file.transferTo(json_file);
+                    LOG.info("Successfully uploaded " + fileName + " into " + json_file.getName());
+                } catch (Exception e) {
+                    LOG.error("Failed to upload " + fileName + " => " + e.getMessage());
+                    return ERROR_JSON;
+                }
+                try {
+                    bib_list = me.extractItems(json_file);
+                    adaptor.storeItems(bib_list, tags);
+                } catch(Exception e) {
+                    return ERROR_JSON;
+                }
+            } else {
+                return ERROR_JSON;
+            }
+        } catch (InvalidParameterException ipe) {
+            LOG.error("Error with parameters: ", ipe);
+            return ERROR_JSON;
+        }
+
+        return null;
+    }
+
 
     /**
      * @param file
