@@ -5,10 +5,9 @@ import java.util.StringTokenizer;
 
 import org.grobid.core.data.BiblioItem;
 import org.grobid.core.data.Person;
+import org.springframework.stereotype.Service;
 
 import eu.dariah.desir.trackb.model.YetAnotherBibliographicItem;
-import org.springframework.context.annotation.Bean;
-import org.springframework.stereotype.Service;
 
 /**
  * TODO: add documentation to this class
