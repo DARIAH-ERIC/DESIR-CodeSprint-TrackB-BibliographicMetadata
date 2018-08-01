@@ -22,6 +22,11 @@ import java.net.URL;
 import static org.hamcrest.Matchers.containsString;
 import static org.hamcrest.Matchers.not;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
+
+import java.io.IOException;
+
+import org.apache.commons.io.IOUtils;
+
 import static org.junit.Assert.assertNotNull;
 
 /**
@@ -40,16 +45,13 @@ public class ExtractionControllerTest {
     private WebApplicationContext webApplicationContext;
 
     @Before
-    public void init() {
+    public void init() throws IOException {
         MockitoAnnotations.initMocks(this);
         mockMvc = MockMvcBuilders.webAppContextSetup(webApplicationContext).build();
+        final byte[] testData = IOUtils.toByteArray(this.getClass().getClassLoader().getResourceAsStream("hube2018towards.pdf"));
+        
         pdfFile = new MockMultipartFile("file", "filename.pdf", MediaType.APPLICATION_PDF_VALUE,
-                ("some PDF data").getBytes());
-
-//        final URL url = this.getClass().getClassLoader().getResource("hube2018towards.pdf");
-//        assertNotNull(url);
-//        realPdfFile = new File(url.getFile());
-//        assertNotNull(realPdfFile);
+                testData);
     }
 
     @Test

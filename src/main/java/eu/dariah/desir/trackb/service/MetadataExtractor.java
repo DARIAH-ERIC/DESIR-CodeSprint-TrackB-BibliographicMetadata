@@ -73,8 +73,11 @@ public class MetadataExtractor {
 	 */
 	public List<YetAnotherBibliographicItem> extractItems(final File file) throws Exception {
 		try {
+			LOG.debug("extracting items from file " + file);
 			final List<BibDataSet> items = this.engine.processReferences(file, false);
 
+			LOG.debug("extracted " + items.size() + " items from file");
+			
 			// copy BiblioItems into new list
 			final List<YetAnotherBibliographicItem> result = new ArrayList<YetAnotherBibliographicItem>(items.size());
 			for (final BibDataSet bibDataSet : items) {
