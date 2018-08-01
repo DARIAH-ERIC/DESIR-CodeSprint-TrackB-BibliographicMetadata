@@ -20,7 +20,9 @@ import eu.dariah.desir.trackb.service.MetadataExtractor;
 import java.io.File;
 import java.security.InvalidParameterException;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 /**
  * Created by hube on 8/1/2018.
@@ -47,7 +49,7 @@ public class ExtractionController {
         List<YetAnotherBibliographicItem> bib_list;
         BibSonomyModelConverter bs_converter = new BibSonomyModelConverter();
         BibSonomyAdaptor adaptor = new BibSonomyAdaptor(bs_converter);
-        List<String> tags = new ArrayList<>(); // ?
+        Set<String> tags = new HashSet<>(); // ?
 
         try {
             if (file != null) {
