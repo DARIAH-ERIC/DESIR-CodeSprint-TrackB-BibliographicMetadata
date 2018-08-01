@@ -48,8 +48,7 @@ public class ExtractionController {
      * @return
      */
     @PostMapping(value="/store")
-    public @ResponseBody String storeInBibSonomy(
-            @RequestParam(value = "file", required = false) MultipartFile file) {
+    public @ResponseBody String storeInBibSonomy(@RequestParam(value = "file", required = false) MultipartFile file) {
         List<YetAnotherBibliographicItem> items;
 
         try {
@@ -61,16 +60,18 @@ public class ExtractionController {
                     file.transferTo(json_file);
                     LOG.info("Successfully uploaded " + fileName + " into " + json_file.getName());
                 } catch (Exception e) {
-                    LOG.error("Failed to upload " + fileName + " => " + e.getMessage());
+                    LOG.error("Failed to upload " + fileName, e);
                     return ERROR_JSON;
                 }
                 try {
                     items = me.extractItems(json_file);
                     adaptor.storeItems(items);
                 } catch(Exception e) {
+                	LOG.error("Failed to extract items", e);
                     return ERROR_JSON;
                 }
             } else {
+            	LOG.error("Received empty file");
                 return ERROR_JSON;
             }
         } catch (InvalidParameterException ipe) {
@@ -96,24 +97,23 @@ public class ExtractionController {
 
         try {
             if (file == null && text == null) {
-                throw new InvalidParameterException("The request does not contain a file nor a text string. We need one or " +
-                        "the other.");
+                throw new InvalidParameterException("The request does neither contain a file nor a text string. We need one or the other.");
             } else if (file != null && text != null) {
-                throw new InvalidParameterException("The request does contain both a file and a text string. We only need one or the other.");
+                throw new InvalidParameterException("The request does contain both a file and a text string. We only need one of them.");
             }
             if (file != null) {
                 String fileName = file.getName();
-                File json_file;
+                File jsonFile;
                 try {
-                    json_file = new File(System.getProperty("java.io.tmpdir") + "/" + file.getName());
-                    file.transferTo(json_file);
-                    LOG.info("Successfully uploaded " + fileName + " into " + json_file.getName());
+                    jsonFile = new File(System.getProperty("java.io.tmpdir") + "/" + file.getName());
+                    file.transferTo(jsonFile);
+                    LOG.info("Successfully uploaded " + fileName + " into " + jsonFile.getName());
                 } catch (Exception e) {
                     LOG.error("Failed to upload " + fileName + " => " + e.getMessage());
                     return ERROR_JSON;
                 }
                 try {
-                    items = me.extractItems(json_file);
+                    items = me.extractItems(jsonFile);
                 } catch(Exception e) {
                     return ERROR_JSON;
                 }
