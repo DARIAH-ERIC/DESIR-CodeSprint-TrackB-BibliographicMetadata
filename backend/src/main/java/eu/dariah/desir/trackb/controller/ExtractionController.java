@@ -37,12 +37,15 @@ public class ExtractionController {
     private static final Logger LOG = LoggerFactory.getLogger(ExtractionController.class);
     private static final String ERROR_JSON = "{\"error\": true}";
 
-    @Autowired
-    private MetadataExtractor me;
+    private final MetadataExtractor me;
+    private final BibSonomyAdaptor adaptor;
 
     @Autowired
-    private BibSonomyAdaptor adaptor;
-    
+    public ExtractionController(MetadataExtractor me, BibSonomyAdaptor adaptor) {
+        this.me = me;
+        this.adaptor = adaptor;
+    }
+
     /**
      * @param file
      * @return
