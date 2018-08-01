@@ -1,6 +1,7 @@
 package eu.dariah.desir.trackb.service;
 
 import java.util.List;
+import java.util.Set;
 
 import javax.annotation.PostConstruct;
 
@@ -58,7 +59,7 @@ public class BibSonomyAdaptor {
 	 * @param items
 	 * @param tags - A list of string that shall not contain any whitespace.
 	 */
-	public void storeItems(final List<YetAnotherBibliographicItem> items, final List<String> tags) {
+	public void storeItems(final List<YetAnotherBibliographicItem> items, final Set<String> tags) {
 		// convert model
 		final List<Post<? extends Resource>> posts = converter.convertToPosts(items, this.bibsonomyApiUser, tags);
 
