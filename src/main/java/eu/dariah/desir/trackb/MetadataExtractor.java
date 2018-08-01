@@ -3,6 +3,7 @@ package eu.dariah.desir.trackb;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.LinkedList;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
@@ -15,7 +16,6 @@ import org.grobid.core.main.GrobidHomeFinder;
 import org.grobid.core.utilities.GrobidProperties;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
@@ -38,11 +38,15 @@ public class MetadataExtractor {
 	private Engine engine;
 
 	/**
-	 * Initialises GROBID
+	 * Initialize GROBID
 	 */
 	@PostConstruct
 	public void init() {
-		// If the location is customised: 
+
+		// The GrobidHomeFinder can be instantiate without parameters to verify the grobid home in the standard
+		// location (classpath, ../grobid-home, ../../grobid-home)
+
+		// If the location is customized: 
 		final GrobidHomeFinder grobidHomeFinder = new GrobidHomeFinder(Arrays.asList(this.grobidHome));       
 
 		//The GrobidProperties needs to be instantiate using the correct grobidHomeFinder or it will use the default 
@@ -60,7 +64,7 @@ public class MetadataExtractor {
 	 * @param file - a file (PDF) containing bibliographic references
 	 * @return the list of bibliographic references
 	 */
-	public List<BiblioItem> extract(final File file) {
+	public List<BiblioItem> extractItems(final File file) {
 
 		final List<BibDataSet> items = this.engine.processReferences(file, false);
 
@@ -74,22 +78,27 @@ public class MetadataExtractor {
 	}
 	
 	/**
-	 * Extract bibliographic metadata from the string and return it as BibTeX.
+	 * Extract bibliographic items (separated by newline) from the string. 
+	 * 
+	 * We assume that individual bibliographic items are separated by newline.
 	 * 
 	 * @param text
-	 * @return the extracted metadata in BibTeX format
+	 * @return the extracted bibliographic items
 	 */
-	public BiblioItem extract(final String text) {
+	public List<BiblioItem> extractItems(final String text) {
+		final List<BiblioItem> result = new LinkedList<BiblioItem>();
+		
+		// iterate over the lines
+		for (final String line: text.split("\\r?\\n")) {
+			final BiblioItem item = this.engine.processRawReference(text, true);
+			if (item != null) {
+				result.add(item);
 
-		// The GrobidHomeFinder can be instantiate without parameters to verify the grobid home in the standard
-		// location (classpath, ../grobid-home, ../../grobid-home)
-
-		final BiblioItem result = this.engine.processRawReference(text, true);
-
-		LOG.debug("input:  " + text);
-		if (LOG.isDebugEnabled())
-			LOG.debug("output: " + result.toBibTeX());
-
+				if (LOG.isDebugEnabled())
+					LOG.debug("input:  " + line);
+					LOG.debug("output: " + item.toBibTeX());
+			}
+		}
 		return result;
 	}
 
