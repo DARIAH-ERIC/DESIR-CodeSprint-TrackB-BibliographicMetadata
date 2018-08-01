@@ -50,12 +50,11 @@ public class ExtractionController {
 	 */
 	@PostMapping(value="/store")
 	public @ResponseBody String storeInBibSonomy(@RequestParam(value = "file", required = false) MultipartFile file) {
-		List<YetAnotherBibliographicItem> items;
 
 		try {
 			if (file != null) {
-				String fileName = file.getName();
-				File jsonFile;
+				final String fileName = file.getName();
+				final File jsonFile;
 				try {
 					jsonFile = new File(System.getProperty("java.io.tmpdir") + "/" + file.getName());
 					file.transferTo(jsonFile);
@@ -65,8 +64,7 @@ public class ExtractionController {
 					return ERROR_JSON;
 				}
 				try {
-					items = me.extractItems(jsonFile);
-					adaptor.storeItems(items);
+					adaptor.storeItems(me.extractItems(jsonFile));
 				} catch(Exception e) {
 					LOG.error("Failed to extract items", e);
 					return ERROR_JSON;
@@ -98,7 +96,12 @@ public class ExtractionController {
 	public @ResponseBody String handleFileUpload(
 			@RequestParam(value = "file", required = false) MultipartFile file,
 			@RequestParam(value = "text", required = false) String text) {
-
+        
+		LOG.debug("***********************");
+        LOG.debug(file==null?"File is null":"File is not null");
+        LOG.debug(text==null?"Text is null":"Text is not null");
+        LOG.debug("***********************");
+        
 		final List<YetAnotherBibliographicItem> items;
 
 		try {
