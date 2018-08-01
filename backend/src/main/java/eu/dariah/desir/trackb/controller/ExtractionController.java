@@ -94,7 +94,10 @@ public class ExtractionController {
     public @ResponseBody String handleFileUpload(
             @RequestParam(value = "file", required = false) MultipartFile file,
             @RequestParam(value = "text", required = false) String text) {
-
+        LOG.debug("***********************");
+        LOG.debug(file==null?"File is null":"File is not null");
+        LOG.debug(text==null?"Text is null":"Text is not null");
+        LOG.debug("***********************");
         List<YetAnotherBibliographicItem> items;
 
         try {
