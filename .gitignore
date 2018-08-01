@@ -1,7 +1,7 @@
 .idea/*.*
 trackb.iml
-application.properties
-/target/
+/backend/application.properties
+/backend/target/
 
 /frontend/.DS_Store
 /frontend/node_modules/
