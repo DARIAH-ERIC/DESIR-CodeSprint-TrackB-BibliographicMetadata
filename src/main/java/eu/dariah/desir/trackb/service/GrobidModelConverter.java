@@ -5,10 +5,9 @@ import java.util.StringTokenizer;
 
 import org.grobid.core.data.BiblioItem;
 import org.grobid.core.data.Person;
+import org.springframework.stereotype.Service;
 
 import eu.dariah.desir.trackb.model.YetAnotherBibliographicItem;
-import org.springframework.context.annotation.Bean;
-import org.springframework.stereotype.Service;
 
 /**
  * TODO: add documentation to this class
@@ -21,36 +20,37 @@ public class GrobidModelConverter {
 	/**
 	 * Model conversion from {@link BiblioItem} to {@link YetAnotherBibliographicItem}.
 	 * 
+	 * Based on {@link BiblioItem}'s toBibTeX() method.
+	 * 
 	 * @param item
-	 * @return
+	 * @return The converted model
 	 */
 	public YetAnotherBibliographicItem convert(final BiblioItem item) {
 		final YetAnotherBibliographicItem result = new YetAnotherBibliographicItem();
 
 		// string fields
-		result.setAddress(item.getAddress());
+		result.setAddress(item.getLocation()); // FIXME: there's also getAddress() and getLocationPublisher() -> which one is correct?
 		result.setBooktitle(item.getBookTitle());
 		//result.setChapter(item.getBo);
 		result.setDoi(item.getDOI());
 		result.setEdition(item.getEdition());
 		result.setInstitution(item.getInstitution());
 		result.setJournal(item.getJournal());
-		result.setNumber(item.getNumber());
+		result.setNumber(item.getIssue()); // FIXME: there's also getNumber() -> which one is correct?
 		result.setPages(item.getPageRange());
 		result.setPublisher(item.getPublisher());
-		//result.setSchool(item.get);
-		//result.setOrganization(item.getOrg);
 		result.setSeries(item.getSerie()); // FIXME: or getSerieTitle()?
-		result.setVolume(item.getVolume());
+		result.setVolume(item.getVolumeBlock()); // FIXME: there's also getVolume() -> which one is correct?
 		result.setDay(item.getDay());
 		result.setMonth(item.getMonth());
-		result.setYear(item.getYear());
+		result.setYear(item.getPublicationDate()); // FIXME: see BiblioItem.toTEI(int n, int indent, GrobidAnalysisConfig config) for a more sophisticated (better?!) method 
 
 		result.setEntryType(getEntryType(result));
 
 		// more complex fields
 		result.setAuthors(getAuthors(item));
-
+		result.setEditors(getEditors(item));
+		
 		return result;
 	}
 
@@ -60,7 +60,7 @@ public class GrobidModelConverter {
 	 * Taken from BiblioItem.toBibTeX().
 	 * 
 	 * @param item
-	 * @return
+	 * @return The list of authors as a string
 	 */
 	public String getAuthors(final BiblioItem item) {
 		if (item.getCollaboration() != null) 
@@ -70,43 +70,38 @@ public class GrobidModelConverter {
 		if (present(authorsFromList))
 			return authorsFromList;
 		
-		final String authors = item.getAuthors();
-		if (authors != null) {
-			final StringTokenizer st = new StringTokenizer(authors, ";");
-			final StringBuilder s = new StringBuilder();
-			if (st.countTokens() > 1) {
-				boolean begin = true;
-				while (st.hasMoreTokens()) {
-					final String author = st.nextToken();
-					if (author != null) {
-						if (begin) {
-							s.append(author.trim());
-							begin = false;
-						} else
-							s.append(" and " + author.trim());
-					}
-				}
-			} else {
-				s.append(authors);
-			}
-			return s.toString();
-		}
-		return "";
+		return personStringToString(item.getAuthors());
 	}
 	
+	/**
+	 * Extracts the editors as a (BibTeX-compatible) string. 
+	 * 
+	 * Taken from BiblioItem.toBibTeX().
+	 * 
+	 * @param item
+	 * @return The list of editors as a string
+	 */
 	public String getEditors(final BiblioItem item) {
-		if (item.getCollaboration() != null) 
-			return item.getCollaboration();
-
-		
 		final String editorsFromList = personListToString(item.getFullEditors());
 		if (present(editorsFromList)) 
 			return editorsFromList;
 		
-		final String editors = item.getEditors();
-		if (editors != null) {
-			final StringTokenizer st = new StringTokenizer(editors, ";");
-			final StringBuilder s = new StringBuilder();
+		return personStringToString(item.getEditors());
+	}
+
+
+	/**
+     * Convert a string containing several person names separated by ";" into one separated by " and ".
+     *
+	 * Taken from BiblioItem.toBibTeX().
+	 * 
+	 * @param persons
+	 * @return The string representing the persons.
+	 */
+	public String personStringToString(final String persons) {
+		final StringBuilder s = new StringBuilder();
+		if (persons != null) {
+			final StringTokenizer st = new StringTokenizer(persons, ";");
 			if (st.countTokens() > 1) {
 				boolean begin = true;
 				while (st.hasMoreTokens()) {
@@ -120,18 +115,22 @@ public class GrobidModelConverter {
 					}
 				}
 			} else {
-				s.append(editors);
+				s.append(persons);
 			}
-			return s.toString();
 		}
-		return "";
+		return s.toString();
 	}
 
 	/**
+	 * Convert a list of persons into a string.
+	 * 
+	 * Taken from BiblioItem.toBibTeX().
+	 * Persons are separated by " and " and the parts of their names by ", " (last name first).
 	 * 
 	 * @param fullPersons
+	 * @return The person string.
 	 */
-	private String personListToString(final List<Person> fullPersons) {
+	public String personListToString(final List<Person> fullPersons) {
 		final StringBuilder s = new StringBuilder();
 		if (fullPersons != null) {
 			if (fullPersons.size() > 0) {
@@ -158,14 +157,14 @@ public class GrobidModelConverter {
 	 */
 	public String getEntryType(final YetAnotherBibliographicItem item) {
 
-		if (item.getJournal() != null) 
+		if (present(item.getJournal())) 
 			return "journal";
 
 		/*        } else if (book_type != null) {
             bibtex += "@techreport{" + id + ",\n";
 		 */
 		final String booktitle = item.getBooktitle();
-		if (booktitle != null) {
+		if (present(booktitle)) {
 			if ((booktitle.startsWith("proc")) || (booktitle.startsWith("Proc")) ||
 					(booktitle.startsWith("In Proc")) || (booktitle.startsWith("In proc"))) {
 				return "inproceedings";
