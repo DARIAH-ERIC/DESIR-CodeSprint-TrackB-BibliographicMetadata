@@ -39,11 +39,11 @@ public class BibSonomyModelConverter {
 	 * @param tags
 	 * @return The complete post
 	 */
-	public Post<BibTex> convertToPost(final YetAnotherBibliographicItem item, final String userName, final Set<String> tags) {
+	public Post<BibTex> convertToPost(final YetAnotherBibliographicItem item, final String userName) {
 		final Post<BibTex> post = new Post<BibTex>();
 		post.setResource(convertToBibTex(item));
 		post.setUser(new User(userName));
-		post.setTags(convertToTags(tags));
+		post.setTags(convertToTags(item.getTags()));
 		return post;
 	}
 	
@@ -56,10 +56,10 @@ public class BibSonomyModelConverter {
 	 * @param tags
 	 * @return
 	 */
-	public List<Post<? extends Resource>> convertToPosts(final List<YetAnotherBibliographicItem> items, final String userName, final Set<String> tags) {
+	public List<Post<? extends Resource>> convertToPosts(final List<YetAnotherBibliographicItem> items, final String userName) {
 		final List<Post<? extends Resource>> posts = new ArrayList<Post<? extends Resource>>(items.size());
 		for (final YetAnotherBibliographicItem item: items) {
-			posts.add(convertToPost(item, userName, tags));
+			posts.add(convertToPost(item, userName));
 
 		}
 		return posts;

@@ -1,5 +1,7 @@
 package eu.dariah.desir.trackb.model;
 
+import java.util.Set;
+
 import com.fasterxml.jackson.annotation.JsonView;
 
 import eu.dariah.desir.trackb.json.JsonViews;
@@ -35,6 +37,8 @@ public class YetAnotherBibliographicItem {
     @JsonView(JsonViews.Public.class)  private String authors;
     @JsonView(JsonViews.Public.class)  private String editors;
 
+    // for now: include tags directly
+    @JsonView(JsonViews.Public.class)  private Set<String> tags;
 
 /*
 	private String entrytype;
@@ -275,6 +279,18 @@ public class YetAnotherBibliographicItem {
 	 */
 	public void setTitle(String title) {
 		this.title = title;
+	}
+	/**
+	 * @return the tags
+	 */
+	public Set<String> getTags() {
+		return this.tags;
+	}
+	/**
+	 * @param tags the tags to set
+	 */
+	public void setTags(Set<String> tags) {
+		this.tags = tags;
 	}
 
 }
