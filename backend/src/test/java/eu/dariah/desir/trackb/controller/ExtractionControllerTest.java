@@ -48,9 +48,9 @@ public class ExtractionControllerTest {
     public void init() throws IOException {
         MockitoAnnotations.initMocks(this);
         mockMvc = MockMvcBuilders.webAppContextSetup(webApplicationContext).build();
-        final byte[] testData = IOUtils.toByteArray(this.getClass().getClassLoader().getResourceAsStream("hube2018towards.pdf"));
-        
-        pdfFile = new MockMultipartFile("file", "filename.pdf", MediaType.APPLICATION_PDF_VALUE,
+
+        final byte[] testData = IOUtils.toByteArray(this.getClass().getClassLoader().getResourceAsStream("EAD-ODD_ A_solution_for_project-oriented_EAD_schemes.pdf"));
+        pdfFile = new MockMultipartFile("file", "EAD-ODD_ A_solution_for_project-oriented_EAD_schemes.pdf", MediaType.APPLICATION_PDF_VALUE,
                 testData);
     }
 
