@@ -33,6 +33,6 @@ public class YetAnotherBibliographicItemTest {
 		
 		assertThat(result, containsString("Hawking"));
 		assertThat(result, not(containsString("Einstein")));
-		assertEquals(result, "{\"entryType\":null,\"address\":null,\"booktitle\":null,\"chapter\":null,\"doi\":null,\"edition\":null,\"institution\":null,\"journal\":null,\"number\":null,\"pages\":null,\"publisher\":null,\"series\":null,\"title\":\"Cronology Protection Conjecture\",\"volume\":null,\"day\":null,\"month\":null,\"year\":\"1992\",\"authors\":\"S. W. Hawking\",\"editors\":null}");
+		assertEquals(result, "{\"entryType\":null,\"address\":null,\"booktitle\":null,\"chapter\":null,\"doi\":null,\"edition\":null,\"institution\":null,\"journal\":null,\"number\":null,\"pages\":null,\"publisher\":null,\"series\":null,\"title\":\"Cronology Protection Conjecture\",\"volume\":null,\"day\":null,\"month\":null,\"year\":\"1992\",\"authors\":\"S. W. Hawking\",\"editors\":null,\"tags\":null}");
 	}
 }
