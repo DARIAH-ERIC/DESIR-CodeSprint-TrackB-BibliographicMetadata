@@ -1,9 +1,13 @@
 package eu.dariah.desir.trackb;
 
+import java.io.File;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 import javax.annotation.PostConstruct;
 
+import org.grobid.core.data.BibDataSet;
 import org.grobid.core.data.BiblioItem;
 import org.grobid.core.engines.Engine;
 import org.grobid.core.factory.GrobidFactory;
@@ -29,6 +33,9 @@ public class MetadataExtractor {
 
 	private Engine engine;
 
+	/**
+	 * Initialises GROBID
+	 */
 	@PostConstruct
 	public void init() {
 		// If the location is customised: 
@@ -44,29 +51,42 @@ public class MetadataExtractor {
 	}
 
 	/**
+	 * Extracts bibliographic references from the given file.
+	 * 
+	 * @param file - a file (PDF) containing bibliographic references
+	 * @return the list of bibliographic references
+	 */
+	public List<BiblioItem> extract(final File file) {
+
+		final List<BibDataSet> items = this.engine.processReferences(file, false);
+
+		// copy BiblioItems into new list
+		final List<BiblioItem> result = new ArrayList<BiblioItem>(items.size());
+		for (final BibDataSet bibDataSet : items) {
+			result.add(bibDataSet.getResBib());
+		}
+		
+		return result;
+	}
+	
+	/**
 	 * Extract bibliographic metadata from the string and return it as BibTeX.
 	 * 
 	 * @param text
 	 * @return the extracted metadata in BibTeX format
 	 */
-	public String extract(final String text) {
+	public BiblioItem extract(final String text) {
 
 		// The GrobidHomeFinder can be instantiate without parameters to verify the grobid home in the standard
 		// location (classpath, ../grobid-home, ../../grobid-home)
 
-
-		// Biblio object for the result
-		BiblioItem resHeader = new BiblioItem();
-
-
 		final BiblioItem result = this.engine.processRawReference(text, true);
 
-		final String bibtex = result.toBibTeX();
-		
 		LOG.debug("input:  " + text);
-		LOG.debug("output: " + bibtex);
+		if (LOG.isDebugEnabled())
+			LOG.debug("output: " + result.toBibTeX());
 
-		return bibtex;
+		return result;
 	}
 
 }
