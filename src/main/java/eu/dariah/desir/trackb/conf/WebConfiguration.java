@@ -10,7 +10,10 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
  * This class is to modify the configuration of the Form handler in Spring
  */
 @Configuration
-public class FormConfiguration implements WebMvcConfigurer {
+public class WebConfiguration implements WebMvcConfigurer {
+    public WebConfiguration() {
+        super();
+    }
     /**
      * Setting the size of uploaded file to about 50MB
      * @return The MultiPartResolver knowing the size limit of the upload
