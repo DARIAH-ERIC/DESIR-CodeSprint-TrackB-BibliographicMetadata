@@ -63,12 +63,22 @@ public class MetadataExtractor {
 		LOG.debug("instantiating grobid by searching in the following locations: " + GrobidProperties.get_GROBID_HOME_PATH());
 
 		this.engine = GrobidFactory.getInstance().createEngine();
+
+		LOG.debug("Loading the GROBID parsers");
+		this.engine.getParsers().getFullTextParser();
+		this.engine.getParsers().getAffiliationAddressParser();
+		this.engine.getParsers().getHeaderParser();
+		this.engine.getParsers().getCitationParser();
+		this.engine.getParsers().getReferenceSegmenterParser();
+		this.engine.getParsers().getSegmentationParser();
+		this.engine.getParsers().getDateParser();
+		this.engine.getParsers().getAuthorParser();
 	}
 
 	/**
 	 * Extracts bibliographic references from the given file.
 	 * 
-	 * @param file - a file (PDF) containing bibliographic references
+	 * @param file A file (PDF) containing bibliographic references
 	 * @return the list of bibliographic references
 	 */
 	public List<YetAnotherBibliographicItem> extractItems(final File file) throws Exception {
@@ -96,7 +106,7 @@ public class MetadataExtractor {
 	 * 
 	 * We assume that individual bibliographic items are separated by newline.
 	 * 
-	 * @param text
+	 * @param text The String that the user will write in the application, should contain bibliographical references
 	 * @return the extracted bibliographic items
 	 */
 	public List<YetAnotherBibliographicItem> extractItems(final String text) {
