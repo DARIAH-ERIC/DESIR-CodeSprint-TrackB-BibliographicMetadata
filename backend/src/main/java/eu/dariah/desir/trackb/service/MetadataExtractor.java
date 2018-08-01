@@ -48,7 +48,6 @@ public class MetadataExtractor {
 		} else {
 			throw new Exception("Could not initialise " + MetadataExtractor.class.getSimpleName() + " since neither grobid path nor grobid url were configured.");
 		}
-
 	}
 
 	/**

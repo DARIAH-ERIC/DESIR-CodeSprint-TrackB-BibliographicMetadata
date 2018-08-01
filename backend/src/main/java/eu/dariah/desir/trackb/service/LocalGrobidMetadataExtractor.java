@@ -41,18 +41,28 @@ public class LocalGrobidMetadataExtractor implements GrobidMetadataExtractor {
 		LOG.debug("instantiating GROBID home finder with " + grobidHome);
 		final GrobidHomeFinder grobidHomeFinder = new GrobidHomeFinder(Collections.singletonList(grobidHome));
 
-		//The GrobidProperties needs to be instantiate using the correct grobidHomeFinder or it will use the default 
+		//The GrobidProperties needs to be instantiate using the correct grobidHomeFinder or it will use the default
 		//locations
 		GrobidProperties.getInstance(grobidHomeFinder);
 
 		LOG.debug("instantiating grobid by searching in the following locations: " + GrobidProperties.get_GROBID_HOME_PATH());
-
 		this.engine = GrobidFactory.getInstance().createEngine();
-	}
+
+        LOG.debug("Loading the GROBID parsers");
+        this.engine.getParsers().getFullTextParser();
+        this.engine.getParsers().getAffiliationAddressParser();
+        this.engine.getParsers().getHeaderParser();
+        this.engine.getParsers().getCitationParser();
+        this.engine.getParsers().getReferenceSegmenterParser();
+        this.engine.getParsers().getSegmentationParser();
+        this.engine.getParsers().getDateParser();
+        this.engine.getParsers().getAuthorParser();
+
+    }
 
 	/**
 	 * Extracts bibliographic references from the given file.
-	 * 
+	 *
 	 * @param file - a file (PDF) containing bibliographic references
 	 * @return the list of bibliographic references
 	 */
@@ -62,7 +72,7 @@ public class LocalGrobidMetadataExtractor implements GrobidMetadataExtractor {
 			final List<BibDataSet> items = this.engine.processReferences(file, false);
 
 			LOG.debug("extracted " + items.size() + " items from file");
-			
+
 			// copy BiblioItems into new list
 			final List<YetAnotherBibliographicItem> result = new ArrayList<YetAnotherBibliographicItem>(items.size());
 			for (final BibDataSet bibDataSet : items) {
@@ -77,10 +87,10 @@ public class LocalGrobidMetadataExtractor implements GrobidMetadataExtractor {
 	}
 
 	/**
-	 * Extract bibliographic items (separated by newline) from the string. 
-	 * 
+	 * Extract bibliographic items (separated by newline) from the string.
+	 *
 	 * We assume that individual bibliographic items are separated by newline.
-	 * 
+	 *
 	 * @param text
 	 * @return the extracted bibliographic items
 	 */
