@@ -39,6 +39,11 @@
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
+		<dependency>
+			<groupId>org.grobid</groupId>
+			<artifactId>grobid-core</artifactId>
+			<version>0.5.1</version>
+		</dependency>
 	</dependencies>
 
 	<build>
