@@ -1,10 +1,7 @@
 package eu.dariah.desir.trackb.service;
 
 import java.io.File;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.LinkedList;
-import java.util.List;
+import java.util.*;
 
 import javax.annotation.PostConstruct;
 
@@ -49,7 +46,7 @@ public class MetadataExtractor {
 		// location (classpath, ../grobid-home, ../../grobid-home)
 
 		// If the location is customized: 
-		final GrobidHomeFinder grobidHomeFinder = new GrobidHomeFinder(Arrays.asList(this.grobidHome));       
+		final GrobidHomeFinder grobidHomeFinder = new GrobidHomeFinder(Collections.singletonList(this.grobidHome));
 
 		//The GrobidProperties needs to be instantiate using the correct grobidHomeFinder or it will use the default 
 		//locations
