@@ -16,6 +16,9 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 
+import java.io.File;
+import java.net.URL;
+
 import static org.hamcrest.Matchers.containsString;
 import static org.hamcrest.Matchers.not;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
@@ -31,6 +34,7 @@ public class ExtractionControllerTest {
 
     private MockMvc mockMvc;
     private MockMultipartFile pdfFile;
+//    private File realPdfFile;
 
     @Autowired
     private WebApplicationContext webApplicationContext;
@@ -41,6 +45,11 @@ public class ExtractionControllerTest {
         mockMvc = MockMvcBuilders.webAppContextSetup(webApplicationContext).build();
         pdfFile = new MockMultipartFile("file", "filename.pdf", MediaType.APPLICATION_PDF_VALUE,
                 ("some PDF data").getBytes());
+
+//        final URL url = this.getClass().getClassLoader().getResource("hube2018towards.pdf");
+//        assertNotNull(url);
+//        realPdfFile = new File(url.getFile());
+//        assertNotNull(realPdfFile);
     }
 
     @Test
