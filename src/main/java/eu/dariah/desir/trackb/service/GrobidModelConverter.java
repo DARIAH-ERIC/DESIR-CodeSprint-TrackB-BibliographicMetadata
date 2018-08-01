@@ -40,6 +40,7 @@ public class GrobidModelConverter {
 		result.setPages(item.getPageRange());
 		result.setPublisher(item.getPublisher());
 		result.setSeries(item.getSerie()); // FIXME: or getSerieTitle()?
+		result.setTitle(item.getTitle());
 		result.setVolume(item.getVolumeBlock()); // FIXME: there's also getVolume() -> which one is correct?
 		result.setDay(item.getDay());
 		result.setMonth(item.getMonth());
