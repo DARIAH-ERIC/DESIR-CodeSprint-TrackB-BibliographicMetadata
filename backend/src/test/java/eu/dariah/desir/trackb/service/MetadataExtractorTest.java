@@ -40,9 +40,9 @@ public class MetadataExtractorTest {
 		final List<YetAnotherBibliographicItem> output = this.extractor.extractItems(file);
 		
 		assertNotNull(output);
-		final YetAnotherBibliographicItem item = output.get(0);
+		final YetAnotherBibliographicItem item = output.get(5);
 		assertNotNull(item);
-		assertEquals("Echo chambers online?: Politically motivated selective exposure among internet news users", item.getTitle());
+		assertEquals("An XML Schema for Enhancing the Semantic Interoperability of Archival Description", item.getTitle());
 		
 	}
 
