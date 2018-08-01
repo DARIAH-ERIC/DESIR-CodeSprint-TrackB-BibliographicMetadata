@@ -12,6 +12,7 @@ import org.grobid.core.utilities.GrobidProperties;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 /**
@@ -24,8 +25,11 @@ public class MetadataExtractor {
 
     private static final Logger LOG = LoggerFactory.getLogger(MetadataExtractor.class);
 
-	@Autowired
+	@Value("${grobid.home.path}")
 	private String grobidHome;
+
+	@Value("${grobid.server.url}")
+	private String grobidUrl;
 
 	private Engine engine;
 
