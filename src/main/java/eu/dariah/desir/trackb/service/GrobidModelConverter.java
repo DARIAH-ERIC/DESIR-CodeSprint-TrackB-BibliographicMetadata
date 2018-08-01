@@ -51,7 +51,7 @@ public class GrobidModelConverter {
 		// more complex fields
 		result.setAuthors(getAuthors(item));
 		result.setEditors(getEditors(item));
-		
+
 		return result;
 	}
 
@@ -70,10 +70,10 @@ public class GrobidModelConverter {
 		final String authorsFromList = personListToString(item.getFullAuthors());
 		if (present(authorsFromList))
 			return authorsFromList;
-		
+
 		return personStringToString(item.getAuthors());
 	}
-	
+
 	/**
 	 * Extracts the editors as a (BibTeX-compatible) string. 
 	 * 
@@ -86,14 +86,14 @@ public class GrobidModelConverter {
 		final String editorsFromList = personListToString(item.getFullEditors());
 		if (present(editorsFromList)) 
 			return editorsFromList;
-		
+
 		return personStringToString(item.getEditors());
 	}
 
 
 	/**
-     * Convert a string containing several person names separated by ";" into one separated by " and ".
-     *
+	 * Convert a string containing several person names separated by ";" into one separated by " and ".
+	 *
 	 * Taken from BiblioItem.toBibTeX().
 	 * 
 	 * @param persons
@@ -126,7 +126,7 @@ public class GrobidModelConverter {
 	 * Convert a list of persons into a string.
 	 * 
 	 * Taken from BiblioItem.toBibTeX().
-	 * Persons are separated by " and " and the parts of their names by ", " (last name first).
+	 * Persons are separated by " and ".
 	 * 
 	 * @param fullPersons
 	 * @return The person string.
@@ -138,10 +138,11 @@ public class GrobidModelConverter {
 				boolean begin = true;
 				for (final Person person : fullPersons) {
 					if (begin) {
-						s.append(person.getLastName() + ", " + person.getFirstName());
 						begin = false;
-					} else
-						s.append(" and " + person.getLastName() + ", " + person.getFirstName());
+					} else {
+						s.append(" and ");
+					}
+					s.append(person.getFirstName() + " " + person.getLastName());
 				}
 			}
 		}
@@ -174,7 +175,7 @@ public class GrobidModelConverter {
 		} 
 		return "misc";
 	}
-	
+
 	/**
 	 * Small helper to merge null and empty checks.
 	 * 
