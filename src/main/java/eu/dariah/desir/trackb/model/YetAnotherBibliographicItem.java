@@ -25,6 +25,7 @@ public class YetAnotherBibliographicItem {
     @JsonView(JsonViews.Public.class)  private String pages;
     @JsonView(JsonViews.Public.class)  private String publisher;
     @JsonView(JsonViews.Public.class)  private String series;
+    @JsonView(JsonViews.Public.class)  private String title;
     @JsonView(JsonViews.Public.class)  private String volume;
     @JsonView(JsonViews.Public.class)  private String day;
     @JsonView(JsonViews.Public.class)  private String month;
@@ -262,6 +263,18 @@ public class YetAnotherBibliographicItem {
 	 */
 	public void setEditors(String editors) {
 		this.editors = editors;
+	}
+	/**
+	 * @return the title
+	 */
+	public String getTitle() {
+		return this.title;
+	}
+	/**
+	 * @param title the title to set
+	 */
+	public void setTitle(String title) {
+		this.title = title;
 	}
 
 }
