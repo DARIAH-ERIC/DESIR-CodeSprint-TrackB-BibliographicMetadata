@@ -42,7 +42,6 @@ public class ExtractionController {
 
         GrobidModelConverter converter = new GrobidModelConverter();
         MetadataExtractor me = new MetadataExtractor(converter);
-        me.init();
         List<YetAnotherBibliographicItem> bib_list = null;
 
         try {
