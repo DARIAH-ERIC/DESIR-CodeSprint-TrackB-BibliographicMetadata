@@ -159,7 +159,7 @@ public class GrobidModelConverter {
 	public String getEntryType(final YetAnotherBibliographicItem item) {
 
 		if (present(item.getJournal())) 
-			return "journal";
+			return "article";
 
 		/*        } else if (book_type != null) {
             bibtex += "@techreport{" + id + ",\n";
