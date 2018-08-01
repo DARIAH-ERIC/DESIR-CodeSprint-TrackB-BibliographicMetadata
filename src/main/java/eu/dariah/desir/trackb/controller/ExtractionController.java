@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
+import java.security.InvalidParameterException;
 
 /**
  * Created by hube on 8/1/2018.
@@ -18,34 +19,34 @@ import java.io.File;
 @Controller
 public class ExtractionController {
 
-    private static final Logger LOG = LoggerFactory.getLogger(MetadataExtractor.class);
+    private static final Logger LOG = LoggerFactory.getLogger(ExtractionController.class);
 
-    @RequestMapping(value="/extract", method = {RequestMethod.POST, RequestMethod.GET})
+    @PostMapping(value="/extract")
     public @ResponseBody String handleFileUpload(
             @RequestParam(value = "file", required = false) MultipartFile file,
             @RequestParam(value = "text", required = false) String text) {
-        if (!file.isEmpty()) {
-
-            //handle file upload
-            String file_name = file.getName();
-            try {
-                File json_file = new File(System.getProperty("java.io.tmpdir") + "/" + file.getName());
-                file.transferTo(json_file);
-                LOG.info("Successfully uploaded " + file_name + " into " + json_file.getName());
-            } catch (Exception e) {
-                LOG.error("Failed to upload " + file_name + " => " + e.getMessage());
+        try {
+            if (file.isEmpty() && text.isEmpty()) {
+                throw new InvalidParameterException("The request does not contain a file nor a text string. We need one or " +
+                        "the other.");
+            } else if (!file.isEmpty() && !text.isEmpty()) {
+                throw new InvalidParameterException("The request does contain both a file and a text string. We only need one or the other.");
             }
-
-        } else {
-
-            if (!text.isEmpty()) {
-
-                //handle string
-
-            } else {
-                LOG.error("Missing input parameter");
-                //TODO: throw exception
+            if (!file.isEmpty()) {
+                //handle file upload
+                String file_name = file.getName();
+                try {
+                    File json_file = new File(System.getProperty("java.io.tmpdir") + "/" + file.getName());
+                    file.transferTo(json_file);
+                    LOG.info("Successfully uploaded " + file_name + " into " + json_file.getName());
+                } catch (Exception e) {
+                    LOG.error("Failed to upload " + file_name + " => " + e.getMessage());
+                }
+            } else if (!text.isEmpty()) {
+                    //handle string
             }
+        } catch (InvalidParameterException ipe) {
+            LOG.error("Error with parameters: ", ipe);
         }
         return null;
     }
