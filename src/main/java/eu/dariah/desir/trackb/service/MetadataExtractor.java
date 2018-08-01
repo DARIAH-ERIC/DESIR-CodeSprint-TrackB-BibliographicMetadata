@@ -13,6 +13,7 @@ import org.grobid.core.main.GrobidHomeFinder;
 import org.grobid.core.utilities.GrobidProperties;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
@@ -34,6 +35,8 @@ public class MetadataExtractor {
 	@Value("${grobid.server.url}")
 	private String grobidUrl;
 
+	@Autowired
+	private GrobidModelConverter converter;
 	private Engine engine;
 
 	/**
@@ -70,7 +73,7 @@ public class MetadataExtractor {
 		// copy BiblioItems into new list
 		final List<YetAnotherBibliographicItem> result = new ArrayList<YetAnotherBibliographicItem>(items.size());
 		for (final BibDataSet bibDataSet : items) {
-			result.add(convert(bibDataSet.getResBib()));
+			result.add(this.converter.convert(bibDataSet.getResBib()));
 		}
 
 		return result;
@@ -91,7 +94,7 @@ public class MetadataExtractor {
 		for (final String line: text.split("\\r?\\n")) {
 			final BiblioItem item = this.engine.processRawReference(text, true);
 			if (item != null) {
-				result.add(convert(item));
+				result.add(this.converter.convert(item));
 
 				if (LOG.isDebugEnabled())
 					LOG.debug("input:  " + line);
@@ -101,34 +104,5 @@ public class MetadataExtractor {
 		return result;
 	}
 
-	/**
-	 * Model conversion from {@link BiblioItem} to {@link YetAnotherBibliographicItem}.
-	 * 
-	 * @param item
-	 * @return
-	 */
-	private static YetAnotherBibliographicItem convert(final BiblioItem item) {
-		final YetAnotherBibliographicItem result = new YetAnotherBibliographicItem();
-
-		result.setAddress(item.getAddress());
-		result.setBooktitle(item.getBookTitle());
-		//result.setChapter(item.getBo);
-		result.setDoi(item.getDOI());
-		result.setEdition(item.getEdition());
-		result.setInstitution(item.getInstitution());
-		result.setJournal(item.getJournal());
-		result.setNumber(item.getNumber());
-		result.setPages(item.getPageRange());
-		result.setPublisher(item.getPublisher());
-		//result.setSchool(item.get);
-		//result.setOrganization(item.getOrg);
-		result.setSeries(item.getSerie()); // FIXME: or getSerieTitle()?
-		result.setVolume(item.getVolume());
-		result.setDay(item.getDay());
-		result.setMonth(item.getMonth());
-		result.setYear(item.getYear());
-
-		return result;
-	}
 
 }
