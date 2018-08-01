@@ -29,6 +29,7 @@ import java.util.List;
 public class ExtractionController {
 
     private static final Logger LOG = LoggerFactory.getLogger(ExtractionController.class);
+    private static final String ERROR_JSON = "{\"error\": true}";
 
     /**
      * @param file
@@ -46,52 +47,58 @@ public class ExtractionController {
 
         try {
             if (file == null && text == null) {
-
                 throw new InvalidParameterException("The request does not contain a file nor a text string. We need one or " +
                         "the other.");
             } else if (file != null && text != null) {
                 throw new InvalidParameterException("The request does contain both a file and a text string. We only need one or the other.");
             }
             if (file != null) {
-                //handle file upload
-                String file_name = file.getName();
+                String fileName = file.getName();
+                File json_file = null;
                 try {
-                    File json_file = new File(System.getProperty("java.io.tmpdir") + "/" + file.getName());
+                    json_file = new File(System.getProperty("java.io.tmpdir") + "/" + file.getName());
                     file.transferTo(json_file);
-                    LOG.info("Successfully uploaded " + file_name + " into " + json_file.getName());
-
-                    //extract bibliographical data
-                    bib_list = me.extractItems(json_file);
-
+                    LOG.info("Successfully uploaded " + fileName + " into " + json_file.getName());
                 } catch (Exception e) {
-                    LOG.error("Failed to upload " + file_name + " => " + e.getMessage());
+                    LOG.error("Failed to upload " + fileName + " => " + e.getMessage());
+                    return ERROR_JSON;
+                }
+                try {
+                    bib_list = me.extractItems(json_file);
+                } catch(Exception e) {
+                    return ERROR_JSON;
                 }
             } else {
-                //handle string
-
-                //extract bibliographical data
-                bib_list = me.extractItems(text);
+                try {
+                    bib_list = me.extractItems(text);
+                } catch(Exception e) {
+                    return ERROR_JSON;
+                }
             }
         } catch (InvalidParameterException ipe) {
             LOG.error("Error with parameters: ", ipe);
+            return ERROR_JSON;
         }
 
-        // converting bib items to json
-        StringBuffer sb = new StringBuffer();
-        for (YetAnotherBibliographicItem item : bib_list) {
-            final ObjectMapper mapper = new ObjectMapper();
-            mapper.disable(MapperFeature.DEFAULT_VIEW_INCLUSION);
-            try {
-                final String result = mapper
-                        .writerWithView(JsonViews.Public.class)
-                        .writeValueAsString(item);
-                sb.append(result);
-            } catch(JsonProcessingException e){
-                LOG.error(e.toString());
+        if(bib_list != null) {
+            // converting bib items to json
+            StringBuilder sb = new StringBuilder();
+            for (YetAnotherBibliographicItem item : bib_list) {
+                final ObjectMapper mapper = new ObjectMapper();
+                mapper.disable(MapperFeature.DEFAULT_VIEW_INCLUSION);
+                try {
+                    final String result = mapper
+                            .writerWithView(JsonViews.Public.class)
+                            .writeValueAsString(item);
+                    sb.append(result);
+                } catch (JsonProcessingException e) {
+                    LOG.error(e.toString());
+                }
             }
+            return sb.toString();
         }
 
-        return sb.toString();
+        return null;
     }
 }
 

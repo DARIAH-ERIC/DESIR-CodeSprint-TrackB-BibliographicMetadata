@@ -71,17 +71,21 @@ public class MetadataExtractor {
 	 * @param file - a file (PDF) containing bibliographic references
 	 * @return the list of bibliographic references
 	 */
-	public List<YetAnotherBibliographicItem> extractItems(final File file) {
+	public List<YetAnotherBibliographicItem> extractItems(final File file) throws Exception {
+		try {
+			final List<BibDataSet> items = this.engine.processReferences(file, false);
 
-		final List<BibDataSet> items = this.engine.processReferences(file, false);
+			// copy BiblioItems into new list
+			final List<YetAnotherBibliographicItem> result = new ArrayList<YetAnotherBibliographicItem>(items.size());
+			for (final BibDataSet bibDataSet : items) {
+				result.add(this.converter.convert(bibDataSet.getResBib()));
+			}
 
-		// copy BiblioItems into new list
-		final List<YetAnotherBibliographicItem> result = new ArrayList<YetAnotherBibliographicItem>(items.size());
-		for (final BibDataSet bibDataSet : items) {
-			result.add(this.converter.convert(bibDataSet.getResBib()));
+			return result;
+		} catch(Exception e) {
+			LOG.error("We couldn't extract items from the file " + file.getAbsolutePath());
+			throw e;
 		}
-
-		return result;
 	}
 
 	/**
@@ -93,20 +97,25 @@ public class MetadataExtractor {
 	 * @return the extracted bibliographic items
 	 */
 	public List<YetAnotherBibliographicItem> extractItems(final String text) {
-		final List<YetAnotherBibliographicItem> result = new LinkedList<YetAnotherBibliographicItem>();
+		try {
+			final List<YetAnotherBibliographicItem> result = new LinkedList<YetAnotherBibliographicItem>();
 
-		// iterate over the lines
-		for (final String line: text.split("\\r?\\n")) {
-			final BiblioItem item = this.engine.processRawReference(text, true);
-			if (item != null) {
-				result.add(this.converter.convert(item));
+			// iterate over the lines
+			for (final String line : text.split("\\r?\\n")) {
+				final BiblioItem item = this.engine.processRawReference(text, true);
+				if (item != null) {
+					result.add(this.converter.convert(item));
 
-				if (LOG.isDebugEnabled())
-					LOG.debug("input:  " + line);
-				LOG.debug("output: " + item.toBibTeX());
+					if (LOG.isDebugEnabled())
+						LOG.debug("input:  " + line);
+					LOG.debug("output: " + item.toBibTeX());
+				}
 			}
+			return result;
+		} catch (Exception e) {
+			LOG.error("We couldn't extract items from the string " + text);
+			throw e;
 		}
-		return result;
 	}
 
 
