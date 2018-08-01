@@ -43,7 +43,7 @@ You can get your BibSonomy API key from the [settings page](https://www.bibsonom
 
 To start the application use
 ``` bash 
-mvn -Dspring.config.location=file:/Users/YourUserName/DESIR-CodeSprint/trackB/application.properties spring-boot:run 
+mvn -Dspring.config.location=file:/....../DESIR-CodeSprint/trackB/backend/application.properties spring-boot:run 
 ```
 
 # BibSonomy
@@ -56,7 +56,7 @@ work.
 
 # GROBID
 
-GROBID is a machine learning library for extracting, parsing and
+[GROBID](https://github.com/kermitt2/grobid/) is a machine learning library for extracting, parsing and
 re-structuring raw documents, such as PDF documents, into structured
 TEI-encoded ones.
 
