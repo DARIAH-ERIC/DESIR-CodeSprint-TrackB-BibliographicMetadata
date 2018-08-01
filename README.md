@@ -1,4 +1,4 @@
-# Track B â€” Import and export of bibliographical data from BibSonomy and ingest in managed collections
+# Track B — Import and export of bibliographical data from BibSonomy and ingest in managed collections
 
 In order to promote DARIAH tools, services, and initiative
 collaborations, DESIR organises a series of dissemination events, one
@@ -66,7 +66,7 @@ Task 4 [BibSonomy]
 # Contact
 For more information, please contact us directly:
 - Christoph Hube (hube@L3S.de)
-- Robert JÃ¤schke (jaeschke@L3S.de)
+- Robert Jäschke (jaeschke@L3S.de)
 
 # Grobid WebApp Install Routine
 
