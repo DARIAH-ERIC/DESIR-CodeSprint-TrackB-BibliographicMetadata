@@ -24,8 +24,6 @@ public class YetAnotherBibliographicItem {
     @JsonView(JsonViews.Public.class)  private String number;
     @JsonView(JsonViews.Public.class)  private String pages;
     @JsonView(JsonViews.Public.class)  private String publisher;
-    @JsonView(JsonViews.Public.class)  private String school;
-    @JsonView(JsonViews.Public.class)  private String organization;
     @JsonView(JsonViews.Public.class)  private String series;
     @JsonView(JsonViews.Public.class)  private String volume;
     @JsonView(JsonViews.Public.class)  private String day;
@@ -34,6 +32,7 @@ public class YetAnotherBibliographicItem {
 
     // complex data represented as a string for now
     @JsonView(JsonViews.Public.class)  private String authors;
+    @JsonView(JsonViews.Public.class)  private String editors;
 
 
 /*
@@ -169,30 +168,6 @@ public class YetAnotherBibliographicItem {
 		this.publisher = publisher;
 	}
 	/**
-	 * @return the school
-	 */
-	public String getSchool() {
-		return this.school;
-	}
-	/**
-	 * @param school the school to set
-	 */
-	public void setSchool(String school) {
-		this.school = school;
-	}
-	/**
-	 * @return the organization
-	 */
-	public String getOrganization() {
-		return this.organization;
-	}
-	/**
-	 * @param organization the organization to set
-	 */
-	public void setOrganization(String organization) {
-		this.organization = organization;
-	}
-	/**
 	 * @return the series
 	 */
 	public String getSeries() {
@@ -275,6 +250,18 @@ public class YetAnotherBibliographicItem {
 	 */
 	public void setAuthors(String authors) {
 		this.authors = authors;
+	}
+	/**
+	 * @return the editors
+	 */
+	public String getEditors() {
+		return this.editors;
+	}
+	/**
+	 * @param editors the editors to set
+	 */
+	public void setEditors(String editors) {
+		this.editors = editors;
 	}
 
 }
