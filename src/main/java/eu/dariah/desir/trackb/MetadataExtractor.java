@@ -9,6 +9,8 @@ import org.grobid.core.engines.Engine;
 import org.grobid.core.factory.GrobidFactory;
 import org.grobid.core.main.GrobidHomeFinder;
 import org.grobid.core.utilities.GrobidProperties;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -20,7 +22,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class MetadataExtractor {
 
-	//private static final Logger LOG = Logger.getLogger()
+    private static final Logger LOG = LoggerFactory.getLogger(MetadataExtractor.class);
 
 	@Autowired
 	private String grobidHome;
@@ -36,11 +38,17 @@ public class MetadataExtractor {
 		//locations
 		GrobidProperties.getInstance(grobidHomeFinder);
 
-		System.out.println(">>>>>>>> GROBID_HOME="+GrobidProperties.get_GROBID_HOME_PATH());
+		LOG.debug("instantiating grobid by searching in the following locations: " + GrobidProperties.get_GROBID_HOME_PATH());
 
 		this.engine = GrobidFactory.getInstance().createEngine();
 	}
 
+	/**
+	 * Extract bibliographic metadata from the string and return it as BibTeX.
+	 * 
+	 * @param text
+	 * @return the extracted metadata in BibTeX format
+	 */
 	public String extract(final String text) {
 
 		// The GrobidHomeFinder can be instantiate without parameters to verify the grobid home in the standard
@@ -53,12 +61,12 @@ public class MetadataExtractor {
 
 		final BiblioItem result = this.engine.processRawReference(text, true);
 
-		System.out.println("#######################################################################");
-		System.out.println("input string:  " + text);
-		System.out.println("output BibTeX: " + result.toBibTeX());
-		System.out.println("#######################################################################");
+		final String bibtex = result.toBibTeX();
+		
+		LOG.debug("input:  " + text);
+		LOG.debug("output: " + bibtex);
 
-		return result.toBibTeX();
+		return bibtex;
 	}
 
 }
