@@ -3,12 +3,12 @@ trackb.iml
 application.properties
 /target/
 
-/src/main/resources/grobid_webapp/.DS_Store
-/src/main/resources/grobid_webapp/node_modules/
-/src/main/resources/grobid_webapp/dist/
-/src/main/resources/grobid_webapp/npm-debug.log*
-/src/main/resources/grobid_webapp/yarn-debug.log*
-/src/main/resources/grobid_webapp/yarn-error.log*
+/frontend/.DS_Store
+/frontend/node_modules/
+/frontend/dist/
+/frontend/npm-debug.log*
+/frontend/yarn-debug.log*
+/frontend/yarn-error.log*
 
 # Editor directories and files
 .idea
