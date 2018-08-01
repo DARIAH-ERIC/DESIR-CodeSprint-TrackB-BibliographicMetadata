@@ -27,7 +27,7 @@ import static org.junit.Assert.assertNotNull;
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringBootTest
 public class ExtractionControllerTest {
-    private static final Logger LOG = LoggerFactory.getLogger(ExtractionController.class);
+    private static final Logger LOG = LoggerFactory.getLogger(ExtractionControllerTest.class);
 
     private MockMvc mockMvc;
     private MockMultipartFile pdfFile;
