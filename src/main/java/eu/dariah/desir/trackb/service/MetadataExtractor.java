@@ -35,9 +35,13 @@ public class MetadataExtractor {
 	@Value("${grobid.server.url}")
 	private String grobidUrl;
 
-	@Autowired
-	private GrobidModelConverter converter;
+	private final GrobidModelConverter converter;
 	private Engine engine;
+
+	@Autowired
+	public MetadataExtractor(GrobidModelConverter converter) {
+		this.converter = converter;
+	}
 
 	/**
 	 * Initialize GROBID

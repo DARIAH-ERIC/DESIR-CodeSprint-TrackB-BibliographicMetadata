@@ -7,12 +7,15 @@ import org.grobid.core.data.BiblioItem;
 import org.grobid.core.data.Person;
 
 import eu.dariah.desir.trackb.model.YetAnotherBibliographicItem;
+import org.springframework.context.annotation.Bean;
+import org.springframework.stereotype.Service;
 
 /**
  * TODO: add documentation to this class
  *
  * @author rja
  */
+@Service
 public class GrobidModelConverter {
 
 	/**
