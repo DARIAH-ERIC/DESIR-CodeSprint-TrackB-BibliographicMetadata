@@ -86,7 +86,7 @@ public class MetadataExtractor {
 
 			return result;
 		} catch(Exception e) {
-			LOG.error("We couldn't extract items from the file " + file.getAbsolutePath());
+			LOG.error("We couldn't extract items from the file " + file.getAbsolutePath(), e);
 			throw e;
 		}
 	}
@@ -116,7 +116,7 @@ public class MetadataExtractor {
 			}
 			return result;
 		} catch (Exception e) {
-			LOG.error("We couldn't extract items from the string " + text);
+			LOG.error("We couldn't extract items from the string " + text, e);
 			throw e;
 		}
 	}
