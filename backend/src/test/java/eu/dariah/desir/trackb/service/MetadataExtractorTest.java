@@ -33,7 +33,7 @@ public class MetadataExtractorTest {
 	 */
 	@Test
 	public void testExtractItemsFile() throws Exception {
-		final URL url = this.getClass().getClassLoader().getResource("EAD-ODD_ A_solution_for_project-oriented_EAD_schemes.pdf");
+		final URL url = this.getClass().getClassLoader().getResource("EAD-ODD_A_solution_for_project-oriented_EAD_schemes.pdf");
 		assertNotNull(url);
 		final File file = new File(url.getFile());
 		assertNotNull(file);
