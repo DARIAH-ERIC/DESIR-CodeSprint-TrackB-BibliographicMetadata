@@ -2,7 +2,6 @@ package eu.dariah.desir.trackb.service;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.fail;
 
 import java.io.File;
 import java.net.URL;
