@@ -44,7 +44,7 @@ public class MetadataExtractor {
 		if (grobidHome != null) {
 			this.extractor = new LocalGrobidMetadataExtractor(this.grobidHome, converter);
 		} else if (grobidUrl != null) {
-			this.extractor = new LocalGrobidMetadataExtractor(this.grobidHome, converter);
+			this.extractor = new RemoteGrobidMetadataExtractor(this.grobidUrl, converter);
 		} else {
 			throw new Exception("Could not initialise " + MetadataExtractor.class.getSimpleName() + " since neither grobid path nor grobid url were configured.");
 		}
