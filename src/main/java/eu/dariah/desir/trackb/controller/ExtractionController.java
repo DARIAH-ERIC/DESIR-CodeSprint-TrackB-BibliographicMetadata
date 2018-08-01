@@ -1,5 +1,9 @@
 package eu.dariah.desir.trackb.controller;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.MapperFeature;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import eu.dariah.desir.trackb.json.JsonViews;
 import eu.dariah.desir.trackb.model.YetAnotherBibliographicItem;
 import eu.dariah.desir.trackb.service.GrobidModelConverter;
 import org.slf4j.Logger;
@@ -39,7 +43,7 @@ public class ExtractionController {
         GrobidModelConverter converter = new GrobidModelConverter();
         MetadataExtractor me = new MetadataExtractor(converter);
         me.init();
-        List<YetAnotherBibliographicItem> bib_list;
+        List<YetAnotherBibliographicItem> bib_list = null;
 
         try {
             if (file == null && text == null) {
@@ -72,9 +76,22 @@ public class ExtractionController {
             LOG.error("Error with parameters: ", ipe);
         }
 
-        //TODO: convert bib_list to json and return json
+        // converting bib items to json
+        StringBuffer sb = new StringBuffer();
+        for (YetAnotherBibliographicItem item : bib_list) {
+            final ObjectMapper mapper = new ObjectMapper();
+            mapper.disable(MapperFeature.DEFAULT_VIEW_INCLUSION);
+            try {
+                final String result = mapper
+                        .writerWithView(JsonViews.Public.class)
+                        .writeValueAsString(item);
+                sb.append(result);
+            } catch(JsonProcessingException e){
+                LOG.error(e.toString());
+            }
+        }
 
-        return "{}";
+        return sb.toString();
     }
 }
 
