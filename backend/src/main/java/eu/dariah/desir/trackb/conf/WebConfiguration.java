@@ -18,10 +18,10 @@ public class WebConfiguration implements WebMvcConfigurer {
      * Setting the size of uploaded file to about 50MB
      * @return The MultiPartResolver knowing the size limit of the upload
      */
-    @Bean
-    public MultipartResolver multipartResolver() {
-        CommonsMultipartResolver multipartResolver = new CommonsMultipartResolver();
-        multipartResolver.setMaxUploadSize(52428800);
-        return multipartResolver;
-    }
+//    @Bean
+//    public MultipartResolver multipartResolver() {
+//        final CommonsMultipartResolver multipartResolver = new CommonsMultipartResolver();
+//        multipartResolver.setMaxUploadSize(52428800);
+//        return multipartResolver;
+//    }
 }

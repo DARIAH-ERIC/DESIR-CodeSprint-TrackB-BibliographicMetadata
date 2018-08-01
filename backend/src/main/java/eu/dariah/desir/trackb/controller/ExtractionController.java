@@ -21,8 +21,6 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import eu.dariah.desir.trackb.json.JsonViews;
 import eu.dariah.desir.trackb.model.YetAnotherBibliographicItem;
 import eu.dariah.desir.trackb.service.BibSonomyAdaptor;
-import eu.dariah.desir.trackb.service.BibSonomyModelConverter;
-import eu.dariah.desir.trackb.service.GrobidModelConverter;
 import eu.dariah.desir.trackb.service.MetadataExtractor;
 
 /**
