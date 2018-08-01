@@ -1,11 +1,12 @@
 package eu.dariah.desir.trackb.controller;
 
-import eu.dariah.desir.trackb.MetadataExtractor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+
+import eu.dariah.desir.trackb.service.MetadataExtractor;
 
 import java.io.File;
 import java.security.InvalidParameterException;
@@ -21,6 +22,11 @@ public class ExtractionController {
 
     private static final Logger LOG = LoggerFactory.getLogger(ExtractionController.class);
 
+    /**
+     * @param file
+     * @param text
+     * @return
+     */
     @PostMapping(value="/extract")
     public @ResponseBody String handleFileUpload(
             @RequestParam(value = "file", required = false) MultipartFile file,

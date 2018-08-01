@@ -1,4 +1,4 @@
-package eu.dariah.desir.trackb;
+package eu.dariah.desir.trackb.service;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -19,6 +19,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
+import eu.dariah.desir.trackb.model.YetAnotherBibliographicItem;
+
 /**
  * Extracts bibliographic metadata given a file or string using Grobid.
  *
@@ -27,7 +29,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class MetadataExtractor {
 
-    private static final Logger LOG = LoggerFactory.getLogger(MetadataExtractor.class);
+	private static final Logger LOG = LoggerFactory.getLogger(MetadataExtractor.class);
 
 	@Value("${grobid.home.path}")
 	private String grobidHome;
@@ -64,19 +66,19 @@ public class MetadataExtractor {
 	 * @param file - a file (PDF) containing bibliographic references
 	 * @return the list of bibliographic references
 	 */
-	public List<BiblioItem> extractItems(final File file) {
+	public List<YetAnotherBibliographicItem> extractItems(final File file) {
 
 		final List<BibDataSet> items = this.engine.processReferences(file, false);
 
 		// copy BiblioItems into new list
-		final List<BiblioItem> result = new ArrayList<BiblioItem>(items.size());
+		final List<YetAnotherBibliographicItem> result = new ArrayList<YetAnotherBibliographicItem>(items.size());
 		for (final BibDataSet bibDataSet : items) {
-			result.add(bibDataSet.getResBib());
+			result.add(convert(bibDataSet.getResBib()));
 		}
-		
+
 		return result;
 	}
-	
+
 	/**
 	 * Extract bibliographic items (separated by newline) from the string. 
 	 * 
@@ -85,20 +87,50 @@ public class MetadataExtractor {
 	 * @param text
 	 * @return the extracted bibliographic items
 	 */
-	public List<BiblioItem> extractItems(final String text) {
-		final List<BiblioItem> result = new LinkedList<BiblioItem>();
-		
+	public List<YetAnotherBibliographicItem> extractItems(final String text) {
+		final List<YetAnotherBibliographicItem> result = new LinkedList<YetAnotherBibliographicItem>();
+
 		// iterate over the lines
 		for (final String line: text.split("\\r?\\n")) {
 			final BiblioItem item = this.engine.processRawReference(text, true);
 			if (item != null) {
-				result.add(item);
+				result.add(convert(item));
 
 				if (LOG.isDebugEnabled())
 					LOG.debug("input:  " + line);
-					LOG.debug("output: " + item.toBibTeX());
+				LOG.debug("output: " + item.toBibTeX());
 			}
 		}
+		return result;
+	}
+
+	/**
+	 * Model conversion from {@link BiblioItem} to {@link YetAnotherBibliographicItem}.
+	 * 
+	 * @param item
+	 * @return
+	 */
+	private static YetAnotherBibliographicItem convert(final BiblioItem item) {
+		final YetAnotherBibliographicItem result = new YetAnotherBibliographicItem();
+
+		result.setAddress(item.getAddress());
+		result.setBooktitle(item.getBookTitle());
+		//result.setChapter(item.getBo);
+		result.setDoi(item.getDOI());
+		result.setEdition(item.getEdition());
+		result.setInstitution(item.getInstitution());
+		result.setJournal(item.getJournal());
+		result.setNumber(item.getNumber());
+		result.setPages(item.getPageRange());
+		result.setPublisher(item.getPublisher());
+		//result.setSchool(item.get);
+		//result.setOrganization(item.getOrg);
+		result.setSeries(item.getSerie()); // FIXME: or getSerieTitle()?
+		result.setVolume(item.getVolume());
+		result.setDay(item.getDay());
+		result.setMonth(item.getMonth());
+		result.setYear(item.getYear());
+
 		return result;
 	}
 
