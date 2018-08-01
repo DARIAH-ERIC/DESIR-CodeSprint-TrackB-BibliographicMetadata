@@ -94,12 +94,13 @@ npm run build --report
 The Grobid model files must be downloaded (e.g., https://dl.bintray.com/rookies/maven/org/grobid/grobid-home/0.5.1/grobid-home-0.5.1.zip) and placed into an appropriate folder which is configured via an option in application.properties. 
 
 Create a file called application.properties and configure it like this
-
-- grobid.home.path=/Users/YourUserName/Work/Grobid/grobid-home/
-- grobid.server.url=http://traces1.inria.fr/grobid/
-- bibsonomy.api.url=https://www.bibsonomy.org/api/
-- bibsonomy.api.user=YourUserName
-- bibsonomy.api.key=foo
+``` bash 
+grobid.home.path=/Users/YourUserName/Work/Grobid/grobid-home/
+grobid.server.url=http://traces1.inria.fr/grobid/
+bibsonomy.api.url=https://www.bibsonomy.org/api/
+bibsonomy.api.user=YourUserName
+bibsonomy.api.key=foo
+```
 
 You can get your BibSonomy API key from the [settings page](https://www.bibsonomy.org/settings?selTab=1#selTab1). **Do not put your API key into a public repository.**
 
