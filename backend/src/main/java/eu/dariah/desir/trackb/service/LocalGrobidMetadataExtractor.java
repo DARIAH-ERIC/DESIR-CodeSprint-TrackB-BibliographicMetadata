@@ -50,14 +50,13 @@ public class LocalGrobidMetadataExtractor implements GrobidMetadataExtractor {
 
         LOG.debug("Loading the GROBID parsers");
         this.engine.getParsers().getFullTextParser();
-        this.engine.getParsers().getAffiliationAddressParser();
         this.engine.getParsers().getHeaderParser();
-        this.engine.getParsers().getCitationParser();
         this.engine.getParsers().getReferenceSegmenterParser();
         this.engine.getParsers().getSegmentationParser();
         this.engine.getParsers().getDateParser();
         this.engine.getParsers().getAuthorParser();
-
+        this.engine.getParsers().getAffiliationAddressParser();
+        this.engine.getParsers().getCitationParser();
     }
 
 	/**
