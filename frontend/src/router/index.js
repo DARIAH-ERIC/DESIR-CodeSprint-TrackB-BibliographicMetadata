@@ -3,6 +3,7 @@ import Router from 'vue-router';
 import App from '../components/App';
 import Start from '../components/Start';
 import ImportPDF from '../components/ImportPDF';
+import Entries from '../components/entries';
 
 Vue.use(Router);
 
@@ -39,6 +40,13 @@ export default new Router({
           name: 'import',
           components: {
             Content: ImportPDF,
+          },
+        },
+        {
+          path: 'entries',
+          name: 'entries',
+          components: {
+            Content: Entries,
           },
         },
         {
