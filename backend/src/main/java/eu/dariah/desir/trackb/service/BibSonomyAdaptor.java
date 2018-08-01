@@ -23,14 +23,14 @@ import eu.dariah.desir.trackb.model.YetAnotherBibliographicItem;
 @Service
 public class BibSonomyAdaptor {
 	
-//	@Value("${bibsonomy.api.user}")
-//	private String bibsonomyApiUser;
-//
-//	@Value("${bibsonomy.api.key}")
-//	private String bibsonomyApiKey;
-//
-//	@Value("${bibsonomy.api.url}")
-//	private String bibsonomyApiUrl;
+	@Value("${bibsonomy.api.user}")
+	private String bibsonomyApiUser;
+
+	@Value("${bibsonomy.api.key}")
+	private String bibsonomyApiKey;
+
+	@Value("${bibsonomy.api.url}")
+	private String bibsonomyApiUrl;
 
 	private LogicInterface bibsonomy;
 	
@@ -59,12 +59,12 @@ public class BibSonomyAdaptor {
 	 * @param items
 	 * @param tags - A list of string that shall not contain any whitespace.
 	 */
-	public void storeItems(final List<YetAnotherBibliographicItem> items, final Set<String> tags) {
+	public void storeItems(final List<YetAnotherBibliographicItem> items) {
 		// convert model
-//		final List<Post<? extends Resource>> posts = converter.convertToPosts(items, this.bibsonomyApiUser, tags);
-//
-//		// call API
-//		final List<String> result = bibsonomy.createPosts(posts);
+		final List<Post<? extends Resource>> posts = converter.convertToPosts(items, this.bibsonomyApiUser);
+
+		// call API
+		final List<String> result = bibsonomy.createPosts(posts);
 		
 		// FIXME: do error handling using messages in result
 

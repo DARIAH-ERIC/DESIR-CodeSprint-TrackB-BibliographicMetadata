@@ -1,28 +1,28 @@
 package eu.dariah.desir.trackb.controller;
 
+import java.io.File;
+import java.security.InvalidParameterException;
+import java.util.List;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.http.MediaType;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
+
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.MapperFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
+
 import eu.dariah.desir.trackb.json.JsonViews;
 import eu.dariah.desir.trackb.model.YetAnotherBibliographicItem;
 import eu.dariah.desir.trackb.service.BibSonomyAdaptor;
 import eu.dariah.desir.trackb.service.BibSonomyModelConverter;
 import eu.dariah.desir.trackb.service.GrobidModelConverter;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.http.MediaType;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.MultipartFile;
-
 import eu.dariah.desir.trackb.service.MetadataExtractor;
-
-import java.io.File;
-import java.security.InvalidParameterException;
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
 
 /**
  * Created by hube on 8/1/2018.
@@ -36,6 +36,10 @@ public class ExtractionController {
     private static final Logger LOG = LoggerFactory.getLogger(ExtractionController.class);
     private static final String ERROR_JSON = "{\"error\": true}";
 
+    private final MetadataExtractor me = new MetadataExtractor(new GrobidModelConverter());
+    private final BibSonomyAdaptor adaptor = new BibSonomyAdaptor(new BibSonomyModelConverter());
+
+    
     /**
      * @param file
      * @return
@@ -43,13 +47,7 @@ public class ExtractionController {
     @PostMapping(value="/store")
     public @ResponseBody String storeInBibSonomy(
             @RequestParam(value = "file", required = false) MultipartFile file) {
-
-        GrobidModelConverter converter = new GrobidModelConverter();
-        MetadataExtractor me = new MetadataExtractor(converter);
-        List<YetAnotherBibliographicItem> bib_list;
-        BibSonomyModelConverter bs_converter = new BibSonomyModelConverter();
-        BibSonomyAdaptor adaptor = new BibSonomyAdaptor(bs_converter);
-        Set<String> tags = new HashSet<>(); // ?
+        List<YetAnotherBibliographicItem> items;
 
         try {
             if (file != null) {
@@ -64,8 +62,8 @@ public class ExtractionController {
                     return ERROR_JSON;
                 }
                 try {
-                    bib_list = me.extractItems(json_file);
-                    adaptor.storeItems(bib_list, tags);
+                    items = me.extractItems(json_file);
+                    adaptor.storeItems(items);
                 } catch(Exception e) {
                     return ERROR_JSON;
                 }
@@ -91,9 +89,7 @@ public class ExtractionController {
             @RequestParam(value = "file", required = false) MultipartFile file,
             @RequestParam(value = "text", required = false) String text) {
 
-        GrobidModelConverter converter = new GrobidModelConverter();
-        MetadataExtractor me = new MetadataExtractor(converter);
-        List<YetAnotherBibliographicItem> bib_list;
+        List<YetAnotherBibliographicItem> items;
 
         try {
             if (file == null && text == null) {
@@ -114,13 +110,13 @@ public class ExtractionController {
                     return ERROR_JSON;
                 }
                 try {
-                    bib_list = me.extractItems(json_file);
+                    items = me.extractItems(json_file);
                 } catch(Exception e) {
                     return ERROR_JSON;
                 }
             } else {
                 try {
-                    bib_list = me.extractItems(text);
+                    items = me.extractItems(text);
                 } catch(Exception e) {
                     return ERROR_JSON;
                 }
@@ -130,10 +126,10 @@ public class ExtractionController {
             return ERROR_JSON;
         }
 
-        if(bib_list != null) {
+        if(items != null) {
             // converting bib items to json
             StringBuilder sb = new StringBuilder();
-            for (YetAnotherBibliographicItem item : bib_list) {
+            for (YetAnotherBibliographicItem item : items) {
                 final ObjectMapper mapper = new ObjectMapper();
                 mapper.disable(MapperFeature.DEFAULT_VIEW_INCLUSION);
                 try {
