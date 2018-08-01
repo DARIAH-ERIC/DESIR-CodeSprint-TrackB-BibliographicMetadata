@@ -1,0 +1,38 @@
+{
+	"logo":"/static/oeaw_logo.png",
+	"title":"GROBID WebApp",
+	"color":"primary",
+	"homestate":{
+		"name": "start",
+		"params": {
+			"lang": "en" }
+		},
+	"menu":
+		[
+			{
+				"caption":"Home",
+				"arialabel":"",
+				"icon":"home",
+				"abstract":"",
+				"startpage":{
+					"name": "start",
+					"params": {
+						"lang": "en" }
+					},
+				"items":""
+			},
+			{
+				"caption":"Import",
+				"arialabel":"",
+				"icon":"build",
+				"abstract":"",
+				"startpage":{
+					"name": "import",
+					"params": {
+						"lang": "en" }
+					},
+				"items":""
+			}
+		],
+	"repo":""
+}
