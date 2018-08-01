@@ -35,7 +35,7 @@ public class ExtractionController {
             if (file.isEmpty() && text.isEmpty()) {
                 throw new InvalidParameterException("The request does not contain a file nor a text string. We need one or " +
                         "the other.");
-            } else if (!file.isEmpty() && !text.isEmpty()) {
+            } else if (!file.isEmpty() && text == null) {
                 throw new InvalidParameterException("The request does contain both a file and a text string. We only need one or the other.");
             }
             if (!file.isEmpty()) {
