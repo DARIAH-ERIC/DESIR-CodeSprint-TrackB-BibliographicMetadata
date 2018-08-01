@@ -1,0 +1,53 @@
+{
+  "info": {
+    "title": "DESIR Codesprint Sample App",
+    "version": "0.1"
+  },
+  "swagger": "2.0",
+  "paths": {
+    "/": {
+      "get": {
+        "description": "API root",
+        "produces": ["application/json"],
+        "responses": {
+          "200": {
+            "description": "Here and available."
+          }
+        }
+      }
+    },
+    "/extract": {
+      "post": {
+        "description": "Extract Bibliographic Information from PDF or Text with GROBID",
+        "produces": ["application/json"],
+        "consumes": ["multipart/form-data"],
+        "parameters": [{
+          "name": "PDF",
+          "type":"file",
+          "description": "PDF from wich Info is to be extracted.",
+          "in": "formData",
+          "required": true,
+          "camelCaseName": "pdf",
+          "isBodyParameter": true,
+          "cardinality": ""
+        }],
+        "responses": {
+          "200": {
+            "description": "Returns extracted Bibliographie as JSON"
+          },
+          "400": {
+            "description": "Malformed input / Wrong File Type"
+          },
+          "404": {
+            "description": "No bibliographic Resources found."
+          }
+        }
+      }
+    }
+  },
+  "definitions": {},
+  "responses": {},
+  "parameters": {},
+  "securityDefinitions": {},
+  "tags": []
+}
