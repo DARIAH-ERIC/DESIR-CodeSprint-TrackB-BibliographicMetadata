@@ -22,18 +22,27 @@
         "produces": ["application/json"],
         "consumes": ["multipart/form-data"],
         "parameters": [{
-          "name": "PDF",
+          "name": "file",
           "type":"file",
-          "description": "PDF from wich Info is to be extracted.",
+          "description": "PDF from which info is to be extracted.",
           "in": "formData",
           "required": true,
-          "camelCaseName": "pdf",
+          "camelCaseName": "file",
+          "isBodyParameter": true,
+          "cardinality": ""
+        }, {
+          "name": "text",
+          "type":"string",
+          "description": "A string from which info is to be extracted.",
+          "in": "formData",
+          "required": true,
+          "camelCaseName": "text",
           "isBodyParameter": true,
           "cardinality": ""
         }],
         "responses": {
           "200": {
-            "description": "Returns extracted Bibliographie as JSON"
+            "description": "Returns extracted Bibliography as JSON"
           },
           "400": {
             "description": "Malformed input / Wrong File Type"
