@@ -5,8 +5,8 @@ import java.util.List;
 
 import javax.annotation.PostConstruct;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import eu.dariah.desir.trackb.service.impl.LocalGrobidMetadataExtractor;
+import eu.dariah.desir.trackb.service.impl.RemoteGrobidMetadataExtractor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
@@ -46,7 +46,8 @@ public class MetadataExtractor {
 		} else if (grobidUrl != null) {
 			this.extractor = new RemoteGrobidMetadataExtractor(this.grobidUrl, converter);
 		} else {
-			throw new Exception("Could not initialise " + MetadataExtractor.class.getSimpleName() + " since neither grobid path nor grobid url were configured.");
+			throw new RuntimeException("Could not initialise " + MetadataExtractor.class.getSimpleName() + " since " +
+                    "neither grobid path nor grobid url were configured.");
 		}
 	}
 
