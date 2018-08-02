@@ -1,4 +1,4 @@
-package eu.dariah.desir.trackb.service;
+package eu.dariah.desir.trackb.service.impl;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -6,6 +6,8 @@ import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 
+import eu.dariah.desir.trackb.service.GrobidMetadataExtractor;
+import eu.dariah.desir.trackb.service.GrobidModelConverter;
 import org.grobid.core.data.BibDataSet;
 import org.grobid.core.data.BiblioItem;
 import org.grobid.core.engines.Engine;
@@ -14,8 +16,6 @@ import org.grobid.core.main.GrobidHomeFinder;
 import org.grobid.core.utilities.GrobidProperties;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 
 import eu.dariah.desir.trackb.model.YetAnotherBibliographicItem;
 
@@ -34,7 +34,7 @@ public class LocalGrobidMetadataExtractor implements GrobidMetadataExtractor {
 	public LocalGrobidMetadataExtractor(final String grobidHome, final GrobidModelConverter converter) {
 		this.converter = converter;
 
-		// The GrobidHomeFinder can be instantiate without parameters to verify the grobid home in the standard
+        // The GrobidHomeFinder can be instantiate without parameters to verify the grobid home in the standard
 		// location (classpath, ../grobid-home, ../../grobid-home)
 
 		// If the location is customized:
