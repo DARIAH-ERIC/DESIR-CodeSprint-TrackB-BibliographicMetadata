@@ -13,7 +13,7 @@ public class JsonHelper {
         try {
             yetAnotherBibliographicItems = mapper.readValue(json, new TypeReference<List<YetAnotherBibliographicItem>>() {});
         } catch (Exception e) {
-            throw new Exception("Error converting JSON collection to List<YetAnotherBibliographicItem>");
+            throw new Exception("Error converting JSON collection to List<YetAnotherBibliographicItem>", e);
         }
         return yetAnotherBibliographicItems;
     }
