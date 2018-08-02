@@ -196,6 +196,11 @@ public class RemoteGrobidMetadataExtractor implements GrobidMetadataExtractor {
 	}
 
 	/**
+	 * Model conversion from Grobid TEI to (basically) BibTeX.
+	 * 
+	 * FIXME: very incomplete, works well for journal articles.
+	 * FIXME: add meaningful unit tests.
+	 * 
 	 * @param xPath
 	 * @param ref
 	 * @return
@@ -212,17 +217,57 @@ public class RemoteGrobidMetadataExtractor implements GrobidMetadataExtractor {
 		item.setTitle(getNodeContent(xPath, ref, "analytic/title[@type=\"main\"]"));
 
 		// authors
+		final NodeList authorNodes = ((NodeList) xPath.compile("analytic/author").evaluate(ref, XPathConstants.NODESET));
+		if (authorNodes != null) {
+			final StringBuilder authors = new StringBuilder(); // FIXME: use BibTexUtils to generate an author string
+			boolean begin = true;
+			for (int i = 0; i < authorNodes.getLength(); i++) {
+				final Node persName = (Node) xPath.compile("persName").evaluate(authorNodes.item(i).getChildNodes(), XPathConstants.NODE);
+				
+				final String first = getNodeContent(xPath, persName, "forename");
+				final String last = getNodeContent(xPath, persName, "surname");
+				if (first != null || last != null) {
+					if (!begin)
+						authors.append(" and ");
+					if (first != null) 
+						authors.append(first);
+					if (last != null)
+						authors.append(" " + last);
+					begin = false;
+				}
+			}
+			item.setAuthors(authors.toString());
+		}
 
 		// the collection where the item is contained
 		item.setJournal(getNodeContent(xPath, ref, "monogr/title[@level=\"j\"]"));
 		item.setVolume(getNodeContent(xPath, ref, "monogr/imprint/biblScope[@unit=\"volume\"]"));
 		item.setNumber(getNodeContent(xPath, ref, "monogr/imprint/biblScope[@unit=\"issue\"]"));
-		//item.setYear(getNodeContent(xPath, ref, ));
+		item.setPublisher(getNodeContent(xPath, ref, "monogr/imprint/publisher"));
+		// year
 		final Node yearNode = ((Node) xPath.compile("monogr/imprint/date[@type=\"published\"]").evaluate(ref, XPathConstants.NODE));
 		if (yearNode != null) {
 			item.setYear(yearNode.getAttributes().getNamedItem("when").getTextContent());
 		}
-
+		// pages
+		final Node pagesNode = ((Node) xPath.compile("monogr/imprint/biblScope[@unit=\"page\"]").evaluate(ref, XPathConstants.NODE));
+		if (pagesNode != null) {
+			final Node from = pagesNode.getAttributes().getNamedItem("from");
+			final Node to = pagesNode.getAttributes().getNamedItem("to");
+			if (from != null && to != null) {
+				item.setPages(from.getTextContent() + "--" + to.getTextContent());
+			} else if (from != null) {
+				item.setPages(from.getTextContent());
+			} else if (to != null) {
+				item.setPages(to.getTextContent());
+			}
+			
+		}
+		
+		// entrytype
+		if (item.getJournal() != null) 
+			item.setEntryType("article");
+		
 		return item;
 	}
 
