@@ -2,17 +2,17 @@ package eu.dariah.desir.trackb.controller;
 
 import java.io.File;
 import java.security.InvalidParameterException;
-import java.util.ArrayList;
 import java.util.List;
-
-import com.fasterxml.jackson.core.type.TypeReference;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -41,6 +41,11 @@ public class ExtractionController {
 	private final MetadataExtractor me;
 	private final BibSonomyAdaptor adaptor;
 
+	/**
+	 * Initialize the controller with a metadata extractor for Grobid and a connector for BibSonomy.
+	 * @param me
+	 * @param adaptor
+	 */
 	@Autowired
 	public ExtractionController(MetadataExtractor me, BibSonomyAdaptor adaptor) {
 		this.me = me;
