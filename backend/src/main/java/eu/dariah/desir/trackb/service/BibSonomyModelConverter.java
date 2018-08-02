@@ -1,6 +1,7 @@
 package eu.dariah.desir.trackb.service;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -73,6 +74,8 @@ public class BibSonomyModelConverter {
 	 * @return The list of tags.
 	 */
 	public Set<Tag> convertToTags(final Set<String> tags) {
+		if (tags == null || tags.size() == 0)
+			return Collections.singleton(new Tag("imported"));
 		final Set<Tag> result = new HashSet<Tag>(tags.size());
 		for (final String tag: tags) {
 			result.add(new Tag(tag.replaceAll("\\s", "")));
