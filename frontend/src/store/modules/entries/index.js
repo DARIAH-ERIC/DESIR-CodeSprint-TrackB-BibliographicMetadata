@@ -14,10 +14,10 @@ const getters = {
   isValid: (state) => (id) => {
     let res = [];
     for (var i = 0; i < state.required.length; i++) {
+      console.log(id, res);
       if(!state.entries[id][state.required[i]]) res.push(state.required[i]);
-      if(state.entries[id].tags.length < 1) res.push('tags');
     }
-    console.log(id, res);
+    if(state.entries[id].tags.length < 1) res.push('tags');
     return res;
   },
 };
