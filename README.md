@@ -1,4 +1,4 @@
-# PDF -> GROBID = bibliographic metadata -> BibSonomy
+# PDF → GROBID = bibliographic metadata → BibSonomy
 
 This tool allows to extract bibliographical metadata from PDF files
 using [GROBID](https://github.com/kermitt2/grobid) and to store it in
