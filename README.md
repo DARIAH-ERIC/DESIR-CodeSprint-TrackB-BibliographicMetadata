@@ -66,18 +66,20 @@ with the path to your local configuration file.
 ### Extra configuration file
 #### Install folder example: /opt/trackB/
 
-Make a copy of the configuration template install-files/trackB.conf and add it to the install folder.
-This is in order to let the init.d script use extra property files for your server.
+Make a copy of the configuration template `install-files/trackB.conf`
+and add it to the install folder.  This is in order to let the
+`init.d` script use extra property files for your server.
 
 ### Create executable
 In the build folder:
-``` bash
+``` sh
 mvn -Dspring.config.location=file:/....../DESIR-CodeSprint/trackB/backend/application.properties clean package
 ```
-Copy the executable (.jar) to the installation folder.
+Copy the executable (`.jar`) to the installation folder.
 
-Create a symbolic link (ln -s) from /opt/trackB/trackB.jar to /etc/init.d/trackB to be able to launch the tool as a service 
-(usable for centos 6.x servers for example).
+Create a symbolic link (`ln -s`) from `/opt/trackB/trackB.jar` to
+`/etc/init.d/trackB` to be able to launch the tool as a service
+(usable for CentOS 6.x servers for example).
 
 ### Start the service
 ```service trackB start```
@@ -88,8 +90,9 @@ The server should now listen on the port 8080 by default:
 
 http://localhost:8080/trackB/
 
-## Redirect from Apache HTTPD to our own Service
-Here is an example of a conf file for apache httpd using SSL and redirection from the port 443 (SSL) to our application running on port 8080.
+### Redirect from Apache HTTPD to our own Service
+
+Here is an example of a conf file for Apache httpd using SSL and redirection from the port 443 (SSL) to our application running on port 8080.
 The port 80 is also redirected to 443 and therefore to 8443 when used.
 (Example using a server: trackB.dariah.eu)
 
