@@ -14,19 +14,19 @@ public interface GrobidMetadataExtractor {
 
 	/**
 	 * Extracts bibliographic references from the given file.
-	 * 
-	 * @param file - a file (PDF) containing bibliographic references
+	 *
+	 * @param file A file (PDF) containing bibliographic references
 	 * @return the list of bibliographic references
 	 */
-	public List<YetAnotherBibliographicItem> extractItems(final File file) throws Exception;
+	List<YetAnotherBibliographicItem> extractItems(final File file) throws Exception;
 
 	/**
-	 * Extract bibliographic items (separated by newline) from the string. 
-	 * 
+	 * Extract bibliographic items (separated by newline) from the string.
+	 *
 	 * We assume that individual bibliographic items are separated by newline.
-	 * 
-	 * @param text
+	 *
+	 * @param text The text String containing bibliographic references
 	 * @return the extracted bibliographic items
 	 */
-	public List<YetAnotherBibliographicItem> extractItems(final String text);
+	List<YetAnotherBibliographicItem> extractItems(final String text);
 }
