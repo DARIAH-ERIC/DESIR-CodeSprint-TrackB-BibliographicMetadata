@@ -7,7 +7,7 @@
           <div >
             <p>Post PDF to API</p>
           </div>
-          <vue-dropzone ref="myVueDropzone" id="file" :options="dropzoneOptions" v-on:vdropzone-success="results"></vue-dropzone>
+          <vue-dropzone ref="myVueDropzone" id="file" :options="dropzoneOptions" v-on:vdropzone-success="results" v-on:vdropzone-complete="noresults"></vue-dropzone>
         </fundamentcard>
     </v-container>
   </div>
@@ -367,13 +367,22 @@ export default {
       'setEntry',
     ]),
     results(file, res) {
-      console.log(res);
       for (var i = 0; i < res.length; i++) {
-        this.setEntry(i , res[i]);
+        res[i].idx = i;
+        res[i].tags = [];
+        this.setEntry({no: i , obj: res[i]});
       }
       console.log(file, res);
-      this.$route.router.push('entries');
-    }
+      this.$router.push({ name: 'entries', params: { lang:  'en'  }});
+    },
+    noresults(file) {
+      // for (var i = 0; i < this.testdata.length; i++) {
+      //   this.testdata[i].idx = i;
+      //   this.testdata[i].tags = [];
+      //   this.setEntry({no: i , obj: this.testdata[i]});
+      // }
+      // this.$router.push({ name: 'entries', params: { lang:  'en'  }});
+    },
   },
   computed: {
   },

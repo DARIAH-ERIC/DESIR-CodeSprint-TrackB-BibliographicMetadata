@@ -1,7 +1,6 @@
 package eu.dariah.desir.trackb.service;
 
 import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.fail;
 
 import java.io.InputStream;
 import java.util.List;
@@ -12,6 +11,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import eu.dariah.desir.trackb.model.YetAnotherBibliographicItem;
+import eu.dariah.desir.trackb.service.impl.RemoteGrobidMetadataExtractor;
 
 /**
  * TODO: add documentation to this class

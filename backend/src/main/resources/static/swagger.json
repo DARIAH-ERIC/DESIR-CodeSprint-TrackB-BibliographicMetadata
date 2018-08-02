@@ -52,6 +52,28 @@
           }
         }
       }
+    },
+    "/store": {
+      "post": {
+        "description": "Store Bibliographic Information in Bibsonomy",
+        "produces": ["application/json"],
+        "consumes": ["application/json"],
+        "parameters": [{
+          "name": "yetAnotherBibliographicItems",
+          "type":"string",
+          "description": "A JSON String containing an array of the yetAnotherBibliographicItem items",
+          "in": "formData",
+          "required": true,
+          "camelCaseName": "yetAnotherBibliographicItems",
+          "isBodyParameter": true,
+          "cardinality": ""
+        }],
+        "responses": {
+          "200": {
+            "description": "Returns if it was successfull or not, error is either true or false"
+          }
+        }
+      }
     }
   },
   "definitions": {},

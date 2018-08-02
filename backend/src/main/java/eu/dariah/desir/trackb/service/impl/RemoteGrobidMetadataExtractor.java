@@ -1,4 +1,4 @@
-package eu.dariah.desir.trackb.service;
+package eu.dariah.desir.trackb.service.impl;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -34,6 +34,8 @@ import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
 import eu.dariah.desir.trackb.model.YetAnotherBibliographicItem;
+import eu.dariah.desir.trackb.service.GrobidMetadataExtractor;
+import eu.dariah.desir.trackb.service.GrobidModelConverter;
 
 /**
  * TODO: add documentation to this class
@@ -48,7 +50,8 @@ public class RemoteGrobidMetadataExtractor implements GrobidMetadataExtractor {
 	final String grobidUrl;
 
 	/**
-	 * 
+	 * @param grobidUrl - The URL to the GROBID API.
+	 * @param converter
 	 */
 	public RemoteGrobidMetadataExtractor(final String grobidUrl, final GrobidModelConverter converter) {
 		this.converter = converter;
