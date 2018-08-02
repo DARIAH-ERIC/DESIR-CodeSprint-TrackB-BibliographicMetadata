@@ -179,7 +179,9 @@ public class GrobidModelConverter {
 				return "inproceedings";
 			}
 			return "article"; // Why?
-		} 
+		} else if (present(item.getPublisher())) {
+			return "book";
+		}
 		return "misc";
 	}
 
