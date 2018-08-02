@@ -56,7 +56,7 @@ public class BibSonomyModelConverter {
 	 * @param items
 	 * @param userName
 	 * @param tags
-	 * @return
+	 * @return The converted posts.
 	 */
 	public List<Post<? extends Resource>> convertToPosts(final List<YetAnotherBibliographicItem> items, final String userName) {
 		final List<Post<? extends Resource>> posts = new ArrayList<Post<? extends Resource>>(items.size());
@@ -87,7 +87,7 @@ public class BibSonomyModelConverter {
 	 * Converts {@link YetAnotherBibliographicItem} to {@link BibTex}.
 	 * 
 	 * @param item
-	 * @return
+	 * @return The converted BibTeX object.
 	 */
 	public BibTex convertToBibTex(final YetAnotherBibliographicItem item) {
 		final BibTex bib = new BibTex();

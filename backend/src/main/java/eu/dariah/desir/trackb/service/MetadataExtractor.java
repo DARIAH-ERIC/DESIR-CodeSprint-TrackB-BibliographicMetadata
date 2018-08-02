@@ -39,6 +39,9 @@ public class MetadataExtractor {
 		this.converter = converter;
 	}
 
+	/**
+	 * @throws Exception
+	 */
 	@PostConstruct
 	public void init() throws Exception {
 		if (grobidHome != null) {
@@ -56,6 +59,7 @@ public class MetadataExtractor {
 	 *
 	 * @param file A file (PDF) containing bibliographic references
 	 * @return the list of bibliographic references
+	 * @throws Exception 
 	 */
 	public List<YetAnotherBibliographicItem> extractItems(final File file) throws Exception {
 		return extractor.extractItems(file);

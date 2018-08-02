@@ -31,6 +31,10 @@ public class LocalGrobidMetadataExtractor implements GrobidMetadataExtractor {
 	private final GrobidModelConverter converter;
 	private Engine engine;
 
+	/**
+	 * @param grobidHome
+	 * @param converter
+	 */
 	public LocalGrobidMetadataExtractor(final String grobidHome, final GrobidModelConverter converter) {
 		this.converter = converter;
 
@@ -65,6 +69,7 @@ public class LocalGrobidMetadataExtractor implements GrobidMetadataExtractor {
 	 * @param file - a file (PDF) containing bibliographic references
 	 * @return the list of bibliographic references
 	 */
+	@Override
 	public List<YetAnotherBibliographicItem> extractItems(final File file) throws Exception {
 		try {
 			LOG.debug("extracting items from file " + file);
@@ -93,6 +98,7 @@ public class LocalGrobidMetadataExtractor implements GrobidMetadataExtractor {
 	 * @param text
 	 * @return the extracted bibliographic items
 	 */
+	@Override
 	public List<YetAnotherBibliographicItem> extractItems(final String text) {
 		try {
 			final List<YetAnotherBibliographicItem> result = new LinkedList<YetAnotherBibliographicItem>();

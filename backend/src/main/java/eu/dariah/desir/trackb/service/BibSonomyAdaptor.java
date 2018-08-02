@@ -1,8 +1,6 @@
 package eu.dariah.desir.trackb.service;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 
 import javax.annotation.PostConstruct;
 
@@ -38,6 +36,9 @@ public class BibSonomyAdaptor {
 	private BibSonomyModelConverter converter;
 
 
+	/**
+	 * @param converter
+	 */
 	@Autowired
 	public BibSonomyAdaptor(BibSonomyModelConverter converter) {
 		this.converter = converter;
@@ -58,6 +59,7 @@ public class BibSonomyAdaptor {
 	 * Store items in BibSonomy.
 	 *
 	 * @param items
+	 * @return The hashes (identifiers) of the created items.
 	 */
 	public List<String> storeItems(final List<YetAnotherBibliographicItem> items) {
 		// convert model

@@ -17,6 +17,7 @@ public interface GrobidMetadataExtractor {
 	 *
 	 * @param file A file (PDF) containing bibliographic references
 	 * @return the list of bibliographic references
+	 * @throws Exception 
 	 */
 	List<YetAnotherBibliographicItem> extractItems(final File file) throws Exception;
 
