@@ -292,10 +292,16 @@ public class YetAnotherBibliographicItem {
 		this.tags = tags;
 	}
 
+    /**
+     * @return The idx
+     */
     public String getIdx() {
         return idx;
     }
 
+    /**
+     * @param idx
+     */
     public void setIdx(String idx) {
         this.idx = idx;
     }
