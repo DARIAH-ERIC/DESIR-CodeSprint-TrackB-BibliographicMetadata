@@ -64,7 +64,7 @@ public class RemoteGrobidMetadataExtractor implements GrobidMetadataExtractor {
 	@Override
 	public List<YetAnotherBibliographicItem> extractItems(File file) throws Exception {
 		final FileInputStream is = new FileInputStream(file);
-		final List<YetAnotherBibliographicItem> items = processCitations(is);
+		final List<YetAnotherBibliographicItem> items = processFulltextDocument(is);
 		is.close();
 		return items;
 	}
@@ -267,6 +267,8 @@ public class RemoteGrobidMetadataExtractor implements GrobidMetadataExtractor {
 		// entrytype
 		if (item.getJournal() != null) 
 			item.setEntryType("article");
+		else
+			item.setEntryType("misc");
 		
 		return item;
 	}

@@ -24,6 +24,10 @@ import eu.dariah.desir.trackb.model.YetAnotherBibliographicItem;
 @SpringBootTest
 public class MetadataExtractorTest {
 
+	/**
+	 * 
+	 */
+	private static final String TEST_FILE = "EAD-ODD_A_solution_for_project-oriented_EAD_schemes.pdf";
 	@Autowired
 	private MetadataExtractor extractor;
 	
@@ -33,7 +37,7 @@ public class MetadataExtractorTest {
 	 */
 	@Test
 	public void testExtractItemsFile() throws Exception {
-		final URL url = this.getClass().getClassLoader().getResource("EAD-ODD_A_solution_for_project-oriented_EAD_schemes.pdf");
+		final URL url = this.getClass().getClassLoader().getResource(TEST_FILE);
 		assertNotNull(url);
 		final File file = new File(url.getFile());
 		assertNotNull(file);
