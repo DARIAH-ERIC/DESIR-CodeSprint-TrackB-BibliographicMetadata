@@ -30,11 +30,9 @@ npm run build --report
 
 The Grobid model files must be downloaded (e.g., https://dl.bintray.com/rookies/maven/org/grobid/grobid-home/0.5.1/grobid-home-0.5.1.zip) and placed into an appropriate folder which is configured via an option in application.properties. 
 
-Create a file called application.properties and configure it like this
+Copy the file install-files/application.properties in your application root and set the correct paths and keys:
 ``` bash 
 grobid.home.path=/Users/YourUserName/Work/Grobid/grobid-home/
-grobid.server.url=http://traces1.inria.fr/grobid/
-bibsonomy.api.url=https://www.bibsonomy.org/api/
 bibsonomy.api.user=YourUserName
 bibsonomy.api.key=foo
 ```
@@ -44,6 +42,61 @@ You can get your BibSonomy API key from the [settings page](https://www.bibsonom
 To start the application use
 ``` bash 
 mvn -Dspring.config.location=file:/....../DESIR-CodeSprint/trackB/backend/application.properties spring-boot:run 
+```
+
+# Usage (as a service)
+## Extra configuration file
+### Install folder example: /opt/trackB/
+
+Make a copy of the configuration template install-files/trackB.conf and add it to the install folder.
+This is in order to let the init.d script use extra property files for your server.
+
+## Create executable
+In the build folder:
+``` bash
+mvn -Dspring.config.location=file:/....../DESIR-CodeSprint/trackB/backend/application.properties clean package
+```
+Copy the executable (.jar) to the installation folder.
+
+Create a symbolic link (ln -s) from /opt/trackB/trackB.jar to /etc/init.d/trackB to be able to launch the tool as a service 
+(usable for centos 6.x servers for example).
+
+## Start the service
+```service trackB start```
+
+```service httpd restart```
+
+The server should now listen on the port 8080 by default:
+
+http://localhost:8080/trackB/
+
+## Redirect from Apache HTTPD to our own Service
+Here is an example of a conf file for apache httpd using SSL and redirection from the port 443 (SSL) to our application running on port 8080.
+The port 80 is also redirected to 443 and therefore to 8443 when used.
+(Example using a server: trackB.dariah.eu)
+
+```xml
+NameVirtualHost *:80
+NameVirtualHost *:443
+
+<VirtualHost *:443>
+    SSLEngine on
+    SSLProxyEngine On
+    SSLCertificateFile /etc/letsencrypt/live/trackB.dariah.eu/cert.pem
+    SSLCertificateKeyFile /etc/letsencrypt/live/trackB.dariah.eu/privkey.pem
+    SSLCertificateChainFile /etc/letsencrypt/live/trackB.dariah.eu/chain.pem
+    ServerName https://trackB.dariah.eu/
+    Redirect / https://trackB.dariah.eu/trackB/
+    ProxyPass /trackB/ http://localhost:8080/trackB/
+    ProxyPassReverse /trackB/ http://localhost:8080/trackB/
+</VirtualHost>
+<VirtualHost *:80>
+    ServerName http://trackB.dariah.eu/
+    DocumentRoot /var/www/
+    ErrorLog /var/log/httpd/trackB_error_log
+    CustomLog /var/log/httpd/trackB_access_log combined
+    Redirect / https://trackB.dariah.eu/
+</VirtualHost>
 ```
 
 # BibSonomy
