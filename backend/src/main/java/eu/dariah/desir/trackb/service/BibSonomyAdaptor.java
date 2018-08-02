@@ -59,31 +59,26 @@ public class BibSonomyAdaptor {
 	 *
 	 * @param items
 	 */
-	public void storeItems(final List<YetAnotherBibliographicItem> items) {
+	public List<String> storeItems(final List<YetAnotherBibliographicItem> items) {
 		// convert model
 		final List<Post<? extends Resource>> posts = converter.convertToPosts(items, this.bibsonomyApiUser);
 
 		// call API
-		final List<String> result = bibsonomy.createPosts(posts);
+		final List<String> hashs = bibsonomy.createPosts(posts);
 
-		// FIXME: do error handling using messages in result
-
+		return hashs;
 	}
 
 
     /**
-     * Delete Post in BibSonomy.
+     * Delete Items in BibSonomy.
      *
-     * @param user
-     * @param hash
+     * @param hashs
      */
-    public void deletePost(String user, String hash) {
-
-        List<String> hashList = new ArrayList<>();
-        hashList.add(hash);
+    public void deleteItems(List<String> hashs) {
 
         // call API
-        bibsonomy.deletePosts(user, hashList);
+        bibsonomy.deletePosts(bibsonomyApiUser, hashs);
     }
 
 
