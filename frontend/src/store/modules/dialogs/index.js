@@ -4,7 +4,7 @@
 const state = {
   loginDialog: { status: false },
   logoutDialog: { status: false },
-  createDialog: { status: false, type: '' },
+  editDialog: { status: false, model: {} },
   importDialog: { status: false },
 };
 
@@ -19,9 +19,9 @@ const mutations = {
   closeDialog(s, name) {
     s[name].status = false;
   },
-  openCreateDialog(s, type) {
-    s.createDialog.type = type;
-    s.createDialog.status = true;
+  openEditDialog(s, obj) {
+    s.editDialog.model = obj;
+    s.editDialog.status = true;
   },
   switchDialog(s, name) {
     s[name].status = !s[name];
