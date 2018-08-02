@@ -1,5 +1,6 @@
 package eu.dariah.desir.trackb.service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
@@ -22,7 +23,7 @@ import eu.dariah.desir.trackb.model.YetAnotherBibliographicItem;
  */
 @Service
 public class BibSonomyAdaptor {
-	
+
 	@Value("${bibsonomy.api.user}")
 	private String bibsonomyApiUser;
 
@@ -33,16 +34,16 @@ public class BibSonomyAdaptor {
 	private String bibsonomyApiUrl;
 
 	private LogicInterface bibsonomy;
-	
+
 	private BibSonomyModelConverter converter;
-	
+
 
 	@Autowired
 	public BibSonomyAdaptor(BibSonomyModelConverter converter) {
 		this.converter = converter;
 	}
 
-	
+
 	/**
 	 * Initialise BibSonomy REST API
 	 */
@@ -52,12 +53,11 @@ public class BibSonomyAdaptor {
 //    	final LogicInterface logic = rlf.getLogicAccess(this.bibsonomyApiUser, this.bibsonomyApiKey);
 	}
 
-	
+
 	/**
 	 * Store items in BibSonomy.
-	 * 
+	 *
 	 * @param items
-	 * @param tags - A list of string that shall not contain any whitespace.
 	 */
 	public void storeItems(final List<YetAnotherBibliographicItem> items) {
 		// convert model
@@ -65,10 +65,26 @@ public class BibSonomyAdaptor {
 
 		// call API
 		final List<String> result = bibsonomy.createPosts(posts);
-		
+
 		// FIXME: do error handling using messages in result
 
 	}
-	
-	
+
+
+    /**
+     * Delete Post in BibSonomy.
+     *
+     * @param user
+     * @param hash
+     */
+    public void deletePost(String user, String hash) {
+
+        List<String> hashList = new ArrayList<>();
+        hashList.add(hash);
+
+        // call API
+        bibsonomy.deletePosts(user, hashList);
+    }
+
+
 }

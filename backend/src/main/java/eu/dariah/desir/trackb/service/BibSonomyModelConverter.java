@@ -13,6 +13,7 @@ import org.bibsonomy.model.Resource;
 import org.bibsonomy.model.Tag;
 import org.bibsonomy.model.User;
 import org.bibsonomy.model.util.PersonNameParser.PersonListParserException;
+import org.bibsonomy.model.util.BibTexUtils;
 import org.bibsonomy.model.util.PersonNameUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -88,7 +89,7 @@ public class BibSonomyModelConverter {
 	public BibTex convertToBibTex(final YetAnotherBibliographicItem item) {
 		final BibTex bib = new BibTex();
 
-		bib.setEntrytype(item.getEntryType());
+		bib.setEntrytype(item.getEntryType()); // mandatory!
 		bib.setAddress(item.getAddress());
 		bib.setBooktitle(item.getBooktitle());
 		bib.setChapter(item.getChapter());
@@ -99,12 +100,13 @@ public class BibSonomyModelConverter {
 		bib.setPages(item.getPages());
 		bib.setPublisher(item.getPublisher());
 		bib.setSeries(item.getSeries());
-		bib.setTitle(item.getTitle());
+		bib.setTitle(item.getTitle()); // mandatory!
 		bib.setVolume(item.getVolume());
 		bib.setDay(item.getDay());
 		bib.setMonth(item.getMonth());
-		bib.setYear(item.getYear());
+		bib.setYear(item.getYear()); // mandatory!
 		
+		// either author or editor must be present (mandatory!)
 		try {
 			bib.setAuthor(PersonNameUtils.discoverPersonNames(item.getAuthors()));
 		} catch (PersonListParserException e) {
@@ -120,6 +122,9 @@ public class BibSonomyModelConverter {
 		miscFields.put("doi", item.getDoi());
 		bib.setMiscFields(miscFields);
 
+		// generate the (mandatory!) BibTeX key
+		bib.setBibtexKey(BibTexUtils.generateBibtexKey(bib));
+		
 		return bib;
 	}
 
