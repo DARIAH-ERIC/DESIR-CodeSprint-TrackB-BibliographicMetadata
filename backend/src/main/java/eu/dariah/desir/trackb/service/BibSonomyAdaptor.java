@@ -49,8 +49,8 @@ public class BibSonomyAdaptor {
 	 */
 	@PostConstruct
 	public void init() {
-//    	final RestLogicFactory rlf = new RestLogicFactory(this.bibsonomyApiUrl);
-//    	final LogicInterface logic = rlf.getLogicAccess(this.bibsonomyApiUser, this.bibsonomyApiKey);
+    	final RestLogicFactory rlf = new RestLogicFactory(this.bibsonomyApiUrl);
+    	this.bibsonomy = rlf.getLogicAccess(this.bibsonomyApiUser, this.bibsonomyApiKey);
 	}
 
 
