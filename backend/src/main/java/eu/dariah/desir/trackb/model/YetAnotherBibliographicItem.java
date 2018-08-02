@@ -12,10 +12,10 @@ import eu.dariah.desir.trackb.json.JsonViews;
  * @author rja
  */
 public class YetAnotherBibliographicItem {
-	
+
 	// the type of the bibliographic item (from the list from BibTeX)
 	@JsonView(JsonViews.Public.class)  private String entryType;
-	
+
     @JsonView(JsonViews.Public.class)  private String address;
     @JsonView(JsonViews.Public.class)  private String booktitle;
     @JsonView(JsonViews.Public.class)  private String chapter;
@@ -32,13 +32,12 @@ public class YetAnotherBibliographicItem {
     @JsonView(JsonViews.Public.class)  private String day;
     @JsonView(JsonViews.Public.class)  private String month;
     @JsonView(JsonViews.Public.class)  private String year;
-
     // complex data represented as a string for now
     @JsonView(JsonViews.Public.class)  private String authors;
     @JsonView(JsonViews.Public.class)  private String editors;
-
     // for now: include tags directly
     @JsonView(JsonViews.Public.class)  private Set<String> tags;
+    @JsonView(JsonViews.Public.class)  private String idx;
 
 /*
 	private String entrytype;
@@ -51,7 +50,7 @@ public class YetAnotherBibliographicItem {
 	private int scraperId;
 	private String url;
 */
-    
+
     /**
 	 * @return the address
 	 */
@@ -293,7 +292,15 @@ public class YetAnotherBibliographicItem {
 		this.tags = tags;
 	}
 
-	/* (non-Javadoc)
+    public String getIdx() {
+        return idx;
+    }
+
+    public void setIdx(String idx) {
+        this.idx = idx;
+    }
+
+    /* (non-Javadoc)
 	 * @see java.lang.Object#toString()
 	 */
 	@Override
