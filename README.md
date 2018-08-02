@@ -93,7 +93,7 @@ Here is an example of a conf file for apache httpd using SSL and redirection fro
 The port 80 is also redirected to 443 and therefore to 8443 when used.
 (Example using a server: trackB.dariah.eu)
 
-```xml
+```apacheconf
 NameVirtualHost *:80
 NameVirtualHost *:443
 
