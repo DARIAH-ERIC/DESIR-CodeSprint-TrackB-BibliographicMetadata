@@ -55,7 +55,8 @@ public class ExtractionController {
 	public String storeInBibSonomy(@RequestBody String wrapper) {
         try {
             LOG.debug("wrapper json received: " + wrapper);
-            adaptor.storeItems(JsonHelper.convert(wrapper));
+            final List<String> result = adaptor.storeItems(JsonHelper.convert(wrapper));
+            LOG.debug("stored " + result.size() + " items in BibSonomy");
             return SUCCESSFUL_JSON;
         } catch(Exception e) {
             LOG.error("Failed to extract items", e);
