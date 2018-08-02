@@ -376,12 +376,12 @@ export default {
       this.$router.push({ name: 'entries', params: { lang:  'en'  }});
     },
     noresults(file) {
-      for (var i = 0; i < this.testdata.length; i++) {
-        this.testdata[i].idx = i;
-        this.testdata[i].tags = [];
-        this.setEntry({no: i , obj: this.testdata[i]});
-      }
-      this.$router.push({ name: 'entries', params: { lang:  'en'  }});
+      // for (var i = 0; i < this.testdata.length; i++) {
+      //   this.testdata[i].idx = i;
+      //   this.testdata[i].tags = [];
+      //   this.setEntry({no: i , obj: this.testdata[i]});
+      // }
+      // this.$router.push({ name: 'entries', params: { lang:  'en'  }});
     },
   },
   computed: {
