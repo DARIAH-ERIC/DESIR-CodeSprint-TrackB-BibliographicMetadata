@@ -134,7 +134,7 @@ as PDF documents, into structured TEI-encoded ones.
 
 ## Contributing
 
-Placeholder
+Contributions are welcome! Just fork and send your pull requests.
 
 ## Credits
 
@@ -145,7 +145,7 @@ CodeSprint](http://desircodesprint.sciencesconf.org/) by
 [ChristophHubeL3S](https://github.com/ChristophHubeL3S),
 [ctot-nondef](https://github.com/ctot-nondef), and
 [schmima](https://github.com/schmima).  See
-[contributors](https://github.com/DESIR-CodeSprint/trackB/graphs/contributors)
+[contributors](https://github.com/DESIR-CodeSprint/trackB/graphs/contributors).
 
 ## License
 
