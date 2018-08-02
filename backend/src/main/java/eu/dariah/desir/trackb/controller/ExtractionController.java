@@ -5,16 +5,14 @@ import java.security.InvalidParameterException;
 import java.util.ArrayList;
 import java.util.List;
 
-import eu.dariah.desir.trackb.model.YetAnotherBibliographicItemWrapper;
+import com.fasterxml.jackson.core.type.TypeReference;
+import eu.dariah.desir.trackb.helper.JsonHelper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -52,10 +50,15 @@ public class ExtractionController {
 	 * @param wrapper The wrapper of all YetAnotherBibliographicItems retrieved from the frontend
 	 * @return The JSON string we send back to the frontend, either error is true or false
 	 */
-	@PostMapping(value="/store")
-	public @ResponseBody String storeInBibSonomy(@RequestBody YetAnotherBibliographicItemWrapper wrapper) {
+    @PostMapping(value="/store", consumes=MediaType.APPLICATION_JSON_UTF8_VALUE, produces=MediaType.APPLICATION_JSON_UTF8_VALUE)
+    @ResponseBody
+	public String storeInBibSonomy(@RequestBody String wrapper) {
         try {
-            adaptor.storeItems(wrapper.getYetAnotherBibliographicItem());
+            LOG.debug("wrapper json received: " + wrapper);
+            for(YetAnotherBibliographicItem yetAnotherBibliographicItem : JsonHelper.convert(wrapper)) {
+                LOG.debug("Item: " + yetAnotherBibliographicItem.toString());
+            }
+//            adaptor.storeItems(wrapper.getYetAnotherBibliographicItem());
             return SUCCESSFUL_JSON;
         } catch(Exception e) {
             LOG.error("Failed to extract items", e);

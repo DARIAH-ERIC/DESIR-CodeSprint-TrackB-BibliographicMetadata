@@ -8,10 +8,22 @@
         class="elevation-1"
       >
         <template slot="items" slot-scope="props">
-          <td>{{ props.item.booktitle }}</td>
+          <td>{{ props.item.title }}</td>
           <td>{{ props.item.entryType }}</td>
           <td>{{ props.item.year }}</td>
           <td><v-btn @click="openEditDialog($store.state.entries.entries[props.item.idx])" color="info">Edit</v-btn></td>
+          <td>
+            <v-alert :value="isValid(props.item.idx).length==0"
+              type="success"
+            >
+              Item ready to submit.
+            </v-alert>
+            <v-alert :value="isValid(props.item.idx).length>0"
+              type="warning"
+            >
+              Item missing {{ isValid(props.item.idx) }}.
+            </v-alert>
+          </td>
         </template>
       </v-data-table>
       <v-btn @click="submitAll">submit</v-btn>
@@ -39,7 +51,8 @@ export default {
         { text: 'booktitle', value: 'booktitle' },
         { text: 'entryType', value: 'entryType' },
         { text: 'year', value: 'year' },
-        { text: 'edit', value: 'year' },
+        { text: 'edit', value: '' },
+        { text: 'status', value: '' },
       ],
     };
   },
@@ -51,9 +64,9 @@ export default {
       'openEditDialog',
     ]),
     submitAll() {
-      let o = { yetAnotherBibliographicItems: [] };
+      let o = [];
       for (var i = 0; i < this.entries.length; i++) {
-        o.yetAnotherBibliographicItems.push(this.entries[i]);
+        o.push(this.entries[i]);
       }
       console.log(o);
       axios.post('http://localhost:8080/store', o);
@@ -62,6 +75,9 @@ export default {
   computed: {
     ...mapState('entries', [
       'entries',
+    ]),
+    ...mapGetters('entries', [
+      'isValid',
     ]),
   },
   created() {

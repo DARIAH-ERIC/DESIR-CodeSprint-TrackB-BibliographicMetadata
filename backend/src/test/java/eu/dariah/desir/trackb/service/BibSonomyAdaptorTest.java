@@ -11,6 +11,7 @@ import org.mockito.MockitoAnnotations;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
 import org.springframework.mock.web.MockMultipartFile;
@@ -44,10 +45,11 @@ public class BibSonomyAdaptorTest {
     /**
      */
     @Test
-    public void a_testStoreItems() throws Exception {
+    public void storeAndDeleteItem() throws Exception {
 
         assertNotNull(adaptor);
 
+        //store
         List<YetAnotherBibliographicItem> items = new ArrayList<>();
         Set<String> tags = new HashSet<>();
         tags.add("test_tag");
@@ -70,21 +72,13 @@ public class BibSonomyAdaptorTest {
         items.add(item2);
 
         assertNotNull(items);
+        List<String> hashs = adaptor.storeItems(items);
 
-        adaptor.storeItems(items);
 
-        // check status code? At the moment storeItems returns void.
+        //delete
+        adaptor.deleteItems(hashs);
     }
 
-    /**
-     */
-    @Test
-    public void b_deleteItem() throws Exception {
-        String user = "chube";
-        String hash = "3bf2449d934a7d3fe079699dbf5f60b4";
-
-        adaptor.deletePost(user, hash);
-    }
 }
 
 

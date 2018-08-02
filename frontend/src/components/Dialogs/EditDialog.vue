@@ -22,7 +22,7 @@
         </v-toolbar>
         <v-card-text v-if="editDialog.model.idx">
           <v-form ref="form" lazy-validation >
-            <v-text-field v-model="editDialog.model.entryType" label="Entry Type" required></v-text-field>
+            <v-text-field v-model="editDialog.model.entryType" label="Entry Type" required :rules="[v => !!v || 'Item is required']"></v-text-field>
             <v-text-field v-model="editDialog.model.address" label="Adress"></v-text-field>
             <v-text-field v-model="editDialog.model.booktitle" label="Booktitle"></v-text-field>
             <v-text-field v-model="editDialog.model.chapter" label="Chapter"></v-text-field>
@@ -34,14 +34,14 @@
             <v-text-field v-model="editDialog.model.pages" label="Pages"></v-text-field>
             <v-text-field v-model="editDialog.model.publisher" label="Publisher"></v-text-field>
             <v-text-field v-model="editDialog.model.series" label="Series"></v-text-field>
-            <v-text-field v-model="editDialog.model.title" label="Title" required></v-text-field>
+            <v-text-field v-model="editDialog.model.title" label="Title" required :rules="[v => !!v || 'Item is required']" ></v-text-field>
             <v-text-field v-model="editDialog.model.volume" label="Volume"></v-text-field>
             <v-text-field v-model="editDialog.model.day" label="Day"></v-text-field>
             <v-text-field v-model="editDialog.model.month" label="month"></v-text-field>
-            <v-text-field v-model="editDialog.model.year" label="Year" required></v-text-field>
-            <v-text-field v-model="editDialog.model.authors" label="Authors" required></v-text-field>
-            <v-text-field v-model="editDialog.model.editors" label="Editors" required></v-text-field>
-            <v-combobox   v-model="editDialog.model.tags" :items="editDialog.model.tags" chips label="Tags" multiple></v-combobox>
+            <v-text-field v-model="editDialog.model.year" label="Year" required :rules="[v => !!v || 'Item is required']"></v-text-field>
+            <v-text-field v-model="editDialog.model.authors" label="Authors" required :rules="[v => !!v || 'Item is required']"></v-text-field>
+            <v-text-field v-model="editDialog.model.editors" label="Editors" required :rules="[v => !!v || 'Item is required']"></v-text-field>
+            <v-combobox   v-model="editDialog.model.tags" :items="editDialog.model.tags" chips label="Tags" multiple :rules="[v => !!v || 'Item is required']"></v-combobox>
             <v-btn @click="submit">submit</v-btn>
           </v-form>
         </v-card-text>
