@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.fasterxml.jackson.core.type.TypeReference;
-import eu.dariah.desir.trackb.helper.JsonHelper;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +19,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.MapperFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import eu.dariah.desir.trackb.json.JsonHelper;
 import eu.dariah.desir.trackb.json.JsonViews;
 import eu.dariah.desir.trackb.model.YetAnotherBibliographicItem;
 import eu.dariah.desir.trackb.service.BibSonomyAdaptor;

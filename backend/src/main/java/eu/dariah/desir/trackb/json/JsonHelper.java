@@ -1,4 +1,4 @@
-package eu.dariah.desir.trackb.helper;
+package eu.dariah.desir.trackb.json;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
