@@ -6,15 +6,25 @@ import eu.dariah.desir.trackb.model.YetAnotherBibliographicItem;
 
 import java.util.List;
 
+/**
+ * Helper class to convert JSON to our internal data model.
+ * 
+ */
 public class JsonHelper {
+    /**
+     * Convert JSON to a list of {@link YetAnotherBibliographicItem}'s.
+     * 
+     * @param json
+     * @return A list of {@link YetAnotherBibliographicItem}'s.
+     * @throws Exception
+     */
     public static List<YetAnotherBibliographicItem> convert(String json) throws Exception {
-        ObjectMapper mapper = new ObjectMapper();
-        List<YetAnotherBibliographicItem> yetAnotherBibliographicItems = null;
         try {
-            yetAnotherBibliographicItems = mapper.readValue(json, new TypeReference<List<YetAnotherBibliographicItem>>() {});
+            return new ObjectMapper().readValue(json, new TypeReference<List<YetAnotherBibliographicItem>>() {
+            	// nothing to do here
+            });
         } catch (Exception e) {
             throw new Exception("Error converting JSON collection to List<YetAnotherBibliographicItem>", e);
         }
-        return yetAnotherBibliographicItems;
     }
 }
