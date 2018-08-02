@@ -3,7 +3,7 @@
 This tool allows to extract bibliographical metadata from PDF files
 using [GROBID](https://github.com/kermitt2/grobid) and to store it in
 [BibSonomy](https://www.bibsonomy.org/). The tool was developed during
-the [DESIR Code Sprint](http://desircodesprint.sciencesconf.org/9 in
+the [DESIR Code Sprint](http://desircodesprint.sciencesconf.org/) in
 Berlin (31.7.-2.8.2018).
 
 ## Installation and Setup
