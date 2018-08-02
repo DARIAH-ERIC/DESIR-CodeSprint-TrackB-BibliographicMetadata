@@ -137,12 +137,19 @@ public class GrobidModelConverter {
 			if (fullPersons.size() > 0) {
 				boolean begin = true;
 				for (final Person person : fullPersons) {
-					if (begin) {
-						begin = false;
-					} else {
-						s.append(" and ");
+					final String firstName = person.getFirstName();
+					final String lastName = person.getLastName();
+					if (firstName != null || lastName != null) {
+						if (begin) {
+							begin = false;
+						} else {
+							s.append(" and ");
+						}
+						if (firstName != null) 
+							s.append(firstName);
+						if (lastName != null) 
+							s.append(" " + lastName);
 					}
-					s.append(person.getFirstName() + " " + person.getLastName());
 				}
 			}
 		}
