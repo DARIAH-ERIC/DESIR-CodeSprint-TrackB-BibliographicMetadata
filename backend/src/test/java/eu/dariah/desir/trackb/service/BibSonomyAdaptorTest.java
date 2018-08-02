@@ -3,6 +3,7 @@ package eu.dariah.desir.trackb.service;
 import eu.dariah.desir.trackb.controller.ExtractionControllerTest;
 import eu.dariah.desir.trackb.model.YetAnotherBibliographicItem;
 import org.apache.commons.io.IOUtils;
+import org.bibsonomy.model.logic.LogicInterface;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -38,12 +39,14 @@ public class BibSonomyAdaptorTest {
     private static final Logger LOG = LoggerFactory.getLogger(ExtractionControllerTest.class);
 
     @Autowired
-    private BibSonomyAdaptor adaptor;
+    BibSonomyAdaptor adaptor;
 
     /**
      */
     @Test
-    public void testStoreItems() throws Exception {
+    public void a_testStoreItems() throws Exception {
+
+        assertNotNull(adaptor);
 
         List<YetAnotherBibliographicItem> items = new ArrayList<>();
         Set<String> tags = new HashSet<>();
@@ -53,11 +56,17 @@ public class BibSonomyAdaptorTest {
         YetAnotherBibliographicItem item1 = new YetAnotherBibliographicItem();
         item1.setTitle("test1");
         item1.setTags(tags);
+        item1.setYear("2018");
+        item1.setEntryType("test");
+        item1.setAuthors("Test Author");
         items.add(item1);
 
         YetAnotherBibliographicItem item2 = new YetAnotherBibliographicItem();
         item2.setTitle("test2");
         item2.setTags(tags);
+        item1.setYear("2018");
+        item1.setEntryType("test");
+        item1.setAuthors("Test Author");
         items.add(item2);
 
         assertNotNull(items);
@@ -65,6 +74,16 @@ public class BibSonomyAdaptorTest {
         adaptor.storeItems(items);
 
         // check status code? At the moment storeItems returns void.
+    }
+
+    /**
+     */
+    @Test
+    public void b_deleteItem() throws Exception {
+        String user = "chube";
+        String hash = "3bf2449d934a7d3fe079699dbf5f60b4";
+
+        adaptor.deletePost(user, hash);
     }
 }
 
