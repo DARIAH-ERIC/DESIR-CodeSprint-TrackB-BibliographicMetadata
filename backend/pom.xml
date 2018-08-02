@@ -79,6 +79,15 @@
 			<artifactId>bibsonomy-rest-client</artifactId>
 			<version>3.8.13</version>
 		</dependency>
+		<dependency>
+			<groupId>org.apache.httpcomponents</groupId>
+			<artifactId>httpclient</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.httpcomponents</groupId>
+			<artifactId>httpmime</artifactId>
+			<version>4.3.3</version>
+		</dependency>
 	</dependencies>
 
 	<build>
