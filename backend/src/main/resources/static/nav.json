@@ -32,6 +32,18 @@
 						"lang": "en" }
 					},
 				"items":""
+			},
+			{
+				"caption":"Extracted Entries",
+				"arialabel":"",
+				"icon":"list",
+				"abstract":"",
+				"startpage":{
+					"name": "entries",
+					"params": {
+						"lang": "en" }
+					},
+				"items":""
 			}
 		],
 	"repo":""
