@@ -44,9 +44,11 @@ public class MetadataExtractor {
 	 */
 	@PostConstruct
 	public void init() throws Exception {
-		if (grobidHome != null) {
+        System.out.println("grobidHome:" + grobidHome);
+        System.out.println("grobidUrl:" + grobidUrl);
+        if (!grobidHome.isEmpty()) {
 			this.extractor = new LocalGrobidMetadataExtractor(this.grobidHome, converter);
-		} else if (grobidUrl != null) {
+		} else if (!grobidUrl.isEmpty()) {
 			this.extractor = new RemoteGrobidMetadataExtractor(this.grobidUrl, converter);
 		} else {
 			throw new RuntimeException("Could not initialise " + MetadataExtractor.class.getSimpleName() + " since " +
@@ -59,7 +61,7 @@ public class MetadataExtractor {
 	 *
 	 * @param file A file (PDF) containing bibliographic references
 	 * @return the list of bibliographic references
-	 * @throws Exception 
+	 * @throws Exception
 	 */
 	public List<YetAnotherBibliographicItem> extractItems(final File file) throws Exception {
 		return extractor.extractItems(file);
