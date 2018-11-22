@@ -44,8 +44,6 @@ public class MetadataExtractor {
 	 */
 	@PostConstruct
 	public void init() throws Exception {
-        System.out.println("grobidHome:" + grobidHome);
-        System.out.println("grobidUrl:" + grobidUrl);
         if (!grobidHome.isEmpty()) {
 			this.extractor = new LocalGrobidMetadataExtractor(this.grobidHome, converter);
 		} else if (!grobidUrl.isEmpty()) {
