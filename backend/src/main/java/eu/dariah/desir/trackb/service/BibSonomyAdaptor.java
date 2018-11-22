@@ -1,5 +1,6 @@
 package eu.dariah.desir.trackb.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
@@ -50,8 +51,12 @@ public class BibSonomyAdaptor {
 	 */
 	@PostConstruct
 	public void init() {
-    	final RestLogicFactory rlf = new RestLogicFactory(this.bibsonomyApiUrl);
-    	this.bibsonomy = rlf.getLogicAccess(this.bibsonomyApiUser, this.bibsonomyApiKey);
+	    if (bibsonomyApiUser.isEmpty() || bibsonomyApiKey.isEmpty()){
+	        bibsonomy = null;
+        } else {
+            final RestLogicFactory rlf = new RestLogicFactory(this.bibsonomyApiUrl);
+            this.bibsonomy = rlf.getLogicAccess(this.bibsonomyApiUser, this.bibsonomyApiKey);
+        }
 	}
 
 
@@ -62,13 +67,18 @@ public class BibSonomyAdaptor {
 	 * @return The hashes (identifiers) of the created items.
 	 */
 	public List<String> storeItems(final List<YetAnotherBibliographicItem> items) {
-		// convert model
-		final List<Post<? extends Resource>> posts = converter.convertToPosts(items, this.bibsonomyApiUser);
+        if (bibsonomy != null) {
+            // convert model
+            final List<Post<? extends Resource>> posts = converter.convertToPosts(items, this.bibsonomyApiUser);
 
-		// call API
-		final List<String> hashs = bibsonomy.createPosts(posts);
+            // call API
+            final List<String> hashs = bibsonomy.createPosts(posts);
 
-		return hashs;
+            return hashs;
+        } else{
+            //return empty list
+            return new ArrayList<>();
+        }
 	}
 
 
@@ -79,8 +89,10 @@ public class BibSonomyAdaptor {
      */
     public void deleteItems(List<String> hashs) {
 
-        // call API
-        bibsonomy.deletePosts(bibsonomyApiUser, hashs);
+        if (bibsonomy != null){
+            // call API
+            bibsonomy.deletePosts(bibsonomyApiUser, hashs);
+        }
     }
 
 
