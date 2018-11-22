@@ -131,7 +131,7 @@ public class RemoteGrobidMetadataExtractor implements GrobidMetadataExtractor {
 
 			in = conn.getInputStream();
 
-			//items = new LinkedList<YetAnotherBibliographicItem>(); 
+			//items = new LinkedList<YetAnotherBibliographicItem>();
 			items = processCitations(in);
 
 			conn.disconnect();
@@ -149,7 +149,9 @@ public class RemoteGrobidMetadataExtractor implements GrobidMetadataExtractor {
 			LOG.error(e.getMessage(), e.getCause());
 		} finally {
 			try {
-				in.close();
+			    if (in != null) {
+                    in.close();
+                }
 			} catch (IOException e) {
 				// ignore
 			}
@@ -161,7 +163,7 @@ public class RemoteGrobidMetadataExtractor implements GrobidMetadataExtractor {
 
 	/**
 	 * Parses citations from the given TEI file.
-	 * 
+	 *
 	 * @param is
 	 * @return
 	 */
@@ -197,10 +199,10 @@ public class RemoteGrobidMetadataExtractor implements GrobidMetadataExtractor {
 
 	/**
 	 * Model conversion from Grobid TEI to (basically) BibTeX.
-	 * 
+	 *
 	 * FIXME: very incomplete, works well for journal articles.
 	 * FIXME: add meaningful unit tests.
-	 * 
+	 *
 	 * @param xPath
 	 * @param ref
 	 * @return
@@ -223,13 +225,13 @@ public class RemoteGrobidMetadataExtractor implements GrobidMetadataExtractor {
 			boolean begin = true;
 			for (int i = 0; i < authorNodes.getLength(); i++) {
 				final Node persName = (Node) xPath.compile("persName").evaluate(authorNodes.item(i).getChildNodes(), XPathConstants.NODE);
-				
+
 				final String first = getNodeContent(xPath, persName, "forename");
 				final String last = getNodeContent(xPath, persName, "surname");
 				if (first != null || last != null) {
 					if (!begin)
 						authors.append(" and ");
-					if (first != null) 
+					if (first != null)
 						authors.append(first);
 					if (last != null)
 						authors.append(" " + last);
@@ -261,21 +263,21 @@ public class RemoteGrobidMetadataExtractor implements GrobidMetadataExtractor {
 			} else if (to != null) {
 				item.setPages(to.getTextContent());
 			}
-			
+
 		}
-		
+
 		// entrytype
-		if (item.getJournal() != null) 
+		if (item.getJournal() != null)
 			item.setEntryType("article");
 		else
 			item.setEntryType("misc");
-		
+
 		return item;
 	}
 
 	/**
 	 * Extract a string from the given path
-	 * 
+	 *
 	 * @param xPath
 	 * @param ref
 	 * @param path
