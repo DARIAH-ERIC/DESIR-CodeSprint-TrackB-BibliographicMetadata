@@ -29,16 +29,16 @@ import eu.dariah.desir.trackb.service.impl.RemoteGrobidMetadataExtractor;
 public class RemoteGrobidMetadataExtractorTest {
 
 	/**
-	 * 
+	 *
 	 */
 	private static final String TEST_FILE = "EAD-ODD_A_solution_for_project-oriented_EAD_schemes.pdf";
-	private RemoteGrobidMetadataExtractor extractor = new RemoteGrobidMetadataExtractor("http://traces1.inria.fr/grobid/api", new GrobidModelConverter());
+	private RemoteGrobidMetadataExtractor extractor = new RemoteGrobidMetadataExtractor("https://traces1.inria.fr/grobid/api", new GrobidModelConverter());
 
 
 
 	/**
-	 * Test method for {@link eu.dariah.desir.trackb.service.RemoteGrobidMetadataExtractor#extractItems(java.io.File)}.
-	 * @throws Exception 
+	 * Test method for {@link eu.dariah.desir.trackb.service.impl.RemoteGrobidMetadataExtractor#extractItems(java.io.File)}.
+	 * @throws Exception
 	 */
 	@Test
 	public void testExtractItemsFile() throws Exception {
@@ -53,7 +53,7 @@ public class RemoteGrobidMetadataExtractorTest {
 	}
 
 	/**
-	 * Test method for {@link eu.dariah.desir.trackb.service.RemoteGrobidMetadataExtractor#extractItems(java.lang.String)}.
+	 * Test method for {@link eu.dariah.desir.trackb.service.impl.RemoteGrobidMetadataExtractor#extractItems(java.lang.String)}.
 	 */
 	@Test
 	public void testExtractItemsString() {
@@ -61,7 +61,7 @@ public class RemoteGrobidMetadataExtractorTest {
 	}
 
 	/**
-	 * Test method for {@link eu.dariah.desir.trackb.service.RemoteGrobidMetadataExtractor#processFulltextDocument(java.io.InputStream)}.
+	 * Test method for {@link eu.dariah.desir.trackb.service.impl.RemoteGrobidMetadataExtractor#processFulltextDocument(java.io.InputStream)}.
 	 */
 	@Test
 	public void testProcessFulltextDocument() {
