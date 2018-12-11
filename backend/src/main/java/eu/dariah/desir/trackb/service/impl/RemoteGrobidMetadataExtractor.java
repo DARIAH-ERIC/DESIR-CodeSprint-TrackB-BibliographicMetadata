@@ -87,6 +87,8 @@ public class RemoteGrobidMetadataExtractor implements GrobidMetadataExtractor {
 	@Override
 	public List<YetAnotherBibliographicItem> extractItems(String text) {
 		// TODO Auto-generated method stub
+	        // TODO implement using the following API endpoint:  curl -X POST -d "citations=Doerfel, S., Jäschke, R., Stumme, G.: The Role of Cores in Recommender Benchmarking for Social Bookmarking Systems. Transactions on Intelligent Systems and Technology. 7, 40:1–40:33 2016." http://cloud.science-miner.com/grobid/api/processCitation
+	        // see https://grobid.readthedocs.io/en/latest/Grobid-service/#apiprocesscitation
 		return null;
 	}
 

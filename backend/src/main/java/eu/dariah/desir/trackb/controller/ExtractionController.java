@@ -36,7 +36,6 @@ import eu.dariah.desir.trackb.service.MetadataExtractor;
 public class ExtractionController {
 
 	private static final Logger LOG = LoggerFactory.getLogger(ExtractionController.class);
-	private static final String ERROR_JSON = "{\"error\": true}";
 	private static final String SUCCESSFUL_JSON = "{\"error\": false}";
 
 	private final MetadataExtractor me;
@@ -59,7 +58,7 @@ public class ExtractionController {
 	 */
     @PostMapping(value="/store", consumes=MediaType.APPLICATION_JSON_UTF8_VALUE, produces=MediaType.APPLICATION_JSON_UTF8_VALUE)
     @ResponseBody
-	public String storeInBibSonomy(@RequestBody String wrapper) {
+    public String storeInBibSonomy(@RequestBody String wrapper) {
         try {
             LOG.debug("wrapper json received: " + wrapper);
             final List<String> result = adaptor.storeItems(JsonHelper.convert(wrapper));
@@ -67,9 +66,9 @@ public class ExtractionController {
             return SUCCESSFUL_JSON;
         } catch(Exception e) {
             LOG.error("Failed to extract items", e);
+	    return getJsonError("Failed to extract items" + e);	
         }
-        return ERROR_JSON;
-	}
+    }
 
 	/**
 	 * @param file The File we want to store and extract the metadata from, received from the frontend
@@ -120,33 +119,41 @@ public class ExtractionController {
 					LOG.info("Successfully uploaded " + fileName + " into " + jsonFile.getAbsolutePath());
 				} catch (Exception e) {
 					LOG.error("Failed to upload " + fileName + " => " + e.getMessage());
-					return ERROR_JSON;
+					return getJsonError("Failed to upload " + fileName + " => " + e.getMessage());
 				}
 				try {
 					items = me.extractItems(jsonFile);
 				} catch(Exception e) {
-					return ERROR_JSON;
+				    return getJsonError("exception " + e + " while extracting items");
 				}
 			} else {
 				try {
 					items = me.extractItems(text);
 				} catch(Exception e) {
-					return ERROR_JSON;
+				    return getJsonError("exception " + e + " while extracting items");
 				}
 			}
 
 			if (items == null) {
 				LOG.error("Could not extract any items");
-				return ERROR_JSON;
+				return getJsonError("items == null after extraction");
 			}
 			return toJson(items);
 
 		} catch (InvalidParameterException ipe) {
 			LOG.error("Error with parameters: ", ipe);
-			return ERROR_JSON;
+			return getJsonError("problem with parameters");
 		}
 	}
 
+
+    private static String getJsonError(final String msg) {
+	    // FIXME: add proper escaping
+        return "{'error': true, 'message': '" + msg + "'}";
+  
+	
+    }
+    
 	/**
 	 * Convert bibliographic items to JSON
 	 *
