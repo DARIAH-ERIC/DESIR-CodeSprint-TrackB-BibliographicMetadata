@@ -23,7 +23,7 @@ public class IndexController {
      * Error page controller
      * @return The name of the error page (without suffix)
      */
-    @RequestMapping(value = "/error", method = {RequestMethod.POST, RequestMethod.GET})
+    @RequestMapping(value = "/error", method = {RequestMethod.POST, RequestMethod.GET}) //Both, POST and GET, are covered
     public String error() {
         return "error";
     }

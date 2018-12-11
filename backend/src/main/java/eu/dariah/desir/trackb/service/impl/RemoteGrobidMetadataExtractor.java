@@ -63,10 +63,22 @@ public class RemoteGrobidMetadataExtractor implements GrobidMetadataExtractor {
 	 */
 	@Override
 	public List<YetAnotherBibliographicItem> extractItems(File file) throws Exception {
-		final FileInputStream is = new FileInputStream(file);
-		final List<YetAnotherBibliographicItem> items = processFulltextDocument(is);
-		is.close();
-		return items;
+	    try{
+//            LOG.debug("extracting items from file " + file);
+//            LOG.debug("file path: " + file.getPath());
+//            LOG.debug("file path (absolute): " + file.getAbsolutePath());
+//            Boolean fileExists = file.exists();
+//            LOG.debug("file exists: " + fileExists);
+
+            final FileInputStream is = new FileInputStream(file);
+            final List<YetAnotherBibliographicItem> items = processFulltextDocument(is);
+            is.close();
+            LOG.debug("extracted " + items.size() + " items from file");
+            return items;
+        } catch(Exception e) {
+            LOG.error("We couldn't extract items from the file " + file.getAbsolutePath(), e);
+            throw e;
+        }
 	}
 
 	/* (non-Javadoc)
@@ -75,6 +87,8 @@ public class RemoteGrobidMetadataExtractor implements GrobidMetadataExtractor {
 	@Override
 	public List<YetAnotherBibliographicItem> extractItems(String text) {
 		// TODO Auto-generated method stub
+	        // TODO implement using the following API endpoint:  curl -X POST -d "citations=Doerfel, S., Jäschke, R., Stumme, G.: The Role of Cores in Recommender Benchmarking for Social Bookmarking Systems. Transactions on Intelligent Systems and Technology. 7, 40:1–40:33 2016." http://cloud.science-miner.com/grobid/api/processCitation
+	        // see https://grobid.readthedocs.io/en/latest/Grobid-service/#apiprocesscitation
 		return null;
 	}
 

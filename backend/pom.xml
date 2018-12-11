@@ -6,7 +6,7 @@
 	<groupId>eu.dariah.desir</groupId>
 	<artifactId>trackb</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<packaging>jar</packaging>
+    <packaging>war</packaging>  <!--modified -->
 
 	<name>trackb</name>
 	<description>Demonstrator of Track B of the DESIR CodeSprint</description>
@@ -44,6 +44,13 @@
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
+            <exclusions>
+                <exclusion>
+                    <!-- exclude tomcat because app engine uses jetty -->
+                    <groupId>org.springframework.boot</groupId>
+                    <artifactId>spring-boot-starter-tomcat</artifactId>
+                </exclusion>
+            </exclusions>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -88,7 +95,23 @@
 			<artifactId>httpmime</artifactId>
 			<version>4.3.3</version>
 		</dependency>
-	</dependencies>
+
+        <!-- for google app engine -->
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>javax.servlet-api</artifactId>
+            <version>3.1.0</version>
+            <scope>provided</scope>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/org.eclipse.jetty/jetty-webapp -->
+        <dependency>
+            <groupId>org.eclipse.jetty</groupId>
+            <artifactId>jetty-webapp</artifactId>
+            <version>9.4.14.v20181114</version>
+        </dependency>
+
+
+    </dependencies>
 
 	<build>
 		<plugins>
@@ -103,6 +126,15 @@
 					</execution>
 				</executions>
 			</plugin>
+
+            <!-- for google app engine -->
+            <!-- add appengine-maven-plugin -->
+            <plugin>
+                <groupId>com.google.cloud.tools</groupId>
+                <artifactId>appengine-maven-plugin</artifactId>
+                <version>1.3.1</version>
+            </plugin>
+
             <!--<plugin>-->
                 <!--<artifactId>maven-resources-plugin</artifactId>-->
                 <!--<version>3.1.0</version>-->
@@ -149,6 +181,5 @@
             <!--</plugin>-->
 		</plugins>
 	</build>
-
 
 </project>
