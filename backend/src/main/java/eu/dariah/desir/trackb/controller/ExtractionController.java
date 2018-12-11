@@ -4,6 +4,7 @@ import java.io.File;
 import java.security.InvalidParameterException;
 import java.util.List;
 
+import org.eclipse.jetty.webapp.WebAppContext;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -98,9 +99,25 @@ public class ExtractionController {
 				final String fileName = file.getName();
 				final File jsonFile;
 				try {
-					jsonFile = new File(System.getProperty("java.io.tmpdir") + "/" + file.getName());
-					file.transferTo(jsonFile);
-					LOG.info("Successfully uploaded " + fileName + " into " + jsonFile.getName());
+				    //tomcat
+//					jsonFile = new File(System.getProperty("java.io.tmpdir") + "/" + file.getName());
+
+                    WebAppContext context = new WebAppContext();
+                    context.setAttribute("org.eclipse.jetty.webapp.basetempdir", "/tmp/");
+//                    System.out.println("tmp dir: " + context.getAttribute("org.eclipse.jetty.webapp.basetempdir"));
+
+                    //jetty
+                    jsonFile = new File(file.getName());
+
+                    //debugging
+//                    System.out.println("jsonFile path: " + jsonFile.getPath());
+//                    System.out.println("jsonFile path (absolute): " + jsonFile.getAbsolutePath());
+//                    System.out.println("original file name multipart file: " + file.getOriginalFilename());
+//                    System.out.println("name multipart file: " + file.getName());
+//                    System.out.println("tmpdir: " + System.getProperty("java.io.tmpdir")); //not used by jetty
+
+                    file.transferTo(jsonFile);
+					LOG.info("Successfully uploaded " + fileName + " into " + jsonFile.getAbsolutePath());
 				} catch (Exception e) {
 					LOG.error("Failed to upload " + fileName + " => " + e.getMessage());
 					return ERROR_JSON;

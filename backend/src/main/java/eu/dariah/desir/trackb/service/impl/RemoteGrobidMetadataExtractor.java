@@ -63,10 +63,22 @@ public class RemoteGrobidMetadataExtractor implements GrobidMetadataExtractor {
 	 */
 	@Override
 	public List<YetAnotherBibliographicItem> extractItems(File file) throws Exception {
-		final FileInputStream is = new FileInputStream(file);
-		final List<YetAnotherBibliographicItem> items = processFulltextDocument(is);
-		is.close();
-		return items;
+	    try{
+//            LOG.debug("extracting items from file " + file);
+//            LOG.debug("file path: " + file.getPath());
+//            LOG.debug("file path (absolute): " + file.getAbsolutePath());
+//            Boolean fileExists = file.exists();
+//            LOG.debug("file exists: " + fileExists);
+
+            final FileInputStream is = new FileInputStream(file);
+            final List<YetAnotherBibliographicItem> items = processFulltextDocument(is);
+            is.close();
+            LOG.debug("extracted " + items.size() + " items from file");
+            return items;
+        } catch(Exception e) {
+            LOG.error("We couldn't extract items from the file " + file.getAbsolutePath(), e);
+            throw e;
+        }
 	}
 
 	/* (non-Javadoc)

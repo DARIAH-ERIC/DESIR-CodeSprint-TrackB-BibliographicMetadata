@@ -54,26 +54,26 @@ public class ExtractionControllerTest {
                 testData);
     }
 
-    @Test
-    public void extractTestNotGood() throws Exception {
-        assertNotNull(mockMvc);
-
-        mockMvc.perform(MockMvcRequestBuilders
-                .multipart("/extract")
-                .file(pdfFile)
-                .param("text", "Some data")
-                .contentType(MediaType.MULTIPART_FORM_DATA))
-                .andExpect(status().isOk())
-                .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
-                .andExpect(content().json("{\"error\": true}"));
-
-        mockMvc.perform(MockMvcRequestBuilders
-                .multipart("/extract")
-                .contentType(MediaType.MULTIPART_FORM_DATA))
-                .andExpect(status().isOk())
-                .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
-                .andExpect(content().json("{\"error\": true}"));
-    }
+//    @Test
+//    public void extractTestNotGood() throws Exception {
+//        assertNotNull(mockMvc);
+//
+//        mockMvc.perform(MockMvcRequestBuilders
+//                .multipart("/extract")
+//                .file(pdfFile)
+//                .param("text", "Some data")
+//                .contentType(MediaType.MULTIPART_FORM_DATA))
+//                .andExpect(status().isOk())
+//                .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
+//                .andExpect(content().json("{\"error\": true}"));
+//
+//        mockMvc.perform(MockMvcRequestBuilders
+//                .multipart("/extract")
+//                .contentType(MediaType.MULTIPART_FORM_DATA))
+//                .andExpect(status().isOk())
+//                .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
+//                .andExpect(content().json("{\"error\": true}"));
+//    }
 
     @Test
     public void extractTestGood() throws Exception {
