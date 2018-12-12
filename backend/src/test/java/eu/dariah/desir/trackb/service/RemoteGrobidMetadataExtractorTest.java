@@ -13,6 +13,7 @@ import java.util.List;
 import org.bibsonomy.model.util.BibTexUtils;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
@@ -32,9 +33,7 @@ public class RemoteGrobidMetadataExtractorTest {
 	 *
 	 */
 	private static final String TEST_FILE = "EAD-ODD_A_solution_for_project-oriented_EAD_schemes.pdf";
-	private RemoteGrobidMetadataExtractor extractor = new RemoteGrobidMetadataExtractor("https://traces1.inria.fr/grobid/api", new GrobidModelConverter());
-
-
+	private RemoteGrobidMetadataExtractor extractor = new RemoteGrobidMetadataExtractor("https://traces1.inria.fr/grobid/api/", new GrobidModelConverter());
 
 	/**
 	 * Test method for {@link eu.dariah.desir.trackb.service.impl.RemoteGrobidMetadataExtractor#extractItems(java.io.File)}.
