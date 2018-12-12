@@ -6,7 +6,7 @@
 	<groupId>eu.dariah.desir</groupId>
 	<artifactId>trackb</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-    <packaging>war</packaging>  <!--modified -->
+    <packaging>jar</packaging>
 
 	<name>trackb</name>
 	<description>Demonstrator of Track B of the DESIR CodeSprint</description>
