@@ -65,7 +65,7 @@ public class ExtractionController {
             return SUCCESSFUL_JSON;
         } catch(Exception e) {
             LOG.error("Failed to extract items", e);
-	    return getJsonError("Failed to extract items" + e);
+	        return getJsonError("Failed to extract items" + e);
         }
     }
 

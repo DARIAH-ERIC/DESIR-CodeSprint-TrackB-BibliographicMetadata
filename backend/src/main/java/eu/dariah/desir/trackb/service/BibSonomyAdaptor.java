@@ -66,19 +66,16 @@ public class BibSonomyAdaptor {
 	 * @param items
 	 * @return The hashes (identifiers) of the created items.
 	 */
-	public List<String> storeItems(final List<YetAnotherBibliographicItem> items) {
-        if (bibsonomy != null) {
-            // convert model
-            final List<Post<? extends Resource>> posts = converter.convertToPosts(items, this.bibsonomyApiUser);
-
-            // call API
-            final List<String> hashs = bibsonomy.createPosts(posts);
-
-            return hashs;
-        } else{
-            //return empty list
-            return new ArrayList<>();
+	public List<String> storeItems(final List<YetAnotherBibliographicItem> items) throws NullPointerException {
+        if (bibsonomy == null) {
+            throw new NullPointerException("BibSonomy is not initialized ! Check your username/password in the " +
+                    "properties file.");
         }
+        // convert model
+        final List<Post<? extends Resource>> posts = converter.convertToPosts(items, this.bibsonomyApiUser);
+        // call API
+        final List<String> hashs = bibsonomy.createPosts(posts);
+        return hashs;
 	}
 
 
