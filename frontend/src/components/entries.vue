@@ -69,7 +69,7 @@ export default {
         o.push(this.entries[i]);
       }
       console.log(o);
-      axios.post('http://localhost:8080/store', o);
+      axios.post('/store', o);
     }
   },
   computed: {

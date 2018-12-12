@@ -41,7 +41,7 @@ export default {
   data() {
     return {
       dropzoneOptions: {
-          url: 'http://localhost:8080/extract',
+          url: '/extract',
           thumbnailWidth: 150,
           maxFilesize: 10.5,
           headers: { "My-Awesome-Header": "header value" }

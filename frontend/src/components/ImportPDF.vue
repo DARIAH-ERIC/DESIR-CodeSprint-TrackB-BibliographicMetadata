@@ -34,7 +34,7 @@ export default {
   data() {
     return {
       dropzoneOptions: {
-          url: 'http://localhost:8080/extract',
+          url: '/extract',
           thumbnailWidth: 150,
           maxFilesize: 50,
           headers: { }
