@@ -98,7 +98,7 @@ public class RemoteGrobidMetadataExtractor implements GrobidMetadataExtractor {
 		HttpURLConnection conn = null;
 
 		try {
-			url = new URL(this.grobidUrl + "/isalive");
+			url = new URL(this.grobidUrl + "isalive");
 			conn = (HttpURLConnection) url.openConnection();
 			conn.setDoOutput(true);
 			conn.setRequestMethod("GET");
@@ -115,7 +115,8 @@ public class RemoteGrobidMetadataExtractor implements GrobidMetadataExtractor {
 		InputStream in = null;
 
 		try {
-			final URL url = new URL(this.grobidUrl + "/processFulltextDocument");
+			final URL url = new URL(this.grobidUrl + "processFulltextDocument");
+            LOG.debug("URL used for Grobid: " + url.toString());
 			final HttpURLConnection conn = (HttpURLConnection) url.openConnection();
 			conn.setDoOutput(true);
 			conn.setRequestMethod("POST");
