@@ -12,7 +12,7 @@ The tool consists of a Java-based backend (server) and a Node.js-based
 frontend (client).
 
 ### Frontend Setup
-
+#### Manually with npm
 ``` sh
 # install dependencies
 npm install
@@ -25,6 +25,14 @@ npm run build
 
 # build for production and view the bundle analyzer report
 npm run build --report
+```
+#### Via asdf
+First install asdf, see [installation](https://github.com/asdf-vm/asdf/blob/master/README.md)
+``` sh
+# install asdf plugin for nodejs
+asdf plugin-add asdf-vm/asdf-nodejs
+# build for production with minification
+npm run build
 ```
 
 ### Backend Setup
