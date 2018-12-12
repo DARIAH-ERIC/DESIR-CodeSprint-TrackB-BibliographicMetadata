@@ -94,11 +94,11 @@ public class ExtractionController {
 
 			// handle file or text
 			if (file != null) {
-				final String fileName = file.getName();
+				final String fileName = file.getOriginalFilename();
 				final File jsonFile;
 				try {
 				    //tomcat
-					jsonFile = new File(System.getProperty("java.io.tmpdir") + "/" + file.getName());
+					jsonFile = new File(System.getProperty("java.io.tmpdir") + "/" + fileName);
                     file.transferTo(jsonFile);
 
 					LOG.info("Successfully uploaded " + fileName + " into " + jsonFile.getAbsolutePath());

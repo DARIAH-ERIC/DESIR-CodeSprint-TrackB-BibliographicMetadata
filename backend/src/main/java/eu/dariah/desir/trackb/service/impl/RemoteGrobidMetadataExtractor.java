@@ -139,8 +139,10 @@ public class RemoteGrobidMetadataExtractor implements GrobidMetadataExtractor {
 			}
 
 			if (conn.getResponseCode() != HttpURLConnection.HTTP_OK) {
+                InputStream errorStream = conn.getErrorStream();
 				throw new RuntimeException("Failed : HTTP error code : "
-						+ conn.getResponseCode() + " " + IOUtils.toString(conn.getErrorStream(), "UTF-8"));
+						+ conn.getResponseCode() + " " + (errorStream!=null?IOUtils.toString(errorStream, "UTF-8"):
+                        ""));
 			}
 
 			in = conn.getInputStream();
