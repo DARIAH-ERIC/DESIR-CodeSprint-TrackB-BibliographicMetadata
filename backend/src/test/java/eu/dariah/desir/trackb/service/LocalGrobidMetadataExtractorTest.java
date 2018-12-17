@@ -2,8 +2,10 @@ package eu.dariah.desir.trackb.service;
 
 import eu.dariah.desir.trackb.model.YetAnotherBibliographicItem;
 import eu.dariah.desir.trackb.service.impl.LocalGrobidMetadataExtractor;
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
@@ -15,8 +17,15 @@ import static org.junit.Assert.assertNotNull;
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringBootTest
 public class LocalGrobidMetadataExtractorTest {
-    private LocalGrobidMetadataExtractor extractor = new LocalGrobidMetadataExtractor("/Users/Yoann/Work/Grobid" +
-            "/grobid-home/", new GrobidModelConverter());
+    @Value("${grobid.home.path}")
+    private String grobidHomePath;
+
+    private LocalGrobidMetadataExtractor extractor;
+
+    @Before
+    public void instantiateExtractor() {
+        this.extractor = new LocalGrobidMetadataExtractor(grobidHomePath, new GrobidModelConverter());;
+    }
 
     /**
      * Test method for
