@@ -42,7 +42,7 @@ web api.
 
 For a local installation the GROBID model files must be downloaded
 (e.g.,
-https://dl.bintray.com/rookies/maven/org/grobid/grobid-home/0.5.1/grobid-home-0.5.1.zip)
+https://dl.bintray.com/rookies/maven/org/grobid/grobid-home/0.5.1/grobid-home-0.5.3.zip)
 and placed into an appropriate folder which is configured via the
 option `grobid.home.path` in `application.properties`.
 
