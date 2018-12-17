@@ -1,16 +1,13 @@
 package eu.dariah.desir.trackb.service.impl;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
+import java.io.*;
 import java.net.ConnectException;
 import java.net.HttpRetryException;
 import java.net.HttpURLConnection;
 import java.net.SocketTimeoutException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -86,10 +83,63 @@ public class RemoteGrobidMetadataExtractor implements GrobidMetadataExtractor {
 	 */
 	@Override
 	public List<YetAnotherBibliographicItem> extractItems(String text) {
-		// TODO Auto-generated method stub
-	        // TODO implement using the following API endpoint:  curl -X POST -d "citations=Doerfel, S., Jäschke, R., Stumme, G.: The Role of Cores in Recommender Benchmarking for Social Bookmarking Systems. Transactions on Intelligent Systems and Technology. 7, 40:1–40:33 2016." http://cloud.science-miner.com/grobid/api/processCitation
-	        // see https://grobid.readthedocs.io/en/latest/Grobid-service/#apiprocesscitation
-		return null;
+        // TODO implement using the following API endpoint:  curl -X POST -d "citations=Doerfel, S., Jäschke, R., Stumme, G.: The Role of Cores in Recommender Benchmarking for Social Bookmarking Systems. Transactions on Intelligent Systems and Technology. 7, 40:1–40:33 2016." http://cloud.science-miner.com/grobid/api/processCitation
+        // see https://grobid.readthedocs.io/en/latest/Grobid-service/#apiprocesscitation
+
+        InputStream in = null;
+        try {
+            final List<YetAnotherBibliographicItem> result = new LinkedList<>();
+            // iterate over the lines
+            for (final String line : text.split("\\r?\\n")) {
+                final URL url = new URL(this.grobidUrl + "processCitation");
+                final HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+                conn.setDoOutput(true);
+                conn.setRequestMethod("POST");
+                conn.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
+                Writer writer = new OutputStreamWriter(conn.getOutputStream());
+                writer.write("citations=" + line + "&consolidateCitations=1");
+                writer.flush();
+                writer.close();
+
+                if (conn.getResponseCode() == HttpURLConnection.HTTP_UNAVAILABLE) {
+                    throw new HttpRetryException("Failed : HTTP error code : "
+                            + conn.getResponseCode(), conn.getResponseCode());
+                }
+
+                if (conn.getResponseCode() != HttpURLConnection.HTTP_OK) {
+                    InputStream errorStream = conn.getErrorStream();
+                    throw new RuntimeException("Failed : HTTP error code : "
+                            + conn.getResponseCode() + " " + (errorStream!=null?IOUtils.toString(errorStream, "UTF-8"):
+                            ""));
+                }
+
+                in = conn.getInputStream();
+//                LOG.debug(IOUtils.toString(in, "UTF-8"));
+                result.addAll(processCitations(in, false));
+                conn.disconnect();
+            }
+            return result;
+        } catch (ConnectException | HttpRetryException e) {
+            LOG.error(e.getMessage(), e.getCause());
+            try {
+                Thread.sleep(20000);
+                extractItems(text);
+            } catch (InterruptedException ex) {
+            }
+        } catch (SocketTimeoutException e) {
+            throw new RuntimeException("Grobid processing timed out.", e);
+        } catch (IOException e) {
+            LOG.error(e.getMessage(), e.getCause());
+        } finally {
+            try {
+                if (in != null) {
+                    in.close();
+                }
+            } catch (IOException e) {
+                // ignore
+            }
+        }
+        return null;
 	}
 
 
@@ -149,7 +199,7 @@ public class RemoteGrobidMetadataExtractor implements GrobidMetadataExtractor {
 			in = conn.getInputStream();
 
 			//items = new LinkedList<YetAnotherBibliographicItem>();
-			items = processCitations(in);
+			items = processCitations(in, true);
 
 			conn.disconnect();
 
@@ -182,10 +232,13 @@ public class RemoteGrobidMetadataExtractor implements GrobidMetadataExtractor {
 	 * Parses citations from the given TEI file.
 	 *
 	 * @param is
+	 * @param isFullTEI
 	 * @return
 	 */
-	public List<YetAnotherBibliographicItem> processCitations(InputStream is) {
-
+	public List<YetAnotherBibliographicItem> processCitations(InputStream is, boolean isFullTEI) {
+	    String xPathExpression = "/biblStruct";
+	    if(isFullTEI)
+            xPathExpression = "/TEI/text/back/div/listBibl/biblStruct";
 		// parse file
 		Document teiDoc = null;
 
@@ -202,7 +255,7 @@ public class RemoteGrobidMetadataExtractor implements GrobidMetadataExtractor {
 		final XPath xPath = XPathFactory.newInstance().newXPath();
 		final List<YetAnotherBibliographicItem> items = new ArrayList<>();
 		try {
-			final NodeList references = (NodeList) xPath.compile("/TEI/text/back/div/listBibl/biblStruct").evaluate(teiDoc, XPathConstants.NODESET);
+			final NodeList references = (NodeList) xPath.compile(xPathExpression).evaluate(teiDoc, XPathConstants.NODESET);
 			for (int i = 0; i < references.getLength(); i++) {
 				items.add(extractItem(xPath, references.item(i)));
 			}
@@ -229,7 +282,8 @@ public class RemoteGrobidMetadataExtractor implements GrobidMetadataExtractor {
 		// extract item metadata
 		final YetAnotherBibliographicItem item = new YetAnotherBibliographicItem();
 
-		final String coordinates = ref.getAttributes().getNamedItem("coords").getTextContent();
+		//coordinates was not used, so I commented it before someone else deletes it
+//		final String coordinates = ref.getAttributes().getNamedItem("coords").getTextContent();
 
 		// the item
 		item.setDoi(getNodeContent(xPath, ref, "analytic/idno[@type=\"doi\"]"));

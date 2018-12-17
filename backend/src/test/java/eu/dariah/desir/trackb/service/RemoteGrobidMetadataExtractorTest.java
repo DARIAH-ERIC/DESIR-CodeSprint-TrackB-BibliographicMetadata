@@ -56,7 +56,21 @@ public class RemoteGrobidMetadataExtractorTest {
 	 */
 	@Test
 	public void testExtractItemsString() {
-		//fail("Not yet implemented");
+        String citation = "Jahanian, F., Mok, Al. Safety analysis of timing properties in real-time systems. IEEE " +
+                "Transactions on Software Engineering, 12(9), 890-904, September 1986.";
+        final List<YetAnotherBibliographicItem> items = this.extractor.extractItems(citation);
+        assertNotNull(items);
+        YetAnotherBibliographicItem item = items.get(0);
+        System.out.println(item);
+        assertEquals("article", item.getEntryType());
+        assertEquals("Farnam Jahanian and Aloysius Ka-Lau Mok", item.getAuthors());
+        assertEquals("890--904", item.getPages());
+        assertEquals("IEEE Transactions on Software Engineering", item.getJournal());
+        assertEquals("Safety analysis of timing properties in real-time systems", item.getTitle());
+        assertEquals("SE-12", item.getVolume());
+        assertEquals("10.1109/tse.1986.6313045", item.getDoi());
+        assertEquals("1986-09", item.getYear());
+        assertEquals("10.1109/tse.1986.6313045", item.getDoi());
 	}
 
 	/**
