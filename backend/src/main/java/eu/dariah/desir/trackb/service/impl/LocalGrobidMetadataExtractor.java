@@ -73,7 +73,7 @@ public class LocalGrobidMetadataExtractor implements GrobidMetadataExtractor {
 	public List<YetAnotherBibliographicItem> extractItems(final File file) throws Exception {
 		try {
 			LOG.debug("extracting items from file " + file);
-			final List<BibDataSet> items = this.engine.processReferences(file, false);
+			final List<BibDataSet> items = this.engine.processReferences(file, 1); //was set to 0, why?
 
 			LOG.debug("extracted " + items.size() + " items from file");
 
@@ -105,7 +105,7 @@ public class LocalGrobidMetadataExtractor implements GrobidMetadataExtractor {
 
 			// iterate over the lines
 			for (final String line : text.split("\\r?\\n")) {
-				final BiblioItem item = this.engine.processRawReference(text, true);
+				final BiblioItem item = this.engine.processRawReference(text, 1);
 				if (item != null) {
 					result.add(this.converter.convert(item));
 
