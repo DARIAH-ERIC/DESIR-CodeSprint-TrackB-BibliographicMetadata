@@ -62,7 +62,8 @@ const localStoragePlugin = store => {
         const pState = filterForPersistantProperties(state);
         const currentStore = JSON.parse(window.localStorage.getItem(STORAGE_KEY) || '{}');
         const now = Date.now();
-        currentStore[SESSION_ID] = { pState,
+        currentStore[SESSION_ID] = {
+          pState,
           date: now,
           dateString: HELPERS.methods.dateToString(new Date(now)),
         };

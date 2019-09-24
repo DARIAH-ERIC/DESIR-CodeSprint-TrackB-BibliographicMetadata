@@ -30,59 +30,49 @@
 </template>
 
 <script>
-import { mapGetters, mapState, mapMutations, mapActions } from 'vuex';
-import importpdf from '../ImportPDF';
+import { mapGetters, mapState, mapMutations, mapActions } from "vuex";
+import importpdf from "../ImportPDF";
 
-import HELPERS from '../../helpers';
-import fundamentcard from '../Fundament/FundamentCard';
+import HELPERS from "../../helpers";
+import fundamentcard from "../Fundament/FundamentCard";
 
 export default {
   mixins: [HELPERS],
   data() {
     return {
       dropzoneOptions: {
-          url: '/extract',
-          thumbnailWidth: 150,
-          maxFilesize: 10.5,
-          headers: { "My-Awesome-Header": "header value" }
+        url: "/extract",
+        thumbnailWidth: 150,
+        maxFilesize: 10.5,
+        headers: { "My-Awesome-Header": "header value" }
       },
-      model:{},
+      model: {}
     };
   },
   components: {
     fundamentcard,
-    importpdf,
+    importpdf
   },
   computed: {
-    ...mapState('dialogs', [
-      'importDialog',
-    ]),
-    ...mapGetters('api', [
-      'schema',
-    ]),
+    ...mapState("dialogs", ["importDialog"]),
+    ...mapGetters("api", ["schema"])
   },
   methods: {
-    ...mapMutations('dialogs', [
-      'closeDialog',
-    ]),
+    ...mapMutations("dialogs", ["closeDialog"]),
     discard() {
-      this.closeDialog('importDialog');
+      this.closeDialog("importDialog");
     },
     submit() {
-      this.closeDialog('importDialog');
+      this.closeDialog("importDialog");
     },
-    ...mapActions('api', [
-      'get',
-      'post',
-      'delete',
-    ]),
+    ...mapActions("api", ["get", "post", "delete"]),
     onFileChange(e) {
-      this.$info('Load', 'onFileChange(e)', e);
+      this.$info("Load", "onFileChange(e)", e);
       const files = e.target.files || e.dataTransfer.files;
       if (!files.length) return;
       this.loadTtl(files[0]);
-    },
-  },
+    }
+  }
 };
 </script>
 

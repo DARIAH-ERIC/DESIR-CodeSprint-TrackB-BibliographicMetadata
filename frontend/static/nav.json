@@ -1,50 +1,53 @@
 {
-	"logo":"/static/oeaw_logo.png",
-	"title":"GROBID WebApp",
-	"color":"primary",
-	"homestate":{
+	"logo": "/static/oeaw_logo.png",
+	"title": "GROBID WebApp",
+	"color": "primary",
+	"homestate": {
 		"name": "start",
 		"params": {
-			"lang": "en" }
+			"lang": "en"
+		}
+	},
+	"menu": [
+		{
+			"caption": "Home",
+			"arialabel": "",
+			"icon": "home",
+			"abstract": "",
+			"startpage": {
+				"name": "start",
+				"params": {
+					"lang": "en"
+				}
+			},
+			"items": ""
 		},
-	"menu":
-		[
-			{
-				"caption":"Home",
-				"arialabel":"",
-				"icon":"home",
-				"abstract":"",
-				"startpage":{
-					"name": "start",
-					"params": {
-						"lang": "en" }
-					},
-				"items":""
+		{
+			"caption": "Import",
+			"arialabel": "",
+			"icon": "build",
+			"abstract": "",
+			"startpage": {
+				"name": "import",
+				"params": {
+					"lang": "en"
+				}
 			},
-			{
-				"caption":"Import",
-				"arialabel":"",
-				"icon":"build",
-				"abstract":"",
-				"startpage":{
-					"name": "import",
-					"params": {
-						"lang": "en" }
-					},
-				"items":""
+			"items": ""
+		},
+		{
+			"caption": "Extracted Entries",
+			"arialabel": "",
+			"icon": "list",
+			"abstract": "",
+			"startpage": {
+				"name": "entries",
+				"params": {
+					"lang": "en"
+				}
 			},
-			{
-				"caption":"Extracted Entries",
-				"arialabel":"",
-				"icon":"list",
-				"abstract":"",
-				"startpage":{
-					"name": "entries",
-					"params": {
-						"lang": "en" }
-					},
-				"items":""
-			}
-		],
-	"repo":""
+			"items": ""
+		}
+	],
+	"repo": ""
 }

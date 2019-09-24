@@ -4,26 +4,24 @@
 const state = {
   entries: [],
   valid: [],
-  required: ['entryType', 'title', 'year', 'authors', 'editors']
+  required: ['entryType', 'title', 'year', 'authors', 'editors'],
 };
 
 const getters = {
-  getEntry: (state) => (id) => {
-    return state.entries[id];
-  },
-  isValid: (state) => (id) => {
-    let res = [];
-    for (var i = 0; i < state.required.length; i++) {
+  getEntry: state => id => state.entries[id],
+  isValid: state => (id) => {
+    const res = [];
+    for (let i = 0; i < state.required.length; i++) {
       console.log(id, res);
-      if(!state.entries[id][state.required[i]]) res.push(state.required[i]);
+      if (!state.entries[id][state.required[i]]) res.push(state.required[i]);
     }
-    if(state.entries[id].tags.length < 1) res.push('tags');
+    if (state.entries[id].tags.length < 1) res.push('tags');
     return res;
   },
 };
 
 const mutations = {
-  setEntry(s, { no , obj }) {
+  setEntry(s, { no, obj }) {
     s.entries[no] = obj;
   },
 };

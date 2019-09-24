@@ -8,18 +8,18 @@
 </template>
 
 <script>
-import logindialog from './LoginDialog';
-import logoutdialog from './LogoutDialog';
-import importdialog from './ImportDialog';
-import editdialog from './EditDialog';
+import logindialog from "./LoginDialog";
+import logoutdialog from "./LogoutDialog";
+import importdialog from "./ImportDialog";
+import editdialog from "./EditDialog";
 
 export default {
   components: {
     logindialog,
     logoutdialog,
     importdialog,
-    editdialog,
-  },
+    editdialog
+  }
 };
 </script>
 

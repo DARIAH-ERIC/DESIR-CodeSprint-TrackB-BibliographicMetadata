@@ -36,7 +36,7 @@ export const request = (method, url, body, queryParameters, form, config) => {
  * method: get_TYPE
  * raw_url: get_RAW_URL
  */
-export const get = function(parameters = {}) {
+export const get = function (parameters = {}) {
   const domain = parameters.$domain ? parameters.$domain : getDomain()
   const config = parameters.$config
   let path = '/'
@@ -44,24 +44,24 @@ export const get = function(parameters = {}) {
   let queryParameters = {}
   let form = {}
   if (parameters.$queryParameters) {
-    Object.keys(parameters.$queryParameters).forEach(function(parameterName) {
+    Object.keys(parameters.$queryParameters).forEach(function (parameterName) {
       queryParameters[parameterName] = parameters.$queryParameters[parameterName]
     });
   }
   return request('get', domain + path, body, queryParameters, form, config)
 }
-export const get_RAW_URL = function() {
+export const get_RAW_URL = function () {
   return '/'
 }
-export const get_TYPE = function() {
+export const get_TYPE = function () {
   return 'get'
 }
-export const getURL = function(parameters = {}) {
+export const getURL = function (parameters = {}) {
   let queryParameters = {}
   const domain = parameters.$domain ? parameters.$domain : getDomain()
   let path = '/'
   if (parameters.$queryParameters) {
-    Object.keys(parameters.$queryParameters).forEach(function(parameterName) {
+    Object.keys(parameters.$queryParameters).forEach(function (parameterName) {
       queryParameters[parameterName] = parameters.$queryParameters[parameterName]
     })
   }
@@ -76,7 +76,7 @@ export const getURL = function(parameters = {}) {
  * raw_url: postLogin_RAW_URL
  * @param user - Login Data.
  */
-export const postLogin = function(parameters = {}) {
+export const postLogin = function (parameters = {}) {
   const domain = parameters.$domain ? parameters.$domain : getDomain()
   const config = parameters.$config
   let path = '/login'
@@ -90,24 +90,24 @@ export const postLogin = function(parameters = {}) {
     return Promise.reject(new Error('Missing required  parameter: user'))
   }
   if (parameters.$queryParameters) {
-    Object.keys(parameters.$queryParameters).forEach(function(parameterName) {
+    Object.keys(parameters.$queryParameters).forEach(function (parameterName) {
       queryParameters[parameterName] = parameters.$queryParameters[parameterName]
     });
   }
   return request('post', domain + path, body, queryParameters, form, config)
 }
-export const postLogin_RAW_URL = function() {
+export const postLogin_RAW_URL = function () {
   return '/login'
 }
-export const postLogin_TYPE = function() {
+export const postLogin_TYPE = function () {
   return 'post'
 }
-export const postLoginURL = function(parameters = {}) {
+export const postLoginURL = function (parameters = {}) {
   let queryParameters = {}
   const domain = parameters.$domain ? parameters.$domain : getDomain()
   let path = '/login'
   if (parameters.$queryParameters) {
-    Object.keys(parameters.$queryParameters).forEach(function(parameterName) {
+    Object.keys(parameters.$queryParameters).forEach(function (parameterName) {
       queryParameters[parameterName] = parameters.$queryParameters[parameterName]
     })
   }
@@ -121,7 +121,7 @@ export const postLoginURL = function(parameters = {}) {
  * method: getLogout_TYPE
  * raw_url: getLogout_RAW_URL
  */
-export const getLogout = function(parameters = {}) {
+export const getLogout = function (parameters = {}) {
   const domain = parameters.$domain ? parameters.$domain : getDomain()
   const config = parameters.$config
   let path = '/logout'
@@ -129,24 +129,24 @@ export const getLogout = function(parameters = {}) {
   let queryParameters = {}
   let form = {}
   if (parameters.$queryParameters) {
-    Object.keys(parameters.$queryParameters).forEach(function(parameterName) {
+    Object.keys(parameters.$queryParameters).forEach(function (parameterName) {
       queryParameters[parameterName] = parameters.$queryParameters[parameterName]
     });
   }
   return request('get', domain + path, body, queryParameters, form, config)
 }
-export const getLogout_RAW_URL = function() {
+export const getLogout_RAW_URL = function () {
   return '/logout'
 }
-export const getLogout_TYPE = function() {
+export const getLogout_TYPE = function () {
   return 'get'
 }
-export const getLogoutURL = function(parameters = {}) {
+export const getLogoutURL = function (parameters = {}) {
   let queryParameters = {}
   const domain = parameters.$domain ? parameters.$domain : getDomain()
   let path = '/logout'
   if (parameters.$queryParameters) {
-    Object.keys(parameters.$queryParameters).forEach(function(parameterName) {
+    Object.keys(parameters.$queryParameters).forEach(function (parameterName) {
       queryParameters[parameterName] = parameters.$queryParameters[parameterName]
     })
   }
@@ -161,7 +161,7 @@ export const getLogoutURL = function(parameters = {}) {
  * raw_url: postRegister_RAW_URL
  * @param user - Login Data.
  */
-export const postRegister = function(parameters = {}) {
+export const postRegister = function (parameters = {}) {
   const domain = parameters.$domain ? parameters.$domain : getDomain()
   const config = parameters.$config
   let path = '/register'
@@ -175,24 +175,24 @@ export const postRegister = function(parameters = {}) {
     return Promise.reject(new Error('Missing required  parameter: user'))
   }
   if (parameters.$queryParameters) {
-    Object.keys(parameters.$queryParameters).forEach(function(parameterName) {
+    Object.keys(parameters.$queryParameters).forEach(function (parameterName) {
       queryParameters[parameterName] = parameters.$queryParameters[parameterName]
     });
   }
   return request('post', domain + path, body, queryParameters, form, config)
 }
-export const postRegister_RAW_URL = function() {
+export const postRegister_RAW_URL = function () {
   return '/register'
 }
-export const postRegister_TYPE = function() {
+export const postRegister_TYPE = function () {
   return 'post'
 }
-export const postRegisterURL = function(parameters = {}) {
+export const postRegisterURL = function (parameters = {}) {
   let queryParameters = {}
   const domain = parameters.$domain ? parameters.$domain : getDomain()
   let path = '/register'
   if (parameters.$queryParameters) {
-    Object.keys(parameters.$queryParameters).forEach(function(parameterName) {
+    Object.keys(parameters.$queryParameters).forEach(function (parameterName) {
       queryParameters[parameterName] = parameters.$queryParameters[parameterName]
     })
   }
@@ -207,7 +207,7 @@ export const postRegisterURL = function(parameters = {}) {
  * raw_url: getJsonschemaByName_RAW_URL
  * @param name - Schema Name.
  */
-export const getJsonschemaByName = function(parameters = {}) {
+export const getJsonschemaByName = function (parameters = {}) {
   const domain = parameters.$domain ? parameters.$domain : getDomain()
   const config = parameters.$config
   let path = '/jsonschema/{name}'
@@ -219,25 +219,25 @@ export const getJsonschemaByName = function(parameters = {}) {
     return Promise.reject(new Error('Missing required  parameter: name'))
   }
   if (parameters.$queryParameters) {
-    Object.keys(parameters.$queryParameters).forEach(function(parameterName) {
+    Object.keys(parameters.$queryParameters).forEach(function (parameterName) {
       queryParameters[parameterName] = parameters.$queryParameters[parameterName]
     });
   }
   return request('get', domain + path, body, queryParameters, form, config)
 }
-export const getJsonschemaByName_RAW_URL = function() {
+export const getJsonschemaByName_RAW_URL = function () {
   return '/jsonschema/{name}'
 }
-export const getJsonschemaByName_TYPE = function() {
+export const getJsonschemaByName_TYPE = function () {
   return 'get'
 }
-export const getJsonschemaByNameURL = function(parameters = {}) {
+export const getJsonschemaByNameURL = function (parameters = {}) {
   let queryParameters = {}
   const domain = parameters.$domain ? parameters.$domain : getDomain()
   let path = '/jsonschema/{name}'
   path = path.replace('{name}', `${parameters['name']}`)
   if (parameters.$queryParameters) {
-    Object.keys(parameters.$queryParameters).forEach(function(parameterName) {
+    Object.keys(parameters.$queryParameters).forEach(function (parameterName) {
       queryParameters[parameterName] = parameters.$queryParameters[parameterName]
     })
   }
@@ -252,7 +252,7 @@ export const getJsonschemaByNameURL = function(parameters = {}) {
  * raw_url: postUpload_RAW_URL
  * @param image - File Object from upload.
  */
-export const postUpload = function(parameters = {}) {
+export const postUpload = function (parameters = {}) {
   const domain = parameters.$domain ? parameters.$domain : getDomain()
   const config = parameters.$config
   let path = '/upload/'
@@ -266,24 +266,24 @@ export const postUpload = function(parameters = {}) {
     return Promise.reject(new Error('Missing required  parameter: image'))
   }
   if (parameters.$queryParameters) {
-    Object.keys(parameters.$queryParameters).forEach(function(parameterName) {
+    Object.keys(parameters.$queryParameters).forEach(function (parameterName) {
       queryParameters[parameterName] = parameters.$queryParameters[parameterName]
     });
   }
   return request('post', domain + path, body, queryParameters, form, config)
 }
-export const postUpload_RAW_URL = function() {
+export const postUpload_RAW_URL = function () {
   return '/upload/'
 }
-export const postUpload_TYPE = function() {
+export const postUpload_TYPE = function () {
   return 'post'
 }
-export const postUploadURL = function(parameters = {}) {
+export const postUploadURL = function (parameters = {}) {
   let queryParameters = {}
   const domain = parameters.$domain ? parameters.$domain : getDomain()
   let path = '/upload/'
   if (parameters.$queryParameters) {
-    Object.keys(parameters.$queryParameters).forEach(function(parameterName) {
+    Object.keys(parameters.$queryParameters).forEach(function (parameterName) {
       queryParameters[parameterName] = parameters.$queryParameters[parameterName]
     })
   }
@@ -297,7 +297,7 @@ export const postUploadURL = function(parameters = {}) {
  * method: getAssetrefCount_TYPE
  * raw_url: getAssetrefCount_RAW_URL
  */
-export const getAssetrefCount = function(parameters = {}) {
+export const getAssetrefCount = function (parameters = {}) {
   const domain = parameters.$domain ? parameters.$domain : getDomain()
   const config = parameters.$config
   let path = '/assetref/count'
@@ -305,24 +305,24 @@ export const getAssetrefCount = function(parameters = {}) {
   let queryParameters = {}
   let form = {}
   if (parameters.$queryParameters) {
-    Object.keys(parameters.$queryParameters).forEach(function(parameterName) {
+    Object.keys(parameters.$queryParameters).forEach(function (parameterName) {
       queryParameters[parameterName] = parameters.$queryParameters[parameterName]
     });
   }
   return request('get', domain + path, body, queryParameters, form, config)
 }
-export const getAssetrefCount_RAW_URL = function() {
+export const getAssetrefCount_RAW_URL = function () {
   return '/assetref/count'
 }
-export const getAssetrefCount_TYPE = function() {
+export const getAssetrefCount_TYPE = function () {
   return 'get'
 }
-export const getAssetrefCountURL = function(parameters = {}) {
+export const getAssetrefCountURL = function (parameters = {}) {
   let queryParameters = {}
   const domain = parameters.$domain ? parameters.$domain : getDomain()
   let path = '/assetref/count'
   if (parameters.$queryParameters) {
-    Object.keys(parameters.$queryParameters).forEach(function(parameterName) {
+    Object.keys(parameters.$queryParameters).forEach(function (parameterName) {
       queryParameters[parameterName] = parameters.$queryParameters[parameterName]
     })
   }
@@ -341,7 +341,7 @@ export const getAssetrefCountURL = function(parameters = {}) {
  * @param query - MongoDB Query as a well formed JSON String, ie {"name":"Bob"}
  * @param populate - Path to a MongoDB reference to populate, ie [{"path":"customer"},{"path":"products"}]
  */
-export const getAssetref = function(parameters = {}) {
+export const getAssetref = function (parameters = {}) {
   const domain = parameters.$domain ? parameters.$domain : getDomain()
   const config = parameters.$config
   let path = '/assetref'
@@ -364,19 +364,19 @@ export const getAssetref = function(parameters = {}) {
     queryParameters['populate'] = parameters['populate']
   }
   if (parameters.$queryParameters) {
-    Object.keys(parameters.$queryParameters).forEach(function(parameterName) {
+    Object.keys(parameters.$queryParameters).forEach(function (parameterName) {
       queryParameters[parameterName] = parameters.$queryParameters[parameterName]
     });
   }
   return request('get', domain + path, body, queryParameters, form, config)
 }
-export const getAssetref_RAW_URL = function() {
+export const getAssetref_RAW_URL = function () {
   return '/assetref'
 }
-export const getAssetref_TYPE = function() {
+export const getAssetref_TYPE = function () {
   return 'get'
 }
-export const getAssetrefURL = function(parameters = {}) {
+export const getAssetrefURL = function (parameters = {}) {
   let queryParameters = {}
   const domain = parameters.$domain ? parameters.$domain : getDomain()
   let path = '/assetref'
@@ -396,7 +396,7 @@ export const getAssetrefURL = function(parameters = {}) {
     queryParameters['populate'] = parameters['populate']
   }
   if (parameters.$queryParameters) {
-    Object.keys(parameters.$queryParameters).forEach(function(parameterName) {
+    Object.keys(parameters.$queryParameters).forEach(function (parameterName) {
       queryParameters[parameterName] = parameters.$queryParameters[parameterName]
     })
   }
@@ -411,7 +411,7 @@ export const getAssetrefURL = function(parameters = {}) {
  * raw_url: postAssetref_RAW_URL
  * @param assetref -
  */
-export const postAssetref = function(parameters = {}) {
+export const postAssetref = function (parameters = {}) {
   const domain = parameters.$domain ? parameters.$domain : getDomain()
   const config = parameters.$config
   let path = '/assetref'
@@ -425,24 +425,24 @@ export const postAssetref = function(parameters = {}) {
     return Promise.reject(new Error('Missing required  parameter: assetref'))
   }
   if (parameters.$queryParameters) {
-    Object.keys(parameters.$queryParameters).forEach(function(parameterName) {
+    Object.keys(parameters.$queryParameters).forEach(function (parameterName) {
       queryParameters[parameterName] = parameters.$queryParameters[parameterName]
     });
   }
   return request('post', domain + path, body, queryParameters, form, config)
 }
-export const postAssetref_RAW_URL = function() {
+export const postAssetref_RAW_URL = function () {
   return '/assetref'
 }
-export const postAssetref_TYPE = function() {
+export const postAssetref_TYPE = function () {
   return 'post'
 }
-export const postAssetrefURL = function(parameters = {}) {
+export const postAssetrefURL = function (parameters = {}) {
   let queryParameters = {}
   const domain = parameters.$domain ? parameters.$domain : getDomain()
   let path = '/assetref'
   if (parameters.$queryParameters) {
-    Object.keys(parameters.$queryParameters).forEach(function(parameterName) {
+    Object.keys(parameters.$queryParameters).forEach(function (parameterName) {
       queryParameters[parameterName] = parameters.$queryParameters[parameterName]
     })
   }
@@ -456,7 +456,7 @@ export const postAssetrefURL = function(parameters = {}) {
  * method: deleteAssetref_TYPE
  * raw_url: deleteAssetref_RAW_URL
  */
-export const deleteAssetref = function(parameters = {}) {
+export const deleteAssetref = function (parameters = {}) {
   const domain = parameters.$domain ? parameters.$domain : getDomain()
   const config = parameters.$config
   let path = '/assetref'
@@ -464,24 +464,24 @@ export const deleteAssetref = function(parameters = {}) {
   let queryParameters = {}
   let form = {}
   if (parameters.$queryParameters) {
-    Object.keys(parameters.$queryParameters).forEach(function(parameterName) {
+    Object.keys(parameters.$queryParameters).forEach(function (parameterName) {
       queryParameters[parameterName] = parameters.$queryParameters[parameterName]
     });
   }
   return request('delete', domain + path, body, queryParameters, form, config)
 }
-export const deleteAssetref_RAW_URL = function() {
+export const deleteAssetref_RAW_URL = function () {
   return '/assetref'
 }
-export const deleteAssetref_TYPE = function() {
+export const deleteAssetref_TYPE = function () {
   return 'delete'
 }
-export const deleteAssetrefURL = function(parameters = {}) {
+export const deleteAssetrefURL = function (parameters = {}) {
   let queryParameters = {}
   const domain = parameters.$domain ? parameters.$domain : getDomain()
   let path = '/assetref'
   if (parameters.$queryParameters) {
-    Object.keys(parameters.$queryParameters).forEach(function(parameterName) {
+    Object.keys(parameters.$queryParameters).forEach(function (parameterName) {
       queryParameters[parameterName] = parameters.$queryParameters[parameterName]
     })
   }
@@ -496,7 +496,7 @@ export const deleteAssetrefURL = function(parameters = {}) {
  * raw_url: getAssetrefById_RAW_URL
  * @param id - MongoDB document _id
  */
-export const getAssetrefById = function(parameters = {}) {
+export const getAssetrefById = function (parameters = {}) {
   const domain = parameters.$domain ? parameters.$domain : getDomain()
   const config = parameters.$config
   let path = '/assetref/{id}'
@@ -508,25 +508,25 @@ export const getAssetrefById = function(parameters = {}) {
     return Promise.reject(new Error('Missing required  parameter: id'))
   }
   if (parameters.$queryParameters) {
-    Object.keys(parameters.$queryParameters).forEach(function(parameterName) {
+    Object.keys(parameters.$queryParameters).forEach(function (parameterName) {
       queryParameters[parameterName] = parameters.$queryParameters[parameterName]
     });
   }
   return request('get', domain + path, body, queryParameters, form, config)
 }
-export const getAssetrefById_RAW_URL = function() {
+export const getAssetrefById_RAW_URL = function () {
   return '/assetref/{id}'
 }
-export const getAssetrefById_TYPE = function() {
+export const getAssetrefById_TYPE = function () {
   return 'get'
 }
-export const getAssetrefByIdURL = function(parameters = {}) {
+export const getAssetrefByIdURL = function (parameters = {}) {
   let queryParameters = {}
   const domain = parameters.$domain ? parameters.$domain : getDomain()
   let path = '/assetref/{id}'
   path = path.replace('{id}', `${parameters['id']}`)
   if (parameters.$queryParameters) {
-    Object.keys(parameters.$queryParameters).forEach(function(parameterName) {
+    Object.keys(parameters.$queryParameters).forEach(function (parameterName) {
       queryParameters[parameterName] = parameters.$queryParameters[parameterName]
     })
   }
@@ -542,7 +542,7 @@ export const getAssetrefByIdURL = function(parameters = {}) {
  * @param id - MongoDB document _id
  * @param assetref -
  */
-export const postAssetrefById = function(parameters = {}) {
+export const postAssetrefById = function (parameters = {}) {
   const domain = parameters.$domain ? parameters.$domain : getDomain()
   const config = parameters.$config
   let path = '/assetref/{id}'
@@ -560,25 +560,25 @@ export const postAssetrefById = function(parameters = {}) {
     return Promise.reject(new Error('Missing required  parameter: assetref'))
   }
   if (parameters.$queryParameters) {
-    Object.keys(parameters.$queryParameters).forEach(function(parameterName) {
+    Object.keys(parameters.$queryParameters).forEach(function (parameterName) {
       queryParameters[parameterName] = parameters.$queryParameters[parameterName]
     });
   }
   return request('post', domain + path, body, queryParameters, form, config)
 }
-export const postAssetrefById_RAW_URL = function() {
+export const postAssetrefById_RAW_URL = function () {
   return '/assetref/{id}'
 }
-export const postAssetrefById_TYPE = function() {
+export const postAssetrefById_TYPE = function () {
   return 'post'
 }
-export const postAssetrefByIdURL = function(parameters = {}) {
+export const postAssetrefByIdURL = function (parameters = {}) {
   let queryParameters = {}
   const domain = parameters.$domain ? parameters.$domain : getDomain()
   let path = '/assetref/{id}'
   path = path.replace('{id}', `${parameters['id']}`)
   if (parameters.$queryParameters) {
-    Object.keys(parameters.$queryParameters).forEach(function(parameterName) {
+    Object.keys(parameters.$queryParameters).forEach(function (parameterName) {
       queryParameters[parameterName] = parameters.$queryParameters[parameterName]
     })
   }
@@ -593,7 +593,7 @@ export const postAssetrefByIdURL = function(parameters = {}) {
  * raw_url: deleteAssetrefById_RAW_URL
  * @param id - MongoDB document _id
  */
-export const deleteAssetrefById = function(parameters = {}) {
+export const deleteAssetrefById = function (parameters = {}) {
   const domain = parameters.$domain ? parameters.$domain : getDomain()
   const config = parameters.$config
   let path = '/assetref/{id}'
@@ -605,25 +605,25 @@ export const deleteAssetrefById = function(parameters = {}) {
     return Promise.reject(new Error('Missing required  parameter: id'))
   }
   if (parameters.$queryParameters) {
-    Object.keys(parameters.$queryParameters).forEach(function(parameterName) {
+    Object.keys(parameters.$queryParameters).forEach(function (parameterName) {
       queryParameters[parameterName] = parameters.$queryParameters[parameterName]
     });
   }
   return request('delete', domain + path, body, queryParameters, form, config)
 }
-export const deleteAssetrefById_RAW_URL = function() {
+export const deleteAssetrefById_RAW_URL = function () {
   return '/assetref/{id}'
 }
-export const deleteAssetrefById_TYPE = function() {
+export const deleteAssetrefById_TYPE = function () {
   return 'delete'
 }
-export const deleteAssetrefByIdURL = function(parameters = {}) {
+export const deleteAssetrefByIdURL = function (parameters = {}) {
   let queryParameters = {}
   const domain = parameters.$domain ? parameters.$domain : getDomain()
   let path = '/assetref/{id}'
   path = path.replace('{id}', `${parameters['id']}`)
   if (parameters.$queryParameters) {
-    Object.keys(parameters.$queryParameters).forEach(function(parameterName) {
+    Object.keys(parameters.$queryParameters).forEach(function (parameterName) {
       queryParameters[parameterName] = parameters.$queryParameters[parameterName]
     })
   }
@@ -637,7 +637,7 @@ export const deleteAssetrefByIdURL = function(parameters = {}) {
  * method: getAuthrecCount_TYPE
  * raw_url: getAuthrecCount_RAW_URL
  */
-export const getAuthrecCount = function(parameters = {}) {
+export const getAuthrecCount = function (parameters = {}) {
   const domain = parameters.$domain ? parameters.$domain : getDomain()
   const config = parameters.$config
   let path = '/authrec/count'
@@ -645,24 +645,24 @@ export const getAuthrecCount = function(parameters = {}) {
   let queryParameters = {}
   let form = {}
   if (parameters.$queryParameters) {
-    Object.keys(parameters.$queryParameters).forEach(function(parameterName) {
+    Object.keys(parameters.$queryParameters).forEach(function (parameterName) {
       queryParameters[parameterName] = parameters.$queryParameters[parameterName]
     });
   }
   return request('get', domain + path, body, queryParameters, form, config)
 }
-export const getAuthrecCount_RAW_URL = function() {
+export const getAuthrecCount_RAW_URL = function () {
   return '/authrec/count'
 }
-export const getAuthrecCount_TYPE = function() {
+export const getAuthrecCount_TYPE = function () {
   return 'get'
 }
-export const getAuthrecCountURL = function(parameters = {}) {
+export const getAuthrecCountURL = function (parameters = {}) {
   let queryParameters = {}
   const domain = parameters.$domain ? parameters.$domain : getDomain()
   let path = '/authrec/count'
   if (parameters.$queryParameters) {
-    Object.keys(parameters.$queryParameters).forEach(function(parameterName) {
+    Object.keys(parameters.$queryParameters).forEach(function (parameterName) {
       queryParameters[parameterName] = parameters.$queryParameters[parameterName]
     })
   }
@@ -681,7 +681,7 @@ export const getAuthrecCountURL = function(parameters = {}) {
  * @param query - MongoDB Query as a well formed JSON String, ie {"name":"Bob"}
  * @param populate - Path to a MongoDB reference to populate, ie [{"path":"customer"},{"path":"products"}]
  */
-export const getAuthrec = function(parameters = {}) {
+export const getAuthrec = function (parameters = {}) {
   const domain = parameters.$domain ? parameters.$domain : getDomain()
   const config = parameters.$config
   let path = '/authrec'
@@ -704,19 +704,19 @@ export const getAuthrec = function(parameters = {}) {
     queryParameters['populate'] = parameters['populate']
   }
   if (parameters.$queryParameters) {
-    Object.keys(parameters.$queryParameters).forEach(function(parameterName) {
+    Object.keys(parameters.$queryParameters).forEach(function (parameterName) {
       queryParameters[parameterName] = parameters.$queryParameters[parameterName]
     });
   }
   return request('get', domain + path, body, queryParameters, form, config)
 }
-export const getAuthrec_RAW_URL = function() {
+export const getAuthrec_RAW_URL = function () {
   return '/authrec'
 }
-export const getAuthrec_TYPE = function() {
+export const getAuthrec_TYPE = function () {
   return 'get'
 }
-export const getAuthrecURL = function(parameters = {}) {
+export const getAuthrecURL = function (parameters = {}) {
   let queryParameters = {}
   const domain = parameters.$domain ? parameters.$domain : getDomain()
   let path = '/authrec'
@@ -736,7 +736,7 @@ export const getAuthrecURL = function(parameters = {}) {
     queryParameters['populate'] = parameters['populate']
   }
   if (parameters.$queryParameters) {
-    Object.keys(parameters.$queryParameters).forEach(function(parameterName) {
+    Object.keys(parameters.$queryParameters).forEach(function (parameterName) {
       queryParameters[parameterName] = parameters.$queryParameters[parameterName]
     })
   }
@@ -751,7 +751,7 @@ export const getAuthrecURL = function(parameters = {}) {
  * raw_url: postAuthrec_RAW_URL
  * @param authrec -
  */
-export const postAuthrec = function(parameters = {}) {
+export const postAuthrec = function (parameters = {}) {
   const domain = parameters.$domain ? parameters.$domain : getDomain()
   const config = parameters.$config
   let path = '/authrec'
@@ -765,24 +765,24 @@ export const postAuthrec = function(parameters = {}) {
     return Promise.reject(new Error('Missing required  parameter: authrec'))
   }
   if (parameters.$queryParameters) {
-    Object.keys(parameters.$queryParameters).forEach(function(parameterName) {
+    Object.keys(parameters.$queryParameters).forEach(function (parameterName) {
       queryParameters[parameterName] = parameters.$queryParameters[parameterName]
     });
   }
   return request('post', domain + path, body, queryParameters, form, config)
 }
-export const postAuthrec_RAW_URL = function() {
+export const postAuthrec_RAW_URL = function () {
   return '/authrec'
 }
-export const postAuthrec_TYPE = function() {
+export const postAuthrec_TYPE = function () {
   return 'post'
 }
-export const postAuthrecURL = function(parameters = {}) {
+export const postAuthrecURL = function (parameters = {}) {
   let queryParameters = {}
   const domain = parameters.$domain ? parameters.$domain : getDomain()
   let path = '/authrec'
   if (parameters.$queryParameters) {
-    Object.keys(parameters.$queryParameters).forEach(function(parameterName) {
+    Object.keys(parameters.$queryParameters).forEach(function (parameterName) {
       queryParameters[parameterName] = parameters.$queryParameters[parameterName]
     })
   }
@@ -796,7 +796,7 @@ export const postAuthrecURL = function(parameters = {}) {
  * method: deleteAuthrec_TYPE
  * raw_url: deleteAuthrec_RAW_URL
  */
-export const deleteAuthrec = function(parameters = {}) {
+export const deleteAuthrec = function (parameters = {}) {
   const domain = parameters.$domain ? parameters.$domain : getDomain()
   const config = parameters.$config
   let path = '/authrec'
@@ -804,24 +804,24 @@ export const deleteAuthrec = function(parameters = {}) {
   let queryParameters = {}
   let form = {}
   if (parameters.$queryParameters) {
-    Object.keys(parameters.$queryParameters).forEach(function(parameterName) {
+    Object.keys(parameters.$queryParameters).forEach(function (parameterName) {
       queryParameters[parameterName] = parameters.$queryParameters[parameterName]
     });
   }
   return request('delete', domain + path, body, queryParameters, form, config)
 }
-export const deleteAuthrec_RAW_URL = function() {
+export const deleteAuthrec_RAW_URL = function () {
   return '/authrec'
 }
-export const deleteAuthrec_TYPE = function() {
+export const deleteAuthrec_TYPE = function () {
   return 'delete'
 }
-export const deleteAuthrecURL = function(parameters = {}) {
+export const deleteAuthrecURL = function (parameters = {}) {
   let queryParameters = {}
   const domain = parameters.$domain ? parameters.$domain : getDomain()
   let path = '/authrec'
   if (parameters.$queryParameters) {
-    Object.keys(parameters.$queryParameters).forEach(function(parameterName) {
+    Object.keys(parameters.$queryParameters).forEach(function (parameterName) {
       queryParameters[parameterName] = parameters.$queryParameters[parameterName]
     })
   }
@@ -836,7 +836,7 @@ export const deleteAuthrecURL = function(parameters = {}) {
  * raw_url: getAuthrecById_RAW_URL
  * @param id - MongoDB document _id
  */
-export const getAuthrecById = function(parameters = {}) {
+export const getAuthrecById = function (parameters = {}) {
   const domain = parameters.$domain ? parameters.$domain : getDomain()
   const config = parameters.$config
   let path = '/authrec/{id}'
@@ -848,25 +848,25 @@ export const getAuthrecById = function(parameters = {}) {
     return Promise.reject(new Error('Missing required  parameter: id'))
   }
   if (parameters.$queryParameters) {
-    Object.keys(parameters.$queryParameters).forEach(function(parameterName) {
+    Object.keys(parameters.$queryParameters).forEach(function (parameterName) {
       queryParameters[parameterName] = parameters.$queryParameters[parameterName]
     });
   }
   return request('get', domain + path, body, queryParameters, form, config)
 }
-export const getAuthrecById_RAW_URL = function() {
+export const getAuthrecById_RAW_URL = function () {
   return '/authrec/{id}'
 }
-export const getAuthrecById_TYPE = function() {
+export const getAuthrecById_TYPE = function () {
   return 'get'
 }
-export const getAuthrecByIdURL = function(parameters = {}) {
+export const getAuthrecByIdURL = function (parameters = {}) {
   let queryParameters = {}
   const domain = parameters.$domain ? parameters.$domain : getDomain()
   let path = '/authrec/{id}'
   path = path.replace('{id}', `${parameters['id']}`)
   if (parameters.$queryParameters) {
-    Object.keys(parameters.$queryParameters).forEach(function(parameterName) {
+    Object.keys(parameters.$queryParameters).forEach(function (parameterName) {
       queryParameters[parameterName] = parameters.$queryParameters[parameterName]
     })
   }
@@ -882,7 +882,7 @@ export const getAuthrecByIdURL = function(parameters = {}) {
  * @param id - MongoDB document _id
  * @param authrec -
  */
-export const postAuthrecById = function(parameters = {}) {
+export const postAuthrecById = function (parameters = {}) {
   const domain = parameters.$domain ? parameters.$domain : getDomain()
   const config = parameters.$config
   let path = '/authrec/{id}'
@@ -900,25 +900,25 @@ export const postAuthrecById = function(parameters = {}) {
     return Promise.reject(new Error('Missing required  parameter: authrec'))
   }
   if (parameters.$queryParameters) {
-    Object.keys(parameters.$queryParameters).forEach(function(parameterName) {
+    Object.keys(parameters.$queryParameters).forEach(function (parameterName) {
       queryParameters[parameterName] = parameters.$queryParameters[parameterName]
     });
   }
   return request('post', domain + path, body, queryParameters, form, config)
 }
-export const postAuthrecById_RAW_URL = function() {
+export const postAuthrecById_RAW_URL = function () {
   return '/authrec/{id}'
 }
-export const postAuthrecById_TYPE = function() {
+export const postAuthrecById_TYPE = function () {
   return 'post'
 }
-export const postAuthrecByIdURL = function(parameters = {}) {
+export const postAuthrecByIdURL = function (parameters = {}) {
   let queryParameters = {}
   const domain = parameters.$domain ? parameters.$domain : getDomain()
   let path = '/authrec/{id}'
   path = path.replace('{id}', `${parameters['id']}`)
   if (parameters.$queryParameters) {
-    Object.keys(parameters.$queryParameters).forEach(function(parameterName) {
+    Object.keys(parameters.$queryParameters).forEach(function (parameterName) {
       queryParameters[parameterName] = parameters.$queryParameters[parameterName]
     })
   }
@@ -933,7 +933,7 @@ export const postAuthrecByIdURL = function(parameters = {}) {
  * raw_url: deleteAuthrecById_RAW_URL
  * @param id - MongoDB document _id
  */
-export const deleteAuthrecById = function(parameters = {}) {
+export const deleteAuthrecById = function (parameters = {}) {
   const domain = parameters.$domain ? parameters.$domain : getDomain()
   const config = parameters.$config
   let path = '/authrec/{id}'
@@ -945,25 +945,25 @@ export const deleteAuthrecById = function(parameters = {}) {
     return Promise.reject(new Error('Missing required  parameter: id'))
   }
   if (parameters.$queryParameters) {
-    Object.keys(parameters.$queryParameters).forEach(function(parameterName) {
+    Object.keys(parameters.$queryParameters).forEach(function (parameterName) {
       queryParameters[parameterName] = parameters.$queryParameters[parameterName]
     });
   }
   return request('delete', domain + path, body, queryParameters, form, config)
 }
-export const deleteAuthrecById_RAW_URL = function() {
+export const deleteAuthrecById_RAW_URL = function () {
   return '/authrec/{id}'
 }
-export const deleteAuthrecById_TYPE = function() {
+export const deleteAuthrecById_TYPE = function () {
   return 'delete'
 }
-export const deleteAuthrecByIdURL = function(parameters = {}) {
+export const deleteAuthrecByIdURL = function (parameters = {}) {
   let queryParameters = {}
   const domain = parameters.$domain ? parameters.$domain : getDomain()
   let path = '/authrec/{id}'
   path = path.replace('{id}', `${parameters['id']}`)
   if (parameters.$queryParameters) {
-    Object.keys(parameters.$queryParameters).forEach(function(parameterName) {
+    Object.keys(parameters.$queryParameters).forEach(function (parameterName) {
       queryParameters[parameterName] = parameters.$queryParameters[parameterName]
     })
   }
@@ -977,7 +977,7 @@ export const deleteAuthrecByIdURL = function(parameters = {}) {
  * method: getBibrefCount_TYPE
  * raw_url: getBibrefCount_RAW_URL
  */
-export const getBibrefCount = function(parameters = {}) {
+export const getBibrefCount = function (parameters = {}) {
   const domain = parameters.$domain ? parameters.$domain : getDomain()
   const config = parameters.$config
   let path = '/bibref/count'
@@ -985,24 +985,24 @@ export const getBibrefCount = function(parameters = {}) {
   let queryParameters = {}
   let form = {}
   if (parameters.$queryParameters) {
-    Object.keys(parameters.$queryParameters).forEach(function(parameterName) {
+    Object.keys(parameters.$queryParameters).forEach(function (parameterName) {
       queryParameters[parameterName] = parameters.$queryParameters[parameterName]
     });
   }
   return request('get', domain + path, body, queryParameters, form, config)
 }
-export const getBibrefCount_RAW_URL = function() {
+export const getBibrefCount_RAW_URL = function () {
   return '/bibref/count'
 }
-export const getBibrefCount_TYPE = function() {
+export const getBibrefCount_TYPE = function () {
   return 'get'
 }
-export const getBibrefCountURL = function(parameters = {}) {
+export const getBibrefCountURL = function (parameters = {}) {
   let queryParameters = {}
   const domain = parameters.$domain ? parameters.$domain : getDomain()
   let path = '/bibref/count'
   if (parameters.$queryParameters) {
-    Object.keys(parameters.$queryParameters).forEach(function(parameterName) {
+    Object.keys(parameters.$queryParameters).forEach(function (parameterName) {
       queryParameters[parameterName] = parameters.$queryParameters[parameterName]
     })
   }
@@ -1021,7 +1021,7 @@ export const getBibrefCountURL = function(parameters = {}) {
  * @param query - MongoDB Query as a well formed JSON String, ie {"name":"Bob"}
  * @param populate - Path to a MongoDB reference to populate, ie [{"path":"customer"},{"path":"products"}]
  */
-export const getBibref = function(parameters = {}) {
+export const getBibref = function (parameters = {}) {
   const domain = parameters.$domain ? parameters.$domain : getDomain()
   const config = parameters.$config
   let path = '/bibref'
@@ -1044,19 +1044,19 @@ export const getBibref = function(parameters = {}) {
     queryParameters['populate'] = parameters['populate']
   }
   if (parameters.$queryParameters) {
-    Object.keys(parameters.$queryParameters).forEach(function(parameterName) {
+    Object.keys(parameters.$queryParameters).forEach(function (parameterName) {
       queryParameters[parameterName] = parameters.$queryParameters[parameterName]
     });
   }
   return request('get', domain + path, body, queryParameters, form, config)
 }
-export const getBibref_RAW_URL = function() {
+export const getBibref_RAW_URL = function () {
   return '/bibref'
 }
-export const getBibref_TYPE = function() {
+export const getBibref_TYPE = function () {
   return 'get'
 }
-export const getBibrefURL = function(parameters = {}) {
+export const getBibrefURL = function (parameters = {}) {
   let queryParameters = {}
   const domain = parameters.$domain ? parameters.$domain : getDomain()
   let path = '/bibref'
@@ -1076,7 +1076,7 @@ export const getBibrefURL = function(parameters = {}) {
     queryParameters['populate'] = parameters['populate']
   }
   if (parameters.$queryParameters) {
-    Object.keys(parameters.$queryParameters).forEach(function(parameterName) {
+    Object.keys(parameters.$queryParameters).forEach(function (parameterName) {
       queryParameters[parameterName] = parameters.$queryParameters[parameterName]
     })
   }
@@ -1091,7 +1091,7 @@ export const getBibrefURL = function(parameters = {}) {
  * raw_url: postBibref_RAW_URL
  * @param bibref -
  */
-export const postBibref = function(parameters = {}) {
+export const postBibref = function (parameters = {}) {
   const domain = parameters.$domain ? parameters.$domain : getDomain()
   const config = parameters.$config
   let path = '/bibref'
@@ -1105,24 +1105,24 @@ export const postBibref = function(parameters = {}) {
     return Promise.reject(new Error('Missing required  parameter: bibref'))
   }
   if (parameters.$queryParameters) {
-    Object.keys(parameters.$queryParameters).forEach(function(parameterName) {
+    Object.keys(parameters.$queryParameters).forEach(function (parameterName) {
       queryParameters[parameterName] = parameters.$queryParameters[parameterName]
     });
   }
   return request('post', domain + path, body, queryParameters, form, config)
 }
-export const postBibref_RAW_URL = function() {
+export const postBibref_RAW_URL = function () {
   return '/bibref'
 }
-export const postBibref_TYPE = function() {
+export const postBibref_TYPE = function () {
   return 'post'
 }
-export const postBibrefURL = function(parameters = {}) {
+export const postBibrefURL = function (parameters = {}) {
   let queryParameters = {}
   const domain = parameters.$domain ? parameters.$domain : getDomain()
   let path = '/bibref'
   if (parameters.$queryParameters) {
-    Object.keys(parameters.$queryParameters).forEach(function(parameterName) {
+    Object.keys(parameters.$queryParameters).forEach(function (parameterName) {
       queryParameters[parameterName] = parameters.$queryParameters[parameterName]
     })
   }
@@ -1136,7 +1136,7 @@ export const postBibrefURL = function(parameters = {}) {
  * method: deleteBibref_TYPE
  * raw_url: deleteBibref_RAW_URL
  */
-export const deleteBibref = function(parameters = {}) {
+export const deleteBibref = function (parameters = {}) {
   const domain = parameters.$domain ? parameters.$domain : getDomain()
   const config = parameters.$config
   let path = '/bibref'
@@ -1144,24 +1144,24 @@ export const deleteBibref = function(parameters = {}) {
   let queryParameters = {}
   let form = {}
   if (parameters.$queryParameters) {
-    Object.keys(parameters.$queryParameters).forEach(function(parameterName) {
+    Object.keys(parameters.$queryParameters).forEach(function (parameterName) {
       queryParameters[parameterName] = parameters.$queryParameters[parameterName]
     });
   }
   return request('delete', domain + path, body, queryParameters, form, config)
 }
-export const deleteBibref_RAW_URL = function() {
+export const deleteBibref_RAW_URL = function () {
   return '/bibref'
 }
-export const deleteBibref_TYPE = function() {
+export const deleteBibref_TYPE = function () {
   return 'delete'
 }
-export const deleteBibrefURL = function(parameters = {}) {
+export const deleteBibrefURL = function (parameters = {}) {
   let queryParameters = {}
   const domain = parameters.$domain ? parameters.$domain : getDomain()
   let path = '/bibref'
   if (parameters.$queryParameters) {
-    Object.keys(parameters.$queryParameters).forEach(function(parameterName) {
+    Object.keys(parameters.$queryParameters).forEach(function (parameterName) {
       queryParameters[parameterName] = parameters.$queryParameters[parameterName]
     })
   }
@@ -1176,7 +1176,7 @@ export const deleteBibrefURL = function(parameters = {}) {
  * raw_url: getBibrefById_RAW_URL
  * @param id - MongoDB document _id
  */
-export const getBibrefById = function(parameters = {}) {
+export const getBibrefById = function (parameters = {}) {
   const domain = parameters.$domain ? parameters.$domain : getDomain()
   const config = parameters.$config
   let path = '/bibref/{id}'
@@ -1188,25 +1188,25 @@ export const getBibrefById = function(parameters = {}) {
     return Promise.reject(new Error('Missing required  parameter: id'))
   }
   if (parameters.$queryParameters) {
-    Object.keys(parameters.$queryParameters).forEach(function(parameterName) {
+    Object.keys(parameters.$queryParameters).forEach(function (parameterName) {
       queryParameters[parameterName] = parameters.$queryParameters[parameterName]
     });
   }
   return request('get', domain + path, body, queryParameters, form, config)
 }
-export const getBibrefById_RAW_URL = function() {
+export const getBibrefById_RAW_URL = function () {
   return '/bibref/{id}'
 }
-export const getBibrefById_TYPE = function() {
+export const getBibrefById_TYPE = function () {
   return 'get'
 }
-export const getBibrefByIdURL = function(parameters = {}) {
+export const getBibrefByIdURL = function (parameters = {}) {
   let queryParameters = {}
   const domain = parameters.$domain ? parameters.$domain : getDomain()
   let path = '/bibref/{id}'
   path = path.replace('{id}', `${parameters['id']}`)
   if (parameters.$queryParameters) {
-    Object.keys(parameters.$queryParameters).forEach(function(parameterName) {
+    Object.keys(parameters.$queryParameters).forEach(function (parameterName) {
       queryParameters[parameterName] = parameters.$queryParameters[parameterName]
     })
   }
@@ -1222,7 +1222,7 @@ export const getBibrefByIdURL = function(parameters = {}) {
  * @param id - MongoDB document _id
  * @param bibref -
  */
-export const postBibrefById = function(parameters = {}) {
+export const postBibrefById = function (parameters = {}) {
   const domain = parameters.$domain ? parameters.$domain : getDomain()
   const config = parameters.$config
   let path = '/bibref/{id}'
@@ -1240,25 +1240,25 @@ export const postBibrefById = function(parameters = {}) {
     return Promise.reject(new Error('Missing required  parameter: bibref'))
   }
   if (parameters.$queryParameters) {
-    Object.keys(parameters.$queryParameters).forEach(function(parameterName) {
+    Object.keys(parameters.$queryParameters).forEach(function (parameterName) {
       queryParameters[parameterName] = parameters.$queryParameters[parameterName]
     });
   }
   return request('post', domain + path, body, queryParameters, form, config)
 }
-export const postBibrefById_RAW_URL = function() {
+export const postBibrefById_RAW_URL = function () {
   return '/bibref/{id}'
 }
-export const postBibrefById_TYPE = function() {
+export const postBibrefById_TYPE = function () {
   return 'post'
 }
-export const postBibrefByIdURL = function(parameters = {}) {
+export const postBibrefByIdURL = function (parameters = {}) {
   let queryParameters = {}
   const domain = parameters.$domain ? parameters.$domain : getDomain()
   let path = '/bibref/{id}'
   path = path.replace('{id}', `${parameters['id']}`)
   if (parameters.$queryParameters) {
-    Object.keys(parameters.$queryParameters).forEach(function(parameterName) {
+    Object.keys(parameters.$queryParameters).forEach(function (parameterName) {
       queryParameters[parameterName] = parameters.$queryParameters[parameterName]
     })
   }
@@ -1273,7 +1273,7 @@ export const postBibrefByIdURL = function(parameters = {}) {
  * raw_url: deleteBibrefById_RAW_URL
  * @param id - MongoDB document _id
  */
-export const deleteBibrefById = function(parameters = {}) {
+export const deleteBibrefById = function (parameters = {}) {
   const domain = parameters.$domain ? parameters.$domain : getDomain()
   const config = parameters.$config
   let path = '/bibref/{id}'
@@ -1285,25 +1285,25 @@ export const deleteBibrefById = function(parameters = {}) {
     return Promise.reject(new Error('Missing required  parameter: id'))
   }
   if (parameters.$queryParameters) {
-    Object.keys(parameters.$queryParameters).forEach(function(parameterName) {
+    Object.keys(parameters.$queryParameters).forEach(function (parameterName) {
       queryParameters[parameterName] = parameters.$queryParameters[parameterName]
     });
   }
   return request('delete', domain + path, body, queryParameters, form, config)
 }
-export const deleteBibrefById_RAW_URL = function() {
+export const deleteBibrefById_RAW_URL = function () {
   return '/bibref/{id}'
 }
-export const deleteBibrefById_TYPE = function() {
+export const deleteBibrefById_TYPE = function () {
   return 'delete'
 }
-export const deleteBibrefByIdURL = function(parameters = {}) {
+export const deleteBibrefByIdURL = function (parameters = {}) {
   let queryParameters = {}
   const domain = parameters.$domain ? parameters.$domain : getDomain()
   let path = '/bibref/{id}'
   path = path.replace('{id}', `${parameters['id']}`)
   if (parameters.$queryParameters) {
-    Object.keys(parameters.$queryParameters).forEach(function(parameterName) {
+    Object.keys(parameters.$queryParameters).forEach(function (parameterName) {
       queryParameters[parameterName] = parameters.$queryParameters[parameterName]
     })
   }
@@ -1317,7 +1317,7 @@ export const deleteBibrefByIdURL = function(parameters = {}) {
  * method: getCollectCount_TYPE
  * raw_url: getCollectCount_RAW_URL
  */
-export const getCollectCount = function(parameters = {}) {
+export const getCollectCount = function (parameters = {}) {
   const domain = parameters.$domain ? parameters.$domain : getDomain()
   const config = parameters.$config
   let path = '/collect/count'
@@ -1325,24 +1325,24 @@ export const getCollectCount = function(parameters = {}) {
   let queryParameters = {}
   let form = {}
   if (parameters.$queryParameters) {
-    Object.keys(parameters.$queryParameters).forEach(function(parameterName) {
+    Object.keys(parameters.$queryParameters).forEach(function (parameterName) {
       queryParameters[parameterName] = parameters.$queryParameters[parameterName]
     });
   }
   return request('get', domain + path, body, queryParameters, form, config)
 }
-export const getCollectCount_RAW_URL = function() {
+export const getCollectCount_RAW_URL = function () {
   return '/collect/count'
 }
-export const getCollectCount_TYPE = function() {
+export const getCollectCount_TYPE = function () {
   return 'get'
 }
-export const getCollectCountURL = function(parameters = {}) {
+export const getCollectCountURL = function (parameters = {}) {
   let queryParameters = {}
   const domain = parameters.$domain ? parameters.$domain : getDomain()
   let path = '/collect/count'
   if (parameters.$queryParameters) {
-    Object.keys(parameters.$queryParameters).forEach(function(parameterName) {
+    Object.keys(parameters.$queryParameters).forEach(function (parameterName) {
       queryParameters[parameterName] = parameters.$queryParameters[parameterName]
     })
   }
@@ -1361,7 +1361,7 @@ export const getCollectCountURL = function(parameters = {}) {
  * @param query - MongoDB Query as a well formed JSON String, ie {"name":"Bob"}
  * @param populate - Path to a MongoDB reference to populate, ie [{"path":"customer"},{"path":"products"}]
  */
-export const getCollect = function(parameters = {}) {
+export const getCollect = function (parameters = {}) {
   const domain = parameters.$domain ? parameters.$domain : getDomain()
   const config = parameters.$config
   let path = '/collect'
@@ -1384,19 +1384,19 @@ export const getCollect = function(parameters = {}) {
     queryParameters['populate'] = parameters['populate']
   }
   if (parameters.$queryParameters) {
-    Object.keys(parameters.$queryParameters).forEach(function(parameterName) {
+    Object.keys(parameters.$queryParameters).forEach(function (parameterName) {
       queryParameters[parameterName] = parameters.$queryParameters[parameterName]
     });
   }
   return request('get', domain + path, body, queryParameters, form, config)
 }
-export const getCollect_RAW_URL = function() {
+export const getCollect_RAW_URL = function () {
   return '/collect'
 }
-export const getCollect_TYPE = function() {
+export const getCollect_TYPE = function () {
   return 'get'
 }
-export const getCollectURL = function(parameters = {}) {
+export const getCollectURL = function (parameters = {}) {
   let queryParameters = {}
   const domain = parameters.$domain ? parameters.$domain : getDomain()
   let path = '/collect'
@@ -1416,7 +1416,7 @@ export const getCollectURL = function(parameters = {}) {
     queryParameters['populate'] = parameters['populate']
   }
   if (parameters.$queryParameters) {
-    Object.keys(parameters.$queryParameters).forEach(function(parameterName) {
+    Object.keys(parameters.$queryParameters).forEach(function (parameterName) {
       queryParameters[parameterName] = parameters.$queryParameters[parameterName]
     })
   }
@@ -1431,7 +1431,7 @@ export const getCollectURL = function(parameters = {}) {
  * raw_url: postCollect_RAW_URL
  * @param collect -
  */
-export const postCollect = function(parameters = {}) {
+export const postCollect = function (parameters = {}) {
   const domain = parameters.$domain ? parameters.$domain : getDomain()
   const config = parameters.$config
   let path = '/collect'
@@ -1445,24 +1445,24 @@ export const postCollect = function(parameters = {}) {
     return Promise.reject(new Error('Missing required  parameter: collect'))
   }
   if (parameters.$queryParameters) {
-    Object.keys(parameters.$queryParameters).forEach(function(parameterName) {
+    Object.keys(parameters.$queryParameters).forEach(function (parameterName) {
       queryParameters[parameterName] = parameters.$queryParameters[parameterName]
     });
   }
   return request('post', domain + path, body, queryParameters, form, config)
 }
-export const postCollect_RAW_URL = function() {
+export const postCollect_RAW_URL = function () {
   return '/collect'
 }
-export const postCollect_TYPE = function() {
+export const postCollect_TYPE = function () {
   return 'post'
 }
-export const postCollectURL = function(parameters = {}) {
+export const postCollectURL = function (parameters = {}) {
   let queryParameters = {}
   const domain = parameters.$domain ? parameters.$domain : getDomain()
   let path = '/collect'
   if (parameters.$queryParameters) {
-    Object.keys(parameters.$queryParameters).forEach(function(parameterName) {
+    Object.keys(parameters.$queryParameters).forEach(function (parameterName) {
       queryParameters[parameterName] = parameters.$queryParameters[parameterName]
     })
   }
@@ -1476,7 +1476,7 @@ export const postCollectURL = function(parameters = {}) {
  * method: deleteCollect_TYPE
  * raw_url: deleteCollect_RAW_URL
  */
-export const deleteCollect = function(parameters = {}) {
+export const deleteCollect = function (parameters = {}) {
   const domain = parameters.$domain ? parameters.$domain : getDomain()
   const config = parameters.$config
   let path = '/collect'
@@ -1484,24 +1484,24 @@ export const deleteCollect = function(parameters = {}) {
   let queryParameters = {}
   let form = {}
   if (parameters.$queryParameters) {
-    Object.keys(parameters.$queryParameters).forEach(function(parameterName) {
+    Object.keys(parameters.$queryParameters).forEach(function (parameterName) {
       queryParameters[parameterName] = parameters.$queryParameters[parameterName]
     });
   }
   return request('delete', domain + path, body, queryParameters, form, config)
 }
-export const deleteCollect_RAW_URL = function() {
+export const deleteCollect_RAW_URL = function () {
   return '/collect'
 }
-export const deleteCollect_TYPE = function() {
+export const deleteCollect_TYPE = function () {
   return 'delete'
 }
-export const deleteCollectURL = function(parameters = {}) {
+export const deleteCollectURL = function (parameters = {}) {
   let queryParameters = {}
   const domain = parameters.$domain ? parameters.$domain : getDomain()
   let path = '/collect'
   if (parameters.$queryParameters) {
-    Object.keys(parameters.$queryParameters).forEach(function(parameterName) {
+    Object.keys(parameters.$queryParameters).forEach(function (parameterName) {
       queryParameters[parameterName] = parameters.$queryParameters[parameterName]
     })
   }
@@ -1516,7 +1516,7 @@ export const deleteCollectURL = function(parameters = {}) {
  * raw_url: getCollectById_RAW_URL
  * @param id - MongoDB document _id
  */
-export const getCollectById = function(parameters = {}) {
+export const getCollectById = function (parameters = {}) {
   const domain = parameters.$domain ? parameters.$domain : getDomain()
   const config = parameters.$config
   let path = '/collect/{id}'
@@ -1528,25 +1528,25 @@ export const getCollectById = function(parameters = {}) {
     return Promise.reject(new Error('Missing required  parameter: id'))
   }
   if (parameters.$queryParameters) {
-    Object.keys(parameters.$queryParameters).forEach(function(parameterName) {
+    Object.keys(parameters.$queryParameters).forEach(function (parameterName) {
       queryParameters[parameterName] = parameters.$queryParameters[parameterName]
     });
   }
   return request('get', domain + path, body, queryParameters, form, config)
 }
-export const getCollectById_RAW_URL = function() {
+export const getCollectById_RAW_URL = function () {
   return '/collect/{id}'
 }
-export const getCollectById_TYPE = function() {
+export const getCollectById_TYPE = function () {
   return 'get'
 }
-export const getCollectByIdURL = function(parameters = {}) {
+export const getCollectByIdURL = function (parameters = {}) {
   let queryParameters = {}
   const domain = parameters.$domain ? parameters.$domain : getDomain()
   let path = '/collect/{id}'
   path = path.replace('{id}', `${parameters['id']}`)
   if (parameters.$queryParameters) {
-    Object.keys(parameters.$queryParameters).forEach(function(parameterName) {
+    Object.keys(parameters.$queryParameters).forEach(function (parameterName) {
       queryParameters[parameterName] = parameters.$queryParameters[parameterName]
     })
   }
@@ -1562,7 +1562,7 @@ export const getCollectByIdURL = function(parameters = {}) {
  * @param id - MongoDB document _id
  * @param collect -
  */
-export const postCollectById = function(parameters = {}) {
+export const postCollectById = function (parameters = {}) {
   const domain = parameters.$domain ? parameters.$domain : getDomain()
   const config = parameters.$config
   let path = '/collect/{id}'
@@ -1580,25 +1580,25 @@ export const postCollectById = function(parameters = {}) {
     return Promise.reject(new Error('Missing required  parameter: collect'))
   }
   if (parameters.$queryParameters) {
-    Object.keys(parameters.$queryParameters).forEach(function(parameterName) {
+    Object.keys(parameters.$queryParameters).forEach(function (parameterName) {
       queryParameters[parameterName] = parameters.$queryParameters[parameterName]
     });
   }
   return request('post', domain + path, body, queryParameters, form, config)
 }
-export const postCollectById_RAW_URL = function() {
+export const postCollectById_RAW_URL = function () {
   return '/collect/{id}'
 }
-export const postCollectById_TYPE = function() {
+export const postCollectById_TYPE = function () {
   return 'post'
 }
-export const postCollectByIdURL = function(parameters = {}) {
+export const postCollectByIdURL = function (parameters = {}) {
   let queryParameters = {}
   const domain = parameters.$domain ? parameters.$domain : getDomain()
   let path = '/collect/{id}'
   path = path.replace('{id}', `${parameters['id']}`)
   if (parameters.$queryParameters) {
-    Object.keys(parameters.$queryParameters).forEach(function(parameterName) {
+    Object.keys(parameters.$queryParameters).forEach(function (parameterName) {
       queryParameters[parameterName] = parameters.$queryParameters[parameterName]
     })
   }
@@ -1613,7 +1613,7 @@ export const postCollectByIdURL = function(parameters = {}) {
  * raw_url: deleteCollectById_RAW_URL
  * @param id - MongoDB document _id
  */
-export const deleteCollectById = function(parameters = {}) {
+export const deleteCollectById = function (parameters = {}) {
   const domain = parameters.$domain ? parameters.$domain : getDomain()
   const config = parameters.$config
   let path = '/collect/{id}'
@@ -1625,25 +1625,25 @@ export const deleteCollectById = function(parameters = {}) {
     return Promise.reject(new Error('Missing required  parameter: id'))
   }
   if (parameters.$queryParameters) {
-    Object.keys(parameters.$queryParameters).forEach(function(parameterName) {
+    Object.keys(parameters.$queryParameters).forEach(function (parameterName) {
       queryParameters[parameterName] = parameters.$queryParameters[parameterName]
     });
   }
   return request('delete', domain + path, body, queryParameters, form, config)
 }
-export const deleteCollectById_RAW_URL = function() {
+export const deleteCollectById_RAW_URL = function () {
   return '/collect/{id}'
 }
-export const deleteCollectById_TYPE = function() {
+export const deleteCollectById_TYPE = function () {
   return 'delete'
 }
-export const deleteCollectByIdURL = function(parameters = {}) {
+export const deleteCollectByIdURL = function (parameters = {}) {
   let queryParameters = {}
   const domain = parameters.$domain ? parameters.$domain : getDomain()
   let path = '/collect/{id}'
   path = path.replace('{id}', `${parameters['id']}`)
   if (parameters.$queryParameters) {
-    Object.keys(parameters.$queryParameters).forEach(function(parameterName) {
+    Object.keys(parameters.$queryParameters).forEach(function (parameterName) {
       queryParameters[parameterName] = parameters.$queryParameters[parameterName]
     })
   }
@@ -1657,7 +1657,7 @@ export const deleteCollectByIdURL = function(parameters = {}) {
  * method: getCorporationCount_TYPE
  * raw_url: getCorporationCount_RAW_URL
  */
-export const getCorporationCount = function(parameters = {}) {
+export const getCorporationCount = function (parameters = {}) {
   const domain = parameters.$domain ? parameters.$domain : getDomain()
   const config = parameters.$config
   let path = '/corporation/count'
@@ -1665,24 +1665,24 @@ export const getCorporationCount = function(parameters = {}) {
   let queryParameters = {}
   let form = {}
   if (parameters.$queryParameters) {
-    Object.keys(parameters.$queryParameters).forEach(function(parameterName) {
+    Object.keys(parameters.$queryParameters).forEach(function (parameterName) {
       queryParameters[parameterName] = parameters.$queryParameters[parameterName]
     });
   }
   return request('get', domain + path, body, queryParameters, form, config)
 }
-export const getCorporationCount_RAW_URL = function() {
+export const getCorporationCount_RAW_URL = function () {
   return '/corporation/count'
 }
-export const getCorporationCount_TYPE = function() {
+export const getCorporationCount_TYPE = function () {
   return 'get'
 }
-export const getCorporationCountURL = function(parameters = {}) {
+export const getCorporationCountURL = function (parameters = {}) {
   let queryParameters = {}
   const domain = parameters.$domain ? parameters.$domain : getDomain()
   let path = '/corporation/count'
   if (parameters.$queryParameters) {
-    Object.keys(parameters.$queryParameters).forEach(function(parameterName) {
+    Object.keys(parameters.$queryParameters).forEach(function (parameterName) {
       queryParameters[parameterName] = parameters.$queryParameters[parameterName]
     })
   }
@@ -1701,7 +1701,7 @@ export const getCorporationCountURL = function(parameters = {}) {
  * @param query - MongoDB Query as a well formed JSON String, ie {"name":"Bob"}
  * @param populate - Path to a MongoDB reference to populate, ie [{"path":"customer"},{"path":"products"}]
  */
-export const getCorporation = function(parameters = {}) {
+export const getCorporation = function (parameters = {}) {
   const domain = parameters.$domain ? parameters.$domain : getDomain()
   const config = parameters.$config
   let path = '/corporation'
@@ -1724,19 +1724,19 @@ export const getCorporation = function(parameters = {}) {
     queryParameters['populate'] = parameters['populate']
   }
   if (parameters.$queryParameters) {
-    Object.keys(parameters.$queryParameters).forEach(function(parameterName) {
+    Object.keys(parameters.$queryParameters).forEach(function (parameterName) {
       queryParameters[parameterName] = parameters.$queryParameters[parameterName]
     });
   }
   return request('get', domain + path, body, queryParameters, form, config)
 }
-export const getCorporation_RAW_URL = function() {
+export const getCorporation_RAW_URL = function () {
   return '/corporation'
 }
-export const getCorporation_TYPE = function() {
+export const getCorporation_TYPE = function () {
   return 'get'
 }
-export const getCorporationURL = function(parameters = {}) {
+export const getCorporationURL = function (parameters = {}) {
   let queryParameters = {}
   const domain = parameters.$domain ? parameters.$domain : getDomain()
   let path = '/corporation'
@@ -1756,7 +1756,7 @@ export const getCorporationURL = function(parameters = {}) {
     queryParameters['populate'] = parameters['populate']
   }
   if (parameters.$queryParameters) {
-    Object.keys(parameters.$queryParameters).forEach(function(parameterName) {
+    Object.keys(parameters.$queryParameters).forEach(function (parameterName) {
       queryParameters[parameterName] = parameters.$queryParameters[parameterName]
     })
   }
@@ -1771,7 +1771,7 @@ export const getCorporationURL = function(parameters = {}) {
  * raw_url: postCorporation_RAW_URL
  * @param corporation -
  */
-export const postCorporation = function(parameters = {}) {
+export const postCorporation = function (parameters = {}) {
   const domain = parameters.$domain ? parameters.$domain : getDomain()
   const config = parameters.$config
   let path = '/corporation'
@@ -1785,24 +1785,24 @@ export const postCorporation = function(parameters = {}) {
     return Promise.reject(new Error('Missing required  parameter: corporation'))
   }
   if (parameters.$queryParameters) {
-    Object.keys(parameters.$queryParameters).forEach(function(parameterName) {
+    Object.keys(parameters.$queryParameters).forEach(function (parameterName) {
       queryParameters[parameterName] = parameters.$queryParameters[parameterName]
     });
   }
   return request('post', domain + path, body, queryParameters, form, config)
 }
-export const postCorporation_RAW_URL = function() {
+export const postCorporation_RAW_URL = function () {
   return '/corporation'
 }
-export const postCorporation_TYPE = function() {
+export const postCorporation_TYPE = function () {
   return 'post'
 }
-export const postCorporationURL = function(parameters = {}) {
+export const postCorporationURL = function (parameters = {}) {
   let queryParameters = {}
   const domain = parameters.$domain ? parameters.$domain : getDomain()
   let path = '/corporation'
   if (parameters.$queryParameters) {
-    Object.keys(parameters.$queryParameters).forEach(function(parameterName) {
+    Object.keys(parameters.$queryParameters).forEach(function (parameterName) {
       queryParameters[parameterName] = parameters.$queryParameters[parameterName]
     })
   }
@@ -1816,7 +1816,7 @@ export const postCorporationURL = function(parameters = {}) {
  * method: deleteCorporation_TYPE
  * raw_url: deleteCorporation_RAW_URL
  */
-export const deleteCorporation = function(parameters = {}) {
+export const deleteCorporation = function (parameters = {}) {
   const domain = parameters.$domain ? parameters.$domain : getDomain()
   const config = parameters.$config
   let path = '/corporation'
@@ -1824,24 +1824,24 @@ export const deleteCorporation = function(parameters = {}) {
   let queryParameters = {}
   let form = {}
   if (parameters.$queryParameters) {
-    Object.keys(parameters.$queryParameters).forEach(function(parameterName) {
+    Object.keys(parameters.$queryParameters).forEach(function (parameterName) {
       queryParameters[parameterName] = parameters.$queryParameters[parameterName]
     });
   }
   return request('delete', domain + path, body, queryParameters, form, config)
 }
-export const deleteCorporation_RAW_URL = function() {
+export const deleteCorporation_RAW_URL = function () {
   return '/corporation'
 }
-export const deleteCorporation_TYPE = function() {
+export const deleteCorporation_TYPE = function () {
   return 'delete'
 }
-export const deleteCorporationURL = function(parameters = {}) {
+export const deleteCorporationURL = function (parameters = {}) {
   let queryParameters = {}
   const domain = parameters.$domain ? parameters.$domain : getDomain()
   let path = '/corporation'
   if (parameters.$queryParameters) {
-    Object.keys(parameters.$queryParameters).forEach(function(parameterName) {
+    Object.keys(parameters.$queryParameters).forEach(function (parameterName) {
       queryParameters[parameterName] = parameters.$queryParameters[parameterName]
     })
   }
@@ -1856,7 +1856,7 @@ export const deleteCorporationURL = function(parameters = {}) {
  * raw_url: getCorporationById_RAW_URL
  * @param id - MongoDB document _id
  */
-export const getCorporationById = function(parameters = {}) {
+export const getCorporationById = function (parameters = {}) {
   const domain = parameters.$domain ? parameters.$domain : getDomain()
   const config = parameters.$config
   let path = '/corporation/{id}'
@@ -1868,25 +1868,25 @@ export const getCorporationById = function(parameters = {}) {
     return Promise.reject(new Error('Missing required  parameter: id'))
   }
   if (parameters.$queryParameters) {
-    Object.keys(parameters.$queryParameters).forEach(function(parameterName) {
+    Object.keys(parameters.$queryParameters).forEach(function (parameterName) {
       queryParameters[parameterName] = parameters.$queryParameters[parameterName]
     });
   }
   return request('get', domain + path, body, queryParameters, form, config)
 }
-export const getCorporationById_RAW_URL = function() {
+export const getCorporationById_RAW_URL = function () {
   return '/corporation/{id}'
 }
-export const getCorporationById_TYPE = function() {
+export const getCorporationById_TYPE = function () {
   return 'get'
 }
-export const getCorporationByIdURL = function(parameters = {}) {
+export const getCorporationByIdURL = function (parameters = {}) {
   let queryParameters = {}
   const domain = parameters.$domain ? parameters.$domain : getDomain()
   let path = '/corporation/{id}'
   path = path.replace('{id}', `${parameters['id']}`)
   if (parameters.$queryParameters) {
-    Object.keys(parameters.$queryParameters).forEach(function(parameterName) {
+    Object.keys(parameters.$queryParameters).forEach(function (parameterName) {
       queryParameters[parameterName] = parameters.$queryParameters[parameterName]
     })
   }
@@ -1902,7 +1902,7 @@ export const getCorporationByIdURL = function(parameters = {}) {
  * @param id - MongoDB document _id
  * @param corporation -
  */
-export const postCorporationById = function(parameters = {}) {
+export const postCorporationById = function (parameters = {}) {
   const domain = parameters.$domain ? parameters.$domain : getDomain()
   const config = parameters.$config
   let path = '/corporation/{id}'
@@ -1920,25 +1920,25 @@ export const postCorporationById = function(parameters = {}) {
     return Promise.reject(new Error('Missing required  parameter: corporation'))
   }
   if (parameters.$queryParameters) {
-    Object.keys(parameters.$queryParameters).forEach(function(parameterName) {
+    Object.keys(parameters.$queryParameters).forEach(function (parameterName) {
       queryParameters[parameterName] = parameters.$queryParameters[parameterName]
     });
   }
   return request('post', domain + path, body, queryParameters, form, config)
 }
-export const postCorporationById_RAW_URL = function() {
+export const postCorporationById_RAW_URL = function () {
   return '/corporation/{id}'
 }
-export const postCorporationById_TYPE = function() {
+export const postCorporationById_TYPE = function () {
   return 'post'
 }
-export const postCorporationByIdURL = function(parameters = {}) {
+export const postCorporationByIdURL = function (parameters = {}) {
   let queryParameters = {}
   const domain = parameters.$domain ? parameters.$domain : getDomain()
   let path = '/corporation/{id}'
   path = path.replace('{id}', `${parameters['id']}`)
   if (parameters.$queryParameters) {
-    Object.keys(parameters.$queryParameters).forEach(function(parameterName) {
+    Object.keys(parameters.$queryParameters).forEach(function (parameterName) {
       queryParameters[parameterName] = parameters.$queryParameters[parameterName]
     })
   }
@@ -1953,7 +1953,7 @@ export const postCorporationByIdURL = function(parameters = {}) {
  * raw_url: deleteCorporationById_RAW_URL
  * @param id - MongoDB document _id
  */
-export const deleteCorporationById = function(parameters = {}) {
+export const deleteCorporationById = function (parameters = {}) {
   const domain = parameters.$domain ? parameters.$domain : getDomain()
   const config = parameters.$config
   let path = '/corporation/{id}'
@@ -1965,25 +1965,25 @@ export const deleteCorporationById = function(parameters = {}) {
     return Promise.reject(new Error('Missing required  parameter: id'))
   }
   if (parameters.$queryParameters) {
-    Object.keys(parameters.$queryParameters).forEach(function(parameterName) {
+    Object.keys(parameters.$queryParameters).forEach(function (parameterName) {
       queryParameters[parameterName] = parameters.$queryParameters[parameterName]
     });
   }
   return request('delete', domain + path, body, queryParameters, form, config)
 }
-export const deleteCorporationById_RAW_URL = function() {
+export const deleteCorporationById_RAW_URL = function () {
   return '/corporation/{id}'
 }
-export const deleteCorporationById_TYPE = function() {
+export const deleteCorporationById_TYPE = function () {
   return 'delete'
 }
-export const deleteCorporationByIdURL = function(parameters = {}) {
+export const deleteCorporationByIdURL = function (parameters = {}) {
   let queryParameters = {}
   const domain = parameters.$domain ? parameters.$domain : getDomain()
   let path = '/corporation/{id}'
   path = path.replace('{id}', `${parameters['id']}`)
   if (parameters.$queryParameters) {
-    Object.keys(parameters.$queryParameters).forEach(function(parameterName) {
+    Object.keys(parameters.$queryParameters).forEach(function (parameterName) {
       queryParameters[parameterName] = parameters.$queryParameters[parameterName]
     })
   }
@@ -1997,7 +1997,7 @@ export const deleteCorporationByIdURL = function(parameters = {}) {
  * method: getCurrencyCount_TYPE
  * raw_url: getCurrencyCount_RAW_URL
  */
-export const getCurrencyCount = function(parameters = {}) {
+export const getCurrencyCount = function (parameters = {}) {
   const domain = parameters.$domain ? parameters.$domain : getDomain()
   const config = parameters.$config
   let path = '/currency/count'
@@ -2005,24 +2005,24 @@ export const getCurrencyCount = function(parameters = {}) {
   let queryParameters = {}
   let form = {}
   if (parameters.$queryParameters) {
-    Object.keys(parameters.$queryParameters).forEach(function(parameterName) {
+    Object.keys(parameters.$queryParameters).forEach(function (parameterName) {
       queryParameters[parameterName] = parameters.$queryParameters[parameterName]
     });
   }
   return request('get', domain + path, body, queryParameters, form, config)
 }
-export const getCurrencyCount_RAW_URL = function() {
+export const getCurrencyCount_RAW_URL = function () {
   return '/currency/count'
 }
-export const getCurrencyCount_TYPE = function() {
+export const getCurrencyCount_TYPE = function () {
   return 'get'
 }
-export const getCurrencyCountURL = function(parameters = {}) {
+export const getCurrencyCountURL = function (parameters = {}) {
   let queryParameters = {}
   const domain = parameters.$domain ? parameters.$domain : getDomain()
   let path = '/currency/count'
   if (parameters.$queryParameters) {
-    Object.keys(parameters.$queryParameters).forEach(function(parameterName) {
+    Object.keys(parameters.$queryParameters).forEach(function (parameterName) {
       queryParameters[parameterName] = parameters.$queryParameters[parameterName]
     })
   }
@@ -2041,7 +2041,7 @@ export const getCurrencyCountURL = function(parameters = {}) {
  * @param query - MongoDB Query as a well formed JSON String, ie {"name":"Bob"}
  * @param populate - Path to a MongoDB reference to populate, ie [{"path":"customer"},{"path":"products"}]
  */
-export const getCurrency = function(parameters = {}) {
+export const getCurrency = function (parameters = {}) {
   const domain = parameters.$domain ? parameters.$domain : getDomain()
   const config = parameters.$config
   let path = '/currency'
@@ -2064,19 +2064,19 @@ export const getCurrency = function(parameters = {}) {
     queryParameters['populate'] = parameters['populate']
   }
   if (parameters.$queryParameters) {
-    Object.keys(parameters.$queryParameters).forEach(function(parameterName) {
+    Object.keys(parameters.$queryParameters).forEach(function (parameterName) {
       queryParameters[parameterName] = parameters.$queryParameters[parameterName]
     });
   }
   return request('get', domain + path, body, queryParameters, form, config)
 }
-export const getCurrency_RAW_URL = function() {
+export const getCurrency_RAW_URL = function () {
   return '/currency'
 }
-export const getCurrency_TYPE = function() {
+export const getCurrency_TYPE = function () {
   return 'get'
 }
-export const getCurrencyURL = function(parameters = {}) {
+export const getCurrencyURL = function (parameters = {}) {
   let queryParameters = {}
   const domain = parameters.$domain ? parameters.$domain : getDomain()
   let path = '/currency'
@@ -2096,7 +2096,7 @@ export const getCurrencyURL = function(parameters = {}) {
     queryParameters['populate'] = parameters['populate']
   }
   if (parameters.$queryParameters) {
-    Object.keys(parameters.$queryParameters).forEach(function(parameterName) {
+    Object.keys(parameters.$queryParameters).forEach(function (parameterName) {
       queryParameters[parameterName] = parameters.$queryParameters[parameterName]
     })
   }
@@ -2111,7 +2111,7 @@ export const getCurrencyURL = function(parameters = {}) {
  * raw_url: postCurrency_RAW_URL
  * @param currency -
  */
-export const postCurrency = function(parameters = {}) {
+export const postCurrency = function (parameters = {}) {
   const domain = parameters.$domain ? parameters.$domain : getDomain()
   const config = parameters.$config
   let path = '/currency'
@@ -2125,24 +2125,24 @@ export const postCurrency = function(parameters = {}) {
     return Promise.reject(new Error('Missing required  parameter: currency'))
   }
   if (parameters.$queryParameters) {
-    Object.keys(parameters.$queryParameters).forEach(function(parameterName) {
+    Object.keys(parameters.$queryParameters).forEach(function (parameterName) {
       queryParameters[parameterName] = parameters.$queryParameters[parameterName]
     });
   }
   return request('post', domain + path, body, queryParameters, form, config)
 }
-export const postCurrency_RAW_URL = function() {
+export const postCurrency_RAW_URL = function () {
   return '/currency'
 }
-export const postCurrency_TYPE = function() {
+export const postCurrency_TYPE = function () {
   return 'post'
 }
-export const postCurrencyURL = function(parameters = {}) {
+export const postCurrencyURL = function (parameters = {}) {
   let queryParameters = {}
   const domain = parameters.$domain ? parameters.$domain : getDomain()
   let path = '/currency'
   if (parameters.$queryParameters) {
-    Object.keys(parameters.$queryParameters).forEach(function(parameterName) {
+    Object.keys(parameters.$queryParameters).forEach(function (parameterName) {
       queryParameters[parameterName] = parameters.$queryParameters[parameterName]
     })
   }
@@ -2156,7 +2156,7 @@ export const postCurrencyURL = function(parameters = {}) {
  * method: deleteCurrency_TYPE
  * raw_url: deleteCurrency_RAW_URL
  */
-export const deleteCurrency = function(parameters = {}) {
+export const deleteCurrency = function (parameters = {}) {
   const domain = parameters.$domain ? parameters.$domain : getDomain()
   const config = parameters.$config
   let path = '/currency'
@@ -2164,24 +2164,24 @@ export const deleteCurrency = function(parameters = {}) {
   let queryParameters = {}
   let form = {}
   if (parameters.$queryParameters) {
-    Object.keys(parameters.$queryParameters).forEach(function(parameterName) {
+    Object.keys(parameters.$queryParameters).forEach(function (parameterName) {
       queryParameters[parameterName] = parameters.$queryParameters[parameterName]
     });
   }
   return request('delete', domain + path, body, queryParameters, form, config)
 }
-export const deleteCurrency_RAW_URL = function() {
+export const deleteCurrency_RAW_URL = function () {
   return '/currency'
 }
-export const deleteCurrency_TYPE = function() {
+export const deleteCurrency_TYPE = function () {
   return 'delete'
 }
-export const deleteCurrencyURL = function(parameters = {}) {
+export const deleteCurrencyURL = function (parameters = {}) {
   let queryParameters = {}
   const domain = parameters.$domain ? parameters.$domain : getDomain()
   let path = '/currency'
   if (parameters.$queryParameters) {
-    Object.keys(parameters.$queryParameters).forEach(function(parameterName) {
+    Object.keys(parameters.$queryParameters).forEach(function (parameterName) {
       queryParameters[parameterName] = parameters.$queryParameters[parameterName]
     })
   }
@@ -2196,7 +2196,7 @@ export const deleteCurrencyURL = function(parameters = {}) {
  * raw_url: getCurrencyById_RAW_URL
  * @param id - MongoDB document _id
  */
-export const getCurrencyById = function(parameters = {}) {
+export const getCurrencyById = function (parameters = {}) {
   const domain = parameters.$domain ? parameters.$domain : getDomain()
   const config = parameters.$config
   let path = '/currency/{id}'
@@ -2208,25 +2208,25 @@ export const getCurrencyById = function(parameters = {}) {
     return Promise.reject(new Error('Missing required  parameter: id'))
   }
   if (parameters.$queryParameters) {
-    Object.keys(parameters.$queryParameters).forEach(function(parameterName) {
+    Object.keys(parameters.$queryParameters).forEach(function (parameterName) {
       queryParameters[parameterName] = parameters.$queryParameters[parameterName]
     });
   }
   return request('get', domain + path, body, queryParameters, form, config)
 }
-export const getCurrencyById_RAW_URL = function() {
+export const getCurrencyById_RAW_URL = function () {
   return '/currency/{id}'
 }
-export const getCurrencyById_TYPE = function() {
+export const getCurrencyById_TYPE = function () {
   return 'get'
 }
-export const getCurrencyByIdURL = function(parameters = {}) {
+export const getCurrencyByIdURL = function (parameters = {}) {
   let queryParameters = {}
   const domain = parameters.$domain ? parameters.$domain : getDomain()
   let path = '/currency/{id}'
   path = path.replace('{id}', `${parameters['id']}`)
   if (parameters.$queryParameters) {
-    Object.keys(parameters.$queryParameters).forEach(function(parameterName) {
+    Object.keys(parameters.$queryParameters).forEach(function (parameterName) {
       queryParameters[parameterName] = parameters.$queryParameters[parameterName]
     })
   }
@@ -2242,7 +2242,7 @@ export const getCurrencyByIdURL = function(parameters = {}) {
  * @param id - MongoDB document _id
  * @param currency -
  */
-export const postCurrencyById = function(parameters = {}) {
+export const postCurrencyById = function (parameters = {}) {
   const domain = parameters.$domain ? parameters.$domain : getDomain()
   const config = parameters.$config
   let path = '/currency/{id}'
@@ -2260,25 +2260,25 @@ export const postCurrencyById = function(parameters = {}) {
     return Promise.reject(new Error('Missing required  parameter: currency'))
   }
   if (parameters.$queryParameters) {
-    Object.keys(parameters.$queryParameters).forEach(function(parameterName) {
+    Object.keys(parameters.$queryParameters).forEach(function (parameterName) {
       queryParameters[parameterName] = parameters.$queryParameters[parameterName]
     });
   }
   return request('post', domain + path, body, queryParameters, form, config)
 }
-export const postCurrencyById_RAW_URL = function() {
+export const postCurrencyById_RAW_URL = function () {
   return '/currency/{id}'
 }
-export const postCurrencyById_TYPE = function() {
+export const postCurrencyById_TYPE = function () {
   return 'post'
 }
-export const postCurrencyByIdURL = function(parameters = {}) {
+export const postCurrencyByIdURL = function (parameters = {}) {
   let queryParameters = {}
   const domain = parameters.$domain ? parameters.$domain : getDomain()
   let path = '/currency/{id}'
   path = path.replace('{id}', `${parameters['id']}`)
   if (parameters.$queryParameters) {
-    Object.keys(parameters.$queryParameters).forEach(function(parameterName) {
+    Object.keys(parameters.$queryParameters).forEach(function (parameterName) {
       queryParameters[parameterName] = parameters.$queryParameters[parameterName]
     })
   }
@@ -2293,7 +2293,7 @@ export const postCurrencyByIdURL = function(parameters = {}) {
  * raw_url: deleteCurrencyById_RAW_URL
  * @param id - MongoDB document _id
  */
-export const deleteCurrencyById = function(parameters = {}) {
+export const deleteCurrencyById = function (parameters = {}) {
   const domain = parameters.$domain ? parameters.$domain : getDomain()
   const config = parameters.$config
   let path = '/currency/{id}'
@@ -2305,25 +2305,25 @@ export const deleteCurrencyById = function(parameters = {}) {
     return Promise.reject(new Error('Missing required  parameter: id'))
   }
   if (parameters.$queryParameters) {
-    Object.keys(parameters.$queryParameters).forEach(function(parameterName) {
+    Object.keys(parameters.$queryParameters).forEach(function (parameterName) {
       queryParameters[parameterName] = parameters.$queryParameters[parameterName]
     });
   }
   return request('delete', domain + path, body, queryParameters, form, config)
 }
-export const deleteCurrencyById_RAW_URL = function() {
+export const deleteCurrencyById_RAW_URL = function () {
   return '/currency/{id}'
 }
-export const deleteCurrencyById_TYPE = function() {
+export const deleteCurrencyById_TYPE = function () {
   return 'delete'
 }
-export const deleteCurrencyByIdURL = function(parameters = {}) {
+export const deleteCurrencyByIdURL = function (parameters = {}) {
   let queryParameters = {}
   const domain = parameters.$domain ? parameters.$domain : getDomain()
   let path = '/currency/{id}'
   path = path.replace('{id}', `${parameters['id']}`)
   if (parameters.$queryParameters) {
-    Object.keys(parameters.$queryParameters).forEach(function(parameterName) {
+    Object.keys(parameters.$queryParameters).forEach(function (parameterName) {
       queryParameters[parameterName] = parameters.$queryParameters[parameterName]
     })
   }
@@ -2337,7 +2337,7 @@ export const deleteCurrencyByIdURL = function(parameters = {}) {
  * method: getDescriptorCount_TYPE
  * raw_url: getDescriptorCount_RAW_URL
  */
-export const getDescriptorCount = function(parameters = {}) {
+export const getDescriptorCount = function (parameters = {}) {
   const domain = parameters.$domain ? parameters.$domain : getDomain()
   const config = parameters.$config
   let path = '/descriptor/count'
@@ -2345,24 +2345,24 @@ export const getDescriptorCount = function(parameters = {}) {
   let queryParameters = {}
   let form = {}
   if (parameters.$queryParameters) {
-    Object.keys(parameters.$queryParameters).forEach(function(parameterName) {
+    Object.keys(parameters.$queryParameters).forEach(function (parameterName) {
       queryParameters[parameterName] = parameters.$queryParameters[parameterName]
     });
   }
   return request('get', domain + path, body, queryParameters, form, config)
 }
-export const getDescriptorCount_RAW_URL = function() {
+export const getDescriptorCount_RAW_URL = function () {
   return '/descriptor/count'
 }
-export const getDescriptorCount_TYPE = function() {
+export const getDescriptorCount_TYPE = function () {
   return 'get'
 }
-export const getDescriptorCountURL = function(parameters = {}) {
+export const getDescriptorCountURL = function (parameters = {}) {
   let queryParameters = {}
   const domain = parameters.$domain ? parameters.$domain : getDomain()
   let path = '/descriptor/count'
   if (parameters.$queryParameters) {
-    Object.keys(parameters.$queryParameters).forEach(function(parameterName) {
+    Object.keys(parameters.$queryParameters).forEach(function (parameterName) {
       queryParameters[parameterName] = parameters.$queryParameters[parameterName]
     })
   }
@@ -2381,7 +2381,7 @@ export const getDescriptorCountURL = function(parameters = {}) {
  * @param query - MongoDB Query as a well formed JSON String, ie {"name":"Bob"}
  * @param populate - Path to a MongoDB reference to populate, ie [{"path":"customer"},{"path":"products"}]
  */
-export const getDescriptor = function(parameters = {}) {
+export const getDescriptor = function (parameters = {}) {
   const domain = parameters.$domain ? parameters.$domain : getDomain()
   const config = parameters.$config
   let path = '/descriptor'
@@ -2404,19 +2404,19 @@ export const getDescriptor = function(parameters = {}) {
     queryParameters['populate'] = parameters['populate']
   }
   if (parameters.$queryParameters) {
-    Object.keys(parameters.$queryParameters).forEach(function(parameterName) {
+    Object.keys(parameters.$queryParameters).forEach(function (parameterName) {
       queryParameters[parameterName] = parameters.$queryParameters[parameterName]
     });
   }
   return request('get', domain + path, body, queryParameters, form, config)
 }
-export const getDescriptor_RAW_URL = function() {
+export const getDescriptor_RAW_URL = function () {
   return '/descriptor'
 }
-export const getDescriptor_TYPE = function() {
+export const getDescriptor_TYPE = function () {
   return 'get'
 }
-export const getDescriptorURL = function(parameters = {}) {
+export const getDescriptorURL = function (parameters = {}) {
   let queryParameters = {}
   const domain = parameters.$domain ? parameters.$domain : getDomain()
   let path = '/descriptor'
@@ -2436,7 +2436,7 @@ export const getDescriptorURL = function(parameters = {}) {
     queryParameters['populate'] = parameters['populate']
   }
   if (parameters.$queryParameters) {
-    Object.keys(parameters.$queryParameters).forEach(function(parameterName) {
+    Object.keys(parameters.$queryParameters).forEach(function (parameterName) {
       queryParameters[parameterName] = parameters.$queryParameters[parameterName]
     })
   }
@@ -2451,7 +2451,7 @@ export const getDescriptorURL = function(parameters = {}) {
  * raw_url: postDescriptor_RAW_URL
  * @param descriptor -
  */
-export const postDescriptor = function(parameters = {}) {
+export const postDescriptor = function (parameters = {}) {
   const domain = parameters.$domain ? parameters.$domain : getDomain()
   const config = parameters.$config
   let path = '/descriptor'
@@ -2465,24 +2465,24 @@ export const postDescriptor = function(parameters = {}) {
     return Promise.reject(new Error('Missing required  parameter: descriptor'))
   }
   if (parameters.$queryParameters) {
-    Object.keys(parameters.$queryParameters).forEach(function(parameterName) {
+    Object.keys(parameters.$queryParameters).forEach(function (parameterName) {
       queryParameters[parameterName] = parameters.$queryParameters[parameterName]
     });
   }
   return request('post', domain + path, body, queryParameters, form, config)
 }
-export const postDescriptor_RAW_URL = function() {
+export const postDescriptor_RAW_URL = function () {
   return '/descriptor'
 }
-export const postDescriptor_TYPE = function() {
+export const postDescriptor_TYPE = function () {
   return 'post'
 }
-export const postDescriptorURL = function(parameters = {}) {
+export const postDescriptorURL = function (parameters = {}) {
   let queryParameters = {}
   const domain = parameters.$domain ? parameters.$domain : getDomain()
   let path = '/descriptor'
   if (parameters.$queryParameters) {
-    Object.keys(parameters.$queryParameters).forEach(function(parameterName) {
+    Object.keys(parameters.$queryParameters).forEach(function (parameterName) {
       queryParameters[parameterName] = parameters.$queryParameters[parameterName]
     })
   }
@@ -2496,7 +2496,7 @@ export const postDescriptorURL = function(parameters = {}) {
  * method: deleteDescriptor_TYPE
  * raw_url: deleteDescriptor_RAW_URL
  */
-export const deleteDescriptor = function(parameters = {}) {
+export const deleteDescriptor = function (parameters = {}) {
   const domain = parameters.$domain ? parameters.$domain : getDomain()
   const config = parameters.$config
   let path = '/descriptor'
@@ -2504,24 +2504,24 @@ export const deleteDescriptor = function(parameters = {}) {
   let queryParameters = {}
   let form = {}
   if (parameters.$queryParameters) {
-    Object.keys(parameters.$queryParameters).forEach(function(parameterName) {
+    Object.keys(parameters.$queryParameters).forEach(function (parameterName) {
       queryParameters[parameterName] = parameters.$queryParameters[parameterName]
     });
   }
   return request('delete', domain + path, body, queryParameters, form, config)
 }
-export const deleteDescriptor_RAW_URL = function() {
+export const deleteDescriptor_RAW_URL = function () {
   return '/descriptor'
 }
-export const deleteDescriptor_TYPE = function() {
+export const deleteDescriptor_TYPE = function () {
   return 'delete'
 }
-export const deleteDescriptorURL = function(parameters = {}) {
+export const deleteDescriptorURL = function (parameters = {}) {
   let queryParameters = {}
   const domain = parameters.$domain ? parameters.$domain : getDomain()
   let path = '/descriptor'
   if (parameters.$queryParameters) {
-    Object.keys(parameters.$queryParameters).forEach(function(parameterName) {
+    Object.keys(parameters.$queryParameters).forEach(function (parameterName) {
       queryParameters[parameterName] = parameters.$queryParameters[parameterName]
     })
   }
@@ -2536,7 +2536,7 @@ export const deleteDescriptorURL = function(parameters = {}) {
  * raw_url: getDescriptorById_RAW_URL
  * @param id - MongoDB document _id
  */
-export const getDescriptorById = function(parameters = {}) {
+export const getDescriptorById = function (parameters = {}) {
   const domain = parameters.$domain ? parameters.$domain : getDomain()
   const config = parameters.$config
   let path = '/descriptor/{id}'
@@ -2548,25 +2548,25 @@ export const getDescriptorById = function(parameters = {}) {
     return Promise.reject(new Error('Missing required  parameter: id'))
   }
   if (parameters.$queryParameters) {
-    Object.keys(parameters.$queryParameters).forEach(function(parameterName) {
+    Object.keys(parameters.$queryParameters).forEach(function (parameterName) {
       queryParameters[parameterName] = parameters.$queryParameters[parameterName]
     });
   }
   return request('get', domain + path, body, queryParameters, form, config)
 }
-export const getDescriptorById_RAW_URL = function() {
+export const getDescriptorById_RAW_URL = function () {
   return '/descriptor/{id}'
 }
-export const getDescriptorById_TYPE = function() {
+export const getDescriptorById_TYPE = function () {
   return 'get'
 }
-export const getDescriptorByIdURL = function(parameters = {}) {
+export const getDescriptorByIdURL = function (parameters = {}) {
   let queryParameters = {}
   const domain = parameters.$domain ? parameters.$domain : getDomain()
   let path = '/descriptor/{id}'
   path = path.replace('{id}', `${parameters['id']}`)
   if (parameters.$queryParameters) {
-    Object.keys(parameters.$queryParameters).forEach(function(parameterName) {
+    Object.keys(parameters.$queryParameters).forEach(function (parameterName) {
       queryParameters[parameterName] = parameters.$queryParameters[parameterName]
     })
   }
@@ -2582,7 +2582,7 @@ export const getDescriptorByIdURL = function(parameters = {}) {
  * @param id - MongoDB document _id
  * @param descriptor -
  */
-export const postDescriptorById = function(parameters = {}) {
+export const postDescriptorById = function (parameters = {}) {
   const domain = parameters.$domain ? parameters.$domain : getDomain()
   const config = parameters.$config
   let path = '/descriptor/{id}'
@@ -2600,25 +2600,25 @@ export const postDescriptorById = function(parameters = {}) {
     return Promise.reject(new Error('Missing required  parameter: descriptor'))
   }
   if (parameters.$queryParameters) {
-    Object.keys(parameters.$queryParameters).forEach(function(parameterName) {
+    Object.keys(parameters.$queryParameters).forEach(function (parameterName) {
       queryParameters[parameterName] = parameters.$queryParameters[parameterName]
     });
   }
   return request('post', domain + path, body, queryParameters, form, config)
 }
-export const postDescriptorById_RAW_URL = function() {
+export const postDescriptorById_RAW_URL = function () {
   return '/descriptor/{id}'
 }
-export const postDescriptorById_TYPE = function() {
+export const postDescriptorById_TYPE = function () {
   return 'post'
 }
-export const postDescriptorByIdURL = function(parameters = {}) {
+export const postDescriptorByIdURL = function (parameters = {}) {
   let queryParameters = {}
   const domain = parameters.$domain ? parameters.$domain : getDomain()
   let path = '/descriptor/{id}'
   path = path.replace('{id}', `${parameters['id']}`)
   if (parameters.$queryParameters) {
-    Object.keys(parameters.$queryParameters).forEach(function(parameterName) {
+    Object.keys(parameters.$queryParameters).forEach(function (parameterName) {
       queryParameters[parameterName] = parameters.$queryParameters[parameterName]
     })
   }
@@ -2633,7 +2633,7 @@ export const postDescriptorByIdURL = function(parameters = {}) {
  * raw_url: deleteDescriptorById_RAW_URL
  * @param id - MongoDB document _id
  */
-export const deleteDescriptorById = function(parameters = {}) {
+export const deleteDescriptorById = function (parameters = {}) {
   const domain = parameters.$domain ? parameters.$domain : getDomain()
   const config = parameters.$config
   let path = '/descriptor/{id}'
@@ -2645,25 +2645,25 @@ export const deleteDescriptorById = function(parameters = {}) {
     return Promise.reject(new Error('Missing required  parameter: id'))
   }
   if (parameters.$queryParameters) {
-    Object.keys(parameters.$queryParameters).forEach(function(parameterName) {
+    Object.keys(parameters.$queryParameters).forEach(function (parameterName) {
       queryParameters[parameterName] = parameters.$queryParameters[parameterName]
     });
   }
   return request('delete', domain + path, body, queryParameters, form, config)
 }
-export const deleteDescriptorById_RAW_URL = function() {
+export const deleteDescriptorById_RAW_URL = function () {
   return '/descriptor/{id}'
 }
-export const deleteDescriptorById_TYPE = function() {
+export const deleteDescriptorById_TYPE = function () {
   return 'delete'
 }
-export const deleteDescriptorByIdURL = function(parameters = {}) {
+export const deleteDescriptorByIdURL = function (parameters = {}) {
   let queryParameters = {}
   const domain = parameters.$domain ? parameters.$domain : getDomain()
   let path = '/descriptor/{id}'
   path = path.replace('{id}', `${parameters['id']}`)
   if (parameters.$queryParameters) {
-    Object.keys(parameters.$queryParameters).forEach(function(parameterName) {
+    Object.keys(parameters.$queryParameters).forEach(function (parameterName) {
       queryParameters[parameterName] = parameters.$queryParameters[parameterName]
     })
   }
@@ -2677,7 +2677,7 @@ export const deleteDescriptorByIdURL = function(parameters = {}) {
  * method: getEntryCount_TYPE
  * raw_url: getEntryCount_RAW_URL
  */
-export const getEntryCount = function(parameters = {}) {
+export const getEntryCount = function (parameters = {}) {
   const domain = parameters.$domain ? parameters.$domain : getDomain()
   const config = parameters.$config
   let path = '/entry/count'
@@ -2685,24 +2685,24 @@ export const getEntryCount = function(parameters = {}) {
   let queryParameters = {}
   let form = {}
   if (parameters.$queryParameters) {
-    Object.keys(parameters.$queryParameters).forEach(function(parameterName) {
+    Object.keys(parameters.$queryParameters).forEach(function (parameterName) {
       queryParameters[parameterName] = parameters.$queryParameters[parameterName]
     });
   }
   return request('get', domain + path, body, queryParameters, form, config)
 }
-export const getEntryCount_RAW_URL = function() {
+export const getEntryCount_RAW_URL = function () {
   return '/entry/count'
 }
-export const getEntryCount_TYPE = function() {
+export const getEntryCount_TYPE = function () {
   return 'get'
 }
-export const getEntryCountURL = function(parameters = {}) {
+export const getEntryCountURL = function (parameters = {}) {
   let queryParameters = {}
   const domain = parameters.$domain ? parameters.$domain : getDomain()
   let path = '/entry/count'
   if (parameters.$queryParameters) {
-    Object.keys(parameters.$queryParameters).forEach(function(parameterName) {
+    Object.keys(parameters.$queryParameters).forEach(function (parameterName) {
       queryParameters[parameterName] = parameters.$queryParameters[parameterName]
     })
   }
@@ -2721,7 +2721,7 @@ export const getEntryCountURL = function(parameters = {}) {
  * @param query - MongoDB Query as a well formed JSON String, ie {"name":"Bob"}
  * @param populate - Path to a MongoDB reference to populate, ie [{"path":"customer"},{"path":"products"}]
  */
-export const getEntry = function(parameters = {}) {
+export const getEntry = function (parameters = {}) {
   const domain = parameters.$domain ? parameters.$domain : getDomain()
   const config = parameters.$config
   let path = '/entry'
@@ -2744,19 +2744,19 @@ export const getEntry = function(parameters = {}) {
     queryParameters['populate'] = parameters['populate']
   }
   if (parameters.$queryParameters) {
-    Object.keys(parameters.$queryParameters).forEach(function(parameterName) {
+    Object.keys(parameters.$queryParameters).forEach(function (parameterName) {
       queryParameters[parameterName] = parameters.$queryParameters[parameterName]
     });
   }
   return request('get', domain + path, body, queryParameters, form, config)
 }
-export const getEntry_RAW_URL = function() {
+export const getEntry_RAW_URL = function () {
   return '/entry'
 }
-export const getEntry_TYPE = function() {
+export const getEntry_TYPE = function () {
   return 'get'
 }
-export const getEntryURL = function(parameters = {}) {
+export const getEntryURL = function (parameters = {}) {
   let queryParameters = {}
   const domain = parameters.$domain ? parameters.$domain : getDomain()
   let path = '/entry'
@@ -2776,7 +2776,7 @@ export const getEntryURL = function(parameters = {}) {
     queryParameters['populate'] = parameters['populate']
   }
   if (parameters.$queryParameters) {
-    Object.keys(parameters.$queryParameters).forEach(function(parameterName) {
+    Object.keys(parameters.$queryParameters).forEach(function (parameterName) {
       queryParameters[parameterName] = parameters.$queryParameters[parameterName]
     })
   }
@@ -2791,7 +2791,7 @@ export const getEntryURL = function(parameters = {}) {
  * raw_url: postEntry_RAW_URL
  * @param entry -
  */
-export const postEntry = function(parameters = {}) {
+export const postEntry = function (parameters = {}) {
   const domain = parameters.$domain ? parameters.$domain : getDomain()
   const config = parameters.$config
   let path = '/entry'
@@ -2805,24 +2805,24 @@ export const postEntry = function(parameters = {}) {
     return Promise.reject(new Error('Missing required  parameter: entry'))
   }
   if (parameters.$queryParameters) {
-    Object.keys(parameters.$queryParameters).forEach(function(parameterName) {
+    Object.keys(parameters.$queryParameters).forEach(function (parameterName) {
       queryParameters[parameterName] = parameters.$queryParameters[parameterName]
     });
   }
   return request('post', domain + path, body, queryParameters, form, config)
 }
-export const postEntry_RAW_URL = function() {
+export const postEntry_RAW_URL = function () {
   return '/entry'
 }
-export const postEntry_TYPE = function() {
+export const postEntry_TYPE = function () {
   return 'post'
 }
-export const postEntryURL = function(parameters = {}) {
+export const postEntryURL = function (parameters = {}) {
   let queryParameters = {}
   const domain = parameters.$domain ? parameters.$domain : getDomain()
   let path = '/entry'
   if (parameters.$queryParameters) {
-    Object.keys(parameters.$queryParameters).forEach(function(parameterName) {
+    Object.keys(parameters.$queryParameters).forEach(function (parameterName) {
       queryParameters[parameterName] = parameters.$queryParameters[parameterName]
     })
   }
@@ -2836,7 +2836,7 @@ export const postEntryURL = function(parameters = {}) {
  * method: deleteEntry_TYPE
  * raw_url: deleteEntry_RAW_URL
  */
-export const deleteEntry = function(parameters = {}) {
+export const deleteEntry = function (parameters = {}) {
   const domain = parameters.$domain ? parameters.$domain : getDomain()
   const config = parameters.$config
   let path = '/entry'
@@ -2844,24 +2844,24 @@ export const deleteEntry = function(parameters = {}) {
   let queryParameters = {}
   let form = {}
   if (parameters.$queryParameters) {
-    Object.keys(parameters.$queryParameters).forEach(function(parameterName) {
+    Object.keys(parameters.$queryParameters).forEach(function (parameterName) {
       queryParameters[parameterName] = parameters.$queryParameters[parameterName]
     });
   }
   return request('delete', domain + path, body, queryParameters, form, config)
 }
-export const deleteEntry_RAW_URL = function() {
+export const deleteEntry_RAW_URL = function () {
   return '/entry'
 }
-export const deleteEntry_TYPE = function() {
+export const deleteEntry_TYPE = function () {
   return 'delete'
 }
-export const deleteEntryURL = function(parameters = {}) {
+export const deleteEntryURL = function (parameters = {}) {
   let queryParameters = {}
   const domain = parameters.$domain ? parameters.$domain : getDomain()
   let path = '/entry'
   if (parameters.$queryParameters) {
-    Object.keys(parameters.$queryParameters).forEach(function(parameterName) {
+    Object.keys(parameters.$queryParameters).forEach(function (parameterName) {
       queryParameters[parameterName] = parameters.$queryParameters[parameterName]
     })
   }
@@ -2876,7 +2876,7 @@ export const deleteEntryURL = function(parameters = {}) {
  * raw_url: getEntryById_RAW_URL
  * @param id - MongoDB document _id
  */
-export const getEntryById = function(parameters = {}) {
+export const getEntryById = function (parameters = {}) {
   const domain = parameters.$domain ? parameters.$domain : getDomain()
   const config = parameters.$config
   let path = '/entry/{id}'
@@ -2888,25 +2888,25 @@ export const getEntryById = function(parameters = {}) {
     return Promise.reject(new Error('Missing required  parameter: id'))
   }
   if (parameters.$queryParameters) {
-    Object.keys(parameters.$queryParameters).forEach(function(parameterName) {
+    Object.keys(parameters.$queryParameters).forEach(function (parameterName) {
       queryParameters[parameterName] = parameters.$queryParameters[parameterName]
     });
   }
   return request('get', domain + path, body, queryParameters, form, config)
 }
-export const getEntryById_RAW_URL = function() {
+export const getEntryById_RAW_URL = function () {
   return '/entry/{id}'
 }
-export const getEntryById_TYPE = function() {
+export const getEntryById_TYPE = function () {
   return 'get'
 }
-export const getEntryByIdURL = function(parameters = {}) {
+export const getEntryByIdURL = function (parameters = {}) {
   let queryParameters = {}
   const domain = parameters.$domain ? parameters.$domain : getDomain()
   let path = '/entry/{id}'
   path = path.replace('{id}', `${parameters['id']}`)
   if (parameters.$queryParameters) {
-    Object.keys(parameters.$queryParameters).forEach(function(parameterName) {
+    Object.keys(parameters.$queryParameters).forEach(function (parameterName) {
       queryParameters[parameterName] = parameters.$queryParameters[parameterName]
     })
   }
@@ -2922,7 +2922,7 @@ export const getEntryByIdURL = function(parameters = {}) {
  * @param id - MongoDB document _id
  * @param entry -
  */
-export const postEntryById = function(parameters = {}) {
+export const postEntryById = function (parameters = {}) {
   const domain = parameters.$domain ? parameters.$domain : getDomain()
   const config = parameters.$config
   let path = '/entry/{id}'
@@ -2940,25 +2940,25 @@ export const postEntryById = function(parameters = {}) {
     return Promise.reject(new Error('Missing required  parameter: entry'))
   }
   if (parameters.$queryParameters) {
-    Object.keys(parameters.$queryParameters).forEach(function(parameterName) {
+    Object.keys(parameters.$queryParameters).forEach(function (parameterName) {
       queryParameters[parameterName] = parameters.$queryParameters[parameterName]
     });
   }
   return request('post', domain + path, body, queryParameters, form, config)
 }
-export const postEntryById_RAW_URL = function() {
+export const postEntryById_RAW_URL = function () {
   return '/entry/{id}'
 }
-export const postEntryById_TYPE = function() {
+export const postEntryById_TYPE = function () {
   return 'post'
 }
-export const postEntryByIdURL = function(parameters = {}) {
+export const postEntryByIdURL = function (parameters = {}) {
   let queryParameters = {}
   const domain = parameters.$domain ? parameters.$domain : getDomain()
   let path = '/entry/{id}'
   path = path.replace('{id}', `${parameters['id']}`)
   if (parameters.$queryParameters) {
-    Object.keys(parameters.$queryParameters).forEach(function(parameterName) {
+    Object.keys(parameters.$queryParameters).forEach(function (parameterName) {
       queryParameters[parameterName] = parameters.$queryParameters[parameterName]
     })
   }
@@ -2973,7 +2973,7 @@ export const postEntryByIdURL = function(parameters = {}) {
  * raw_url: deleteEntryById_RAW_URL
  * @param id - MongoDB document _id
  */
-export const deleteEntryById = function(parameters = {}) {
+export const deleteEntryById = function (parameters = {}) {
   const domain = parameters.$domain ? parameters.$domain : getDomain()
   const config = parameters.$config
   let path = '/entry/{id}'
@@ -2985,25 +2985,25 @@ export const deleteEntryById = function(parameters = {}) {
     return Promise.reject(new Error('Missing required  parameter: id'))
   }
   if (parameters.$queryParameters) {
-    Object.keys(parameters.$queryParameters).forEach(function(parameterName) {
+    Object.keys(parameters.$queryParameters).forEach(function (parameterName) {
       queryParameters[parameterName] = parameters.$queryParameters[parameterName]
     });
   }
   return request('delete', domain + path, body, queryParameters, form, config)
 }
-export const deleteEntryById_RAW_URL = function() {
+export const deleteEntryById_RAW_URL = function () {
   return '/entry/{id}'
 }
-export const deleteEntryById_TYPE = function() {
+export const deleteEntryById_TYPE = function () {
   return 'delete'
 }
-export const deleteEntryByIdURL = function(parameters = {}) {
+export const deleteEntryByIdURL = function (parameters = {}) {
   let queryParameters = {}
   const domain = parameters.$domain ? parameters.$domain : getDomain()
   let path = '/entry/{id}'
   path = path.replace('{id}', `${parameters['id']}`)
   if (parameters.$queryParameters) {
-    Object.keys(parameters.$queryParameters).forEach(function(parameterName) {
+    Object.keys(parameters.$queryParameters).forEach(function (parameterName) {
       queryParameters[parameterName] = parameters.$queryParameters[parameterName]
     })
   }
@@ -3017,7 +3017,7 @@ export const deleteEntryByIdURL = function(parameters = {}) {
  * method: getInstitutionCount_TYPE
  * raw_url: getInstitutionCount_RAW_URL
  */
-export const getInstitutionCount = function(parameters = {}) {
+export const getInstitutionCount = function (parameters = {}) {
   const domain = parameters.$domain ? parameters.$domain : getDomain()
   const config = parameters.$config
   let path = '/institution/count'
@@ -3025,24 +3025,24 @@ export const getInstitutionCount = function(parameters = {}) {
   let queryParameters = {}
   let form = {}
   if (parameters.$queryParameters) {
-    Object.keys(parameters.$queryParameters).forEach(function(parameterName) {
+    Object.keys(parameters.$queryParameters).forEach(function (parameterName) {
       queryParameters[parameterName] = parameters.$queryParameters[parameterName]
     });
   }
   return request('get', domain + path, body, queryParameters, form, config)
 }
-export const getInstitutionCount_RAW_URL = function() {
+export const getInstitutionCount_RAW_URL = function () {
   return '/institution/count'
 }
-export const getInstitutionCount_TYPE = function() {
+export const getInstitutionCount_TYPE = function () {
   return 'get'
 }
-export const getInstitutionCountURL = function(parameters = {}) {
+export const getInstitutionCountURL = function (parameters = {}) {
   let queryParameters = {}
   const domain = parameters.$domain ? parameters.$domain : getDomain()
   let path = '/institution/count'
   if (parameters.$queryParameters) {
-    Object.keys(parameters.$queryParameters).forEach(function(parameterName) {
+    Object.keys(parameters.$queryParameters).forEach(function (parameterName) {
       queryParameters[parameterName] = parameters.$queryParameters[parameterName]
     })
   }
@@ -3061,7 +3061,7 @@ export const getInstitutionCountURL = function(parameters = {}) {
  * @param query - MongoDB Query as a well formed JSON String, ie {"name":"Bob"}
  * @param populate - Path to a MongoDB reference to populate, ie [{"path":"customer"},{"path":"products"}]
  */
-export const getInstitution = function(parameters = {}) {
+export const getInstitution = function (parameters = {}) {
   const domain = parameters.$domain ? parameters.$domain : getDomain()
   const config = parameters.$config
   let path = '/institution'
@@ -3084,19 +3084,19 @@ export const getInstitution = function(parameters = {}) {
     queryParameters['populate'] = parameters['populate']
   }
   if (parameters.$queryParameters) {
-    Object.keys(parameters.$queryParameters).forEach(function(parameterName) {
+    Object.keys(parameters.$queryParameters).forEach(function (parameterName) {
       queryParameters[parameterName] = parameters.$queryParameters[parameterName]
     });
   }
   return request('get', domain + path, body, queryParameters, form, config)
 }
-export const getInstitution_RAW_URL = function() {
+export const getInstitution_RAW_URL = function () {
   return '/institution'
 }
-export const getInstitution_TYPE = function() {
+export const getInstitution_TYPE = function () {
   return 'get'
 }
-export const getInstitutionURL = function(parameters = {}) {
+export const getInstitutionURL = function (parameters = {}) {
   let queryParameters = {}
   const domain = parameters.$domain ? parameters.$domain : getDomain()
   let path = '/institution'
@@ -3116,7 +3116,7 @@ export const getInstitutionURL = function(parameters = {}) {
     queryParameters['populate'] = parameters['populate']
   }
   if (parameters.$queryParameters) {
-    Object.keys(parameters.$queryParameters).forEach(function(parameterName) {
+    Object.keys(parameters.$queryParameters).forEach(function (parameterName) {
       queryParameters[parameterName] = parameters.$queryParameters[parameterName]
     })
   }
@@ -3131,7 +3131,7 @@ export const getInstitutionURL = function(parameters = {}) {
  * raw_url: postInstitution_RAW_URL
  * @param institution -
  */
-export const postInstitution = function(parameters = {}) {
+export const postInstitution = function (parameters = {}) {
   const domain = parameters.$domain ? parameters.$domain : getDomain()
   const config = parameters.$config
   let path = '/institution'
@@ -3145,24 +3145,24 @@ export const postInstitution = function(parameters = {}) {
     return Promise.reject(new Error('Missing required  parameter: institution'))
   }
   if (parameters.$queryParameters) {
-    Object.keys(parameters.$queryParameters).forEach(function(parameterName) {
+    Object.keys(parameters.$queryParameters).forEach(function (parameterName) {
       queryParameters[parameterName] = parameters.$queryParameters[parameterName]
     });
   }
   return request('post', domain + path, body, queryParameters, form, config)
 }
-export const postInstitution_RAW_URL = function() {
+export const postInstitution_RAW_URL = function () {
   return '/institution'
 }
-export const postInstitution_TYPE = function() {
+export const postInstitution_TYPE = function () {
   return 'post'
 }
-export const postInstitutionURL = function(parameters = {}) {
+export const postInstitutionURL = function (parameters = {}) {
   let queryParameters = {}
   const domain = parameters.$domain ? parameters.$domain : getDomain()
   let path = '/institution'
   if (parameters.$queryParameters) {
-    Object.keys(parameters.$queryParameters).forEach(function(parameterName) {
+    Object.keys(parameters.$queryParameters).forEach(function (parameterName) {
       queryParameters[parameterName] = parameters.$queryParameters[parameterName]
     })
   }
@@ -3176,7 +3176,7 @@ export const postInstitutionURL = function(parameters = {}) {
  * method: deleteInstitution_TYPE
  * raw_url: deleteInstitution_RAW_URL
  */
-export const deleteInstitution = function(parameters = {}) {
+export const deleteInstitution = function (parameters = {}) {
   const domain = parameters.$domain ? parameters.$domain : getDomain()
   const config = parameters.$config
   let path = '/institution'
@@ -3184,24 +3184,24 @@ export const deleteInstitution = function(parameters = {}) {
   let queryParameters = {}
   let form = {}
   if (parameters.$queryParameters) {
-    Object.keys(parameters.$queryParameters).forEach(function(parameterName) {
+    Object.keys(parameters.$queryParameters).forEach(function (parameterName) {
       queryParameters[parameterName] = parameters.$queryParameters[parameterName]
     });
   }
   return request('delete', domain + path, body, queryParameters, form, config)
 }
-export const deleteInstitution_RAW_URL = function() {
+export const deleteInstitution_RAW_URL = function () {
   return '/institution'
 }
-export const deleteInstitution_TYPE = function() {
+export const deleteInstitution_TYPE = function () {
   return 'delete'
 }
-export const deleteInstitutionURL = function(parameters = {}) {
+export const deleteInstitutionURL = function (parameters = {}) {
   let queryParameters = {}
   const domain = parameters.$domain ? parameters.$domain : getDomain()
   let path = '/institution'
   if (parameters.$queryParameters) {
-    Object.keys(parameters.$queryParameters).forEach(function(parameterName) {
+    Object.keys(parameters.$queryParameters).forEach(function (parameterName) {
       queryParameters[parameterName] = parameters.$queryParameters[parameterName]
     })
   }
@@ -3216,7 +3216,7 @@ export const deleteInstitutionURL = function(parameters = {}) {
  * raw_url: getInstitutionById_RAW_URL
  * @param id - MongoDB document _id
  */
-export const getInstitutionById = function(parameters = {}) {
+export const getInstitutionById = function (parameters = {}) {
   const domain = parameters.$domain ? parameters.$domain : getDomain()
   const config = parameters.$config
   let path = '/institution/{id}'
@@ -3228,25 +3228,25 @@ export const getInstitutionById = function(parameters = {}) {
     return Promise.reject(new Error('Missing required  parameter: id'))
   }
   if (parameters.$queryParameters) {
-    Object.keys(parameters.$queryParameters).forEach(function(parameterName) {
+    Object.keys(parameters.$queryParameters).forEach(function (parameterName) {
       queryParameters[parameterName] = parameters.$queryParameters[parameterName]
     });
   }
   return request('get', domain + path, body, queryParameters, form, config)
 }
-export const getInstitutionById_RAW_URL = function() {
+export const getInstitutionById_RAW_URL = function () {
   return '/institution/{id}'
 }
-export const getInstitutionById_TYPE = function() {
+export const getInstitutionById_TYPE = function () {
   return 'get'
 }
-export const getInstitutionByIdURL = function(parameters = {}) {
+export const getInstitutionByIdURL = function (parameters = {}) {
   let queryParameters = {}
   const domain = parameters.$domain ? parameters.$domain : getDomain()
   let path = '/institution/{id}'
   path = path.replace('{id}', `${parameters['id']}`)
   if (parameters.$queryParameters) {
-    Object.keys(parameters.$queryParameters).forEach(function(parameterName) {
+    Object.keys(parameters.$queryParameters).forEach(function (parameterName) {
       queryParameters[parameterName] = parameters.$queryParameters[parameterName]
     })
   }
@@ -3262,7 +3262,7 @@ export const getInstitutionByIdURL = function(parameters = {}) {
  * @param id - MongoDB document _id
  * @param institution -
  */
-export const postInstitutionById = function(parameters = {}) {
+export const postInstitutionById = function (parameters = {}) {
   const domain = parameters.$domain ? parameters.$domain : getDomain()
   const config = parameters.$config
   let path = '/institution/{id}'
@@ -3280,25 +3280,25 @@ export const postInstitutionById = function(parameters = {}) {
     return Promise.reject(new Error('Missing required  parameter: institution'))
   }
   if (parameters.$queryParameters) {
-    Object.keys(parameters.$queryParameters).forEach(function(parameterName) {
+    Object.keys(parameters.$queryParameters).forEach(function (parameterName) {
       queryParameters[parameterName] = parameters.$queryParameters[parameterName]
     });
   }
   return request('post', domain + path, body, queryParameters, form, config)
 }
-export const postInstitutionById_RAW_URL = function() {
+export const postInstitutionById_RAW_URL = function () {
   return '/institution/{id}'
 }
-export const postInstitutionById_TYPE = function() {
+export const postInstitutionById_TYPE = function () {
   return 'post'
 }
-export const postInstitutionByIdURL = function(parameters = {}) {
+export const postInstitutionByIdURL = function (parameters = {}) {
   let queryParameters = {}
   const domain = parameters.$domain ? parameters.$domain : getDomain()
   let path = '/institution/{id}'
   path = path.replace('{id}', `${parameters['id']}`)
   if (parameters.$queryParameters) {
-    Object.keys(parameters.$queryParameters).forEach(function(parameterName) {
+    Object.keys(parameters.$queryParameters).forEach(function (parameterName) {
       queryParameters[parameterName] = parameters.$queryParameters[parameterName]
     })
   }
@@ -3313,7 +3313,7 @@ export const postInstitutionByIdURL = function(parameters = {}) {
  * raw_url: deleteInstitutionById_RAW_URL
  * @param id - MongoDB document _id
  */
-export const deleteInstitutionById = function(parameters = {}) {
+export const deleteInstitutionById = function (parameters = {}) {
   const domain = parameters.$domain ? parameters.$domain : getDomain()
   const config = parameters.$config
   let path = '/institution/{id}'
@@ -3325,25 +3325,25 @@ export const deleteInstitutionById = function(parameters = {}) {
     return Promise.reject(new Error('Missing required  parameter: id'))
   }
   if (parameters.$queryParameters) {
-    Object.keys(parameters.$queryParameters).forEach(function(parameterName) {
+    Object.keys(parameters.$queryParameters).forEach(function (parameterName) {
       queryParameters[parameterName] = parameters.$queryParameters[parameterName]
     });
   }
   return request('delete', domain + path, body, queryParameters, form, config)
 }
-export const deleteInstitutionById_RAW_URL = function() {
+export const deleteInstitutionById_RAW_URL = function () {
   return '/institution/{id}'
 }
-export const deleteInstitutionById_TYPE = function() {
+export const deleteInstitutionById_TYPE = function () {
   return 'delete'
 }
-export const deleteInstitutionByIdURL = function(parameters = {}) {
+export const deleteInstitutionByIdURL = function (parameters = {}) {
   let queryParameters = {}
   const domain = parameters.$domain ? parameters.$domain : getDomain()
   let path = '/institution/{id}'
   path = path.replace('{id}', `${parameters['id']}`)
   if (parameters.$queryParameters) {
-    Object.keys(parameters.$queryParameters).forEach(function(parameterName) {
+    Object.keys(parameters.$queryParameters).forEach(function (parameterName) {
       queryParameters[parameterName] = parameters.$queryParameters[parameterName]
     })
   }
@@ -3357,7 +3357,7 @@ export const deleteInstitutionByIdURL = function(parameters = {}) {
  * method: getInventoryCount_TYPE
  * raw_url: getInventoryCount_RAW_URL
  */
-export const getInventoryCount = function(parameters = {}) {
+export const getInventoryCount = function (parameters = {}) {
   const domain = parameters.$domain ? parameters.$domain : getDomain()
   const config = parameters.$config
   let path = '/inventory/count'
@@ -3365,24 +3365,24 @@ export const getInventoryCount = function(parameters = {}) {
   let queryParameters = {}
   let form = {}
   if (parameters.$queryParameters) {
-    Object.keys(parameters.$queryParameters).forEach(function(parameterName) {
+    Object.keys(parameters.$queryParameters).forEach(function (parameterName) {
       queryParameters[parameterName] = parameters.$queryParameters[parameterName]
     });
   }
   return request('get', domain + path, body, queryParameters, form, config)
 }
-export const getInventoryCount_RAW_URL = function() {
+export const getInventoryCount_RAW_URL = function () {
   return '/inventory/count'
 }
-export const getInventoryCount_TYPE = function() {
+export const getInventoryCount_TYPE = function () {
   return 'get'
 }
-export const getInventoryCountURL = function(parameters = {}) {
+export const getInventoryCountURL = function (parameters = {}) {
   let queryParameters = {}
   const domain = parameters.$domain ? parameters.$domain : getDomain()
   let path = '/inventory/count'
   if (parameters.$queryParameters) {
-    Object.keys(parameters.$queryParameters).forEach(function(parameterName) {
+    Object.keys(parameters.$queryParameters).forEach(function (parameterName) {
       queryParameters[parameterName] = parameters.$queryParameters[parameterName]
     })
   }
@@ -3401,7 +3401,7 @@ export const getInventoryCountURL = function(parameters = {}) {
  * @param query - MongoDB Query as a well formed JSON String, ie {"name":"Bob"}
  * @param populate - Path to a MongoDB reference to populate, ie [{"path":"customer"},{"path":"products"}]
  */
-export const getInventory = function(parameters = {}) {
+export const getInventory = function (parameters = {}) {
   const domain = parameters.$domain ? parameters.$domain : getDomain()
   const config = parameters.$config
   let path = '/inventory'
@@ -3424,19 +3424,19 @@ export const getInventory = function(parameters = {}) {
     queryParameters['populate'] = parameters['populate']
   }
   if (parameters.$queryParameters) {
-    Object.keys(parameters.$queryParameters).forEach(function(parameterName) {
+    Object.keys(parameters.$queryParameters).forEach(function (parameterName) {
       queryParameters[parameterName] = parameters.$queryParameters[parameterName]
     });
   }
   return request('get', domain + path, body, queryParameters, form, config)
 }
-export const getInventory_RAW_URL = function() {
+export const getInventory_RAW_URL = function () {
   return '/inventory'
 }
-export const getInventory_TYPE = function() {
+export const getInventory_TYPE = function () {
   return 'get'
 }
-export const getInventoryURL = function(parameters = {}) {
+export const getInventoryURL = function (parameters = {}) {
   let queryParameters = {}
   const domain = parameters.$domain ? parameters.$domain : getDomain()
   let path = '/inventory'
@@ -3456,7 +3456,7 @@ export const getInventoryURL = function(parameters = {}) {
     queryParameters['populate'] = parameters['populate']
   }
   if (parameters.$queryParameters) {
-    Object.keys(parameters.$queryParameters).forEach(function(parameterName) {
+    Object.keys(parameters.$queryParameters).forEach(function (parameterName) {
       queryParameters[parameterName] = parameters.$queryParameters[parameterName]
     })
   }
@@ -3471,7 +3471,7 @@ export const getInventoryURL = function(parameters = {}) {
  * raw_url: postInventory_RAW_URL
  * @param inventory -
  */
-export const postInventory = function(parameters = {}) {
+export const postInventory = function (parameters = {}) {
   const domain = parameters.$domain ? parameters.$domain : getDomain()
   const config = parameters.$config
   let path = '/inventory'
@@ -3485,24 +3485,24 @@ export const postInventory = function(parameters = {}) {
     return Promise.reject(new Error('Missing required  parameter: inventory'))
   }
   if (parameters.$queryParameters) {
-    Object.keys(parameters.$queryParameters).forEach(function(parameterName) {
+    Object.keys(parameters.$queryParameters).forEach(function (parameterName) {
       queryParameters[parameterName] = parameters.$queryParameters[parameterName]
     });
   }
   return request('post', domain + path, body, queryParameters, form, config)
 }
-export const postInventory_RAW_URL = function() {
+export const postInventory_RAW_URL = function () {
   return '/inventory'
 }
-export const postInventory_TYPE = function() {
+export const postInventory_TYPE = function () {
   return 'post'
 }
-export const postInventoryURL = function(parameters = {}) {
+export const postInventoryURL = function (parameters = {}) {
   let queryParameters = {}
   const domain = parameters.$domain ? parameters.$domain : getDomain()
   let path = '/inventory'
   if (parameters.$queryParameters) {
-    Object.keys(parameters.$queryParameters).forEach(function(parameterName) {
+    Object.keys(parameters.$queryParameters).forEach(function (parameterName) {
       queryParameters[parameterName] = parameters.$queryParameters[parameterName]
     })
   }
@@ -3516,7 +3516,7 @@ export const postInventoryURL = function(parameters = {}) {
  * method: deleteInventory_TYPE
  * raw_url: deleteInventory_RAW_URL
  */
-export const deleteInventory = function(parameters = {}) {
+export const deleteInventory = function (parameters = {}) {
   const domain = parameters.$domain ? parameters.$domain : getDomain()
   const config = parameters.$config
   let path = '/inventory'
@@ -3524,24 +3524,24 @@ export const deleteInventory = function(parameters = {}) {
   let queryParameters = {}
   let form = {}
   if (parameters.$queryParameters) {
-    Object.keys(parameters.$queryParameters).forEach(function(parameterName) {
+    Object.keys(parameters.$queryParameters).forEach(function (parameterName) {
       queryParameters[parameterName] = parameters.$queryParameters[parameterName]
     });
   }
   return request('delete', domain + path, body, queryParameters, form, config)
 }
-export const deleteInventory_RAW_URL = function() {
+export const deleteInventory_RAW_URL = function () {
   return '/inventory'
 }
-export const deleteInventory_TYPE = function() {
+export const deleteInventory_TYPE = function () {
   return 'delete'
 }
-export const deleteInventoryURL = function(parameters = {}) {
+export const deleteInventoryURL = function (parameters = {}) {
   let queryParameters = {}
   const domain = parameters.$domain ? parameters.$domain : getDomain()
   let path = '/inventory'
   if (parameters.$queryParameters) {
-    Object.keys(parameters.$queryParameters).forEach(function(parameterName) {
+    Object.keys(parameters.$queryParameters).forEach(function (parameterName) {
       queryParameters[parameterName] = parameters.$queryParameters[parameterName]
     })
   }
@@ -3556,7 +3556,7 @@ export const deleteInventoryURL = function(parameters = {}) {
  * raw_url: getInventoryById_RAW_URL
  * @param id - MongoDB document _id
  */
-export const getInventoryById = function(parameters = {}) {
+export const getInventoryById = function (parameters = {}) {
   const domain = parameters.$domain ? parameters.$domain : getDomain()
   const config = parameters.$config
   let path = '/inventory/{id}'
@@ -3568,25 +3568,25 @@ export const getInventoryById = function(parameters = {}) {
     return Promise.reject(new Error('Missing required  parameter: id'))
   }
   if (parameters.$queryParameters) {
-    Object.keys(parameters.$queryParameters).forEach(function(parameterName) {
+    Object.keys(parameters.$queryParameters).forEach(function (parameterName) {
       queryParameters[parameterName] = parameters.$queryParameters[parameterName]
     });
   }
   return request('get', domain + path, body, queryParameters, form, config)
 }
-export const getInventoryById_RAW_URL = function() {
+export const getInventoryById_RAW_URL = function () {
   return '/inventory/{id}'
 }
-export const getInventoryById_TYPE = function() {
+export const getInventoryById_TYPE = function () {
   return 'get'
 }
-export const getInventoryByIdURL = function(parameters = {}) {
+export const getInventoryByIdURL = function (parameters = {}) {
   let queryParameters = {}
   const domain = parameters.$domain ? parameters.$domain : getDomain()
   let path = '/inventory/{id}'
   path = path.replace('{id}', `${parameters['id']}`)
   if (parameters.$queryParameters) {
-    Object.keys(parameters.$queryParameters).forEach(function(parameterName) {
+    Object.keys(parameters.$queryParameters).forEach(function (parameterName) {
       queryParameters[parameterName] = parameters.$queryParameters[parameterName]
     })
   }
@@ -3602,7 +3602,7 @@ export const getInventoryByIdURL = function(parameters = {}) {
  * @param id - MongoDB document _id
  * @param inventory -
  */
-export const postInventoryById = function(parameters = {}) {
+export const postInventoryById = function (parameters = {}) {
   const domain = parameters.$domain ? parameters.$domain : getDomain()
   const config = parameters.$config
   let path = '/inventory/{id}'
@@ -3620,25 +3620,25 @@ export const postInventoryById = function(parameters = {}) {
     return Promise.reject(new Error('Missing required  parameter: inventory'))
   }
   if (parameters.$queryParameters) {
-    Object.keys(parameters.$queryParameters).forEach(function(parameterName) {
+    Object.keys(parameters.$queryParameters).forEach(function (parameterName) {
       queryParameters[parameterName] = parameters.$queryParameters[parameterName]
     });
   }
   return request('post', domain + path, body, queryParameters, form, config)
 }
-export const postInventoryById_RAW_URL = function() {
+export const postInventoryById_RAW_URL = function () {
   return '/inventory/{id}'
 }
-export const postInventoryById_TYPE = function() {
+export const postInventoryById_TYPE = function () {
   return 'post'
 }
-export const postInventoryByIdURL = function(parameters = {}) {
+export const postInventoryByIdURL = function (parameters = {}) {
   let queryParameters = {}
   const domain = parameters.$domain ? parameters.$domain : getDomain()
   let path = '/inventory/{id}'
   path = path.replace('{id}', `${parameters['id']}`)
   if (parameters.$queryParameters) {
-    Object.keys(parameters.$queryParameters).forEach(function(parameterName) {
+    Object.keys(parameters.$queryParameters).forEach(function (parameterName) {
       queryParameters[parameterName] = parameters.$queryParameters[parameterName]
     })
   }
@@ -3653,7 +3653,7 @@ export const postInventoryByIdURL = function(parameters = {}) {
  * raw_url: deleteInventoryById_RAW_URL
  * @param id - MongoDB document _id
  */
-export const deleteInventoryById = function(parameters = {}) {
+export const deleteInventoryById = function (parameters = {}) {
   const domain = parameters.$domain ? parameters.$domain : getDomain()
   const config = parameters.$config
   let path = '/inventory/{id}'
@@ -3665,25 +3665,25 @@ export const deleteInventoryById = function(parameters = {}) {
     return Promise.reject(new Error('Missing required  parameter: id'))
   }
   if (parameters.$queryParameters) {
-    Object.keys(parameters.$queryParameters).forEach(function(parameterName) {
+    Object.keys(parameters.$queryParameters).forEach(function (parameterName) {
       queryParameters[parameterName] = parameters.$queryParameters[parameterName]
     });
   }
   return request('delete', domain + path, body, queryParameters, form, config)
 }
-export const deleteInventoryById_RAW_URL = function() {
+export const deleteInventoryById_RAW_URL = function () {
   return '/inventory/{id}'
 }
-export const deleteInventoryById_TYPE = function() {
+export const deleteInventoryById_TYPE = function () {
   return 'delete'
 }
-export const deleteInventoryByIdURL = function(parameters = {}) {
+export const deleteInventoryByIdURL = function (parameters = {}) {
   let queryParameters = {}
   const domain = parameters.$domain ? parameters.$domain : getDomain()
   let path = '/inventory/{id}'
   path = path.replace('{id}', `${parameters['id']}`)
   if (parameters.$queryParameters) {
-    Object.keys(parameters.$queryParameters).forEach(function(parameterName) {
+    Object.keys(parameters.$queryParameters).forEach(function (parameterName) {
       queryParameters[parameterName] = parameters.$queryParameters[parameterName]
     })
   }
@@ -3697,7 +3697,7 @@ export const deleteInventoryByIdURL = function(parameters = {}) {
  * method: getObjectCount_TYPE
  * raw_url: getObjectCount_RAW_URL
  */
-export const getObjectCount = function(parameters = {}) {
+export const getObjectCount = function (parameters = {}) {
   const domain = parameters.$domain ? parameters.$domain : getDomain()
   const config = parameters.$config
   let path = '/object/count'
@@ -3705,24 +3705,24 @@ export const getObjectCount = function(parameters = {}) {
   let queryParameters = {}
   let form = {}
   if (parameters.$queryParameters) {
-    Object.keys(parameters.$queryParameters).forEach(function(parameterName) {
+    Object.keys(parameters.$queryParameters).forEach(function (parameterName) {
       queryParameters[parameterName] = parameters.$queryParameters[parameterName]
     });
   }
   return request('get', domain + path, body, queryParameters, form, config)
 }
-export const getObjectCount_RAW_URL = function() {
+export const getObjectCount_RAW_URL = function () {
   return '/object/count'
 }
-export const getObjectCount_TYPE = function() {
+export const getObjectCount_TYPE = function () {
   return 'get'
 }
-export const getObjectCountURL = function(parameters = {}) {
+export const getObjectCountURL = function (parameters = {}) {
   let queryParameters = {}
   const domain = parameters.$domain ? parameters.$domain : getDomain()
   let path = '/object/count'
   if (parameters.$queryParameters) {
-    Object.keys(parameters.$queryParameters).forEach(function(parameterName) {
+    Object.keys(parameters.$queryParameters).forEach(function (parameterName) {
       queryParameters[parameterName] = parameters.$queryParameters[parameterName]
     })
   }
@@ -3741,7 +3741,7 @@ export const getObjectCountURL = function(parameters = {}) {
  * @param query - MongoDB Query as a well formed JSON String, ie {"name":"Bob"}
  * @param populate - Path to a MongoDB reference to populate, ie [{"path":"customer"},{"path":"products"}]
  */
-export const getObject = function(parameters = {}) {
+export const getObject = function (parameters = {}) {
   const domain = parameters.$domain ? parameters.$domain : getDomain()
   const config = parameters.$config
   let path = '/object'
@@ -3764,19 +3764,19 @@ export const getObject = function(parameters = {}) {
     queryParameters['populate'] = parameters['populate']
   }
   if (parameters.$queryParameters) {
-    Object.keys(parameters.$queryParameters).forEach(function(parameterName) {
+    Object.keys(parameters.$queryParameters).forEach(function (parameterName) {
       queryParameters[parameterName] = parameters.$queryParameters[parameterName]
     });
   }
   return request('get', domain + path, body, queryParameters, form, config)
 }
-export const getObject_RAW_URL = function() {
+export const getObject_RAW_URL = function () {
   return '/object'
 }
-export const getObject_TYPE = function() {
+export const getObject_TYPE = function () {
   return 'get'
 }
-export const getObjectURL = function(parameters = {}) {
+export const getObjectURL = function (parameters = {}) {
   let queryParameters = {}
   const domain = parameters.$domain ? parameters.$domain : getDomain()
   let path = '/object'
@@ -3796,7 +3796,7 @@ export const getObjectURL = function(parameters = {}) {
     queryParameters['populate'] = parameters['populate']
   }
   if (parameters.$queryParameters) {
-    Object.keys(parameters.$queryParameters).forEach(function(parameterName) {
+    Object.keys(parameters.$queryParameters).forEach(function (parameterName) {
       queryParameters[parameterName] = parameters.$queryParameters[parameterName]
     })
   }
@@ -3811,7 +3811,7 @@ export const getObjectURL = function(parameters = {}) {
  * raw_url: postObject_RAW_URL
  * @param object -
  */
-export const postObject = function(parameters = {}) {
+export const postObject = function (parameters = {}) {
   const domain = parameters.$domain ? parameters.$domain : getDomain()
   const config = parameters.$config
   let path = '/object'
@@ -3825,24 +3825,24 @@ export const postObject = function(parameters = {}) {
     return Promise.reject(new Error('Missing required  parameter: object'))
   }
   if (parameters.$queryParameters) {
-    Object.keys(parameters.$queryParameters).forEach(function(parameterName) {
+    Object.keys(parameters.$queryParameters).forEach(function (parameterName) {
       queryParameters[parameterName] = parameters.$queryParameters[parameterName]
     });
   }
   return request('post', domain + path, body, queryParameters, form, config)
 }
-export const postObject_RAW_URL = function() {
+export const postObject_RAW_URL = function () {
   return '/object'
 }
-export const postObject_TYPE = function() {
+export const postObject_TYPE = function () {
   return 'post'
 }
-export const postObjectURL = function(parameters = {}) {
+export const postObjectURL = function (parameters = {}) {
   let queryParameters = {}
   const domain = parameters.$domain ? parameters.$domain : getDomain()
   let path = '/object'
   if (parameters.$queryParameters) {
-    Object.keys(parameters.$queryParameters).forEach(function(parameterName) {
+    Object.keys(parameters.$queryParameters).forEach(function (parameterName) {
       queryParameters[parameterName] = parameters.$queryParameters[parameterName]
     })
   }
@@ -3856,7 +3856,7 @@ export const postObjectURL = function(parameters = {}) {
  * method: deleteObject_TYPE
  * raw_url: deleteObject_RAW_URL
  */
-export const deleteObject = function(parameters = {}) {
+export const deleteObject = function (parameters = {}) {
   const domain = parameters.$domain ? parameters.$domain : getDomain()
   const config = parameters.$config
   let path = '/object'
@@ -3864,24 +3864,24 @@ export const deleteObject = function(parameters = {}) {
   let queryParameters = {}
   let form = {}
   if (parameters.$queryParameters) {
-    Object.keys(parameters.$queryParameters).forEach(function(parameterName) {
+    Object.keys(parameters.$queryParameters).forEach(function (parameterName) {
       queryParameters[parameterName] = parameters.$queryParameters[parameterName]
     });
   }
   return request('delete', domain + path, body, queryParameters, form, config)
 }
-export const deleteObject_RAW_URL = function() {
+export const deleteObject_RAW_URL = function () {
   return '/object'
 }
-export const deleteObject_TYPE = function() {
+export const deleteObject_TYPE = function () {
   return 'delete'
 }
-export const deleteObjectURL = function(parameters = {}) {
+export const deleteObjectURL = function (parameters = {}) {
   let queryParameters = {}
   const domain = parameters.$domain ? parameters.$domain : getDomain()
   let path = '/object'
   if (parameters.$queryParameters) {
-    Object.keys(parameters.$queryParameters).forEach(function(parameterName) {
+    Object.keys(parameters.$queryParameters).forEach(function (parameterName) {
       queryParameters[parameterName] = parameters.$queryParameters[parameterName]
     })
   }
@@ -3896,7 +3896,7 @@ export const deleteObjectURL = function(parameters = {}) {
  * raw_url: getObjectById_RAW_URL
  * @param id - MongoDB document _id
  */
-export const getObjectById = function(parameters = {}) {
+export const getObjectById = function (parameters = {}) {
   const domain = parameters.$domain ? parameters.$domain : getDomain()
   const config = parameters.$config
   let path = '/object/{id}'
@@ -3908,25 +3908,25 @@ export const getObjectById = function(parameters = {}) {
     return Promise.reject(new Error('Missing required  parameter: id'))
   }
   if (parameters.$queryParameters) {
-    Object.keys(parameters.$queryParameters).forEach(function(parameterName) {
+    Object.keys(parameters.$queryParameters).forEach(function (parameterName) {
       queryParameters[parameterName] = parameters.$queryParameters[parameterName]
     });
   }
   return request('get', domain + path, body, queryParameters, form, config)
 }
-export const getObjectById_RAW_URL = function() {
+export const getObjectById_RAW_URL = function () {
   return '/object/{id}'
 }
-export const getObjectById_TYPE = function() {
+export const getObjectById_TYPE = function () {
   return 'get'
 }
-export const getObjectByIdURL = function(parameters = {}) {
+export const getObjectByIdURL = function (parameters = {}) {
   let queryParameters = {}
   const domain = parameters.$domain ? parameters.$domain : getDomain()
   let path = '/object/{id}'
   path = path.replace('{id}', `${parameters['id']}`)
   if (parameters.$queryParameters) {
-    Object.keys(parameters.$queryParameters).forEach(function(parameterName) {
+    Object.keys(parameters.$queryParameters).forEach(function (parameterName) {
       queryParameters[parameterName] = parameters.$queryParameters[parameterName]
     })
   }
@@ -3942,7 +3942,7 @@ export const getObjectByIdURL = function(parameters = {}) {
  * @param id - MongoDB document _id
  * @param object -
  */
-export const postObjectById = function(parameters = {}) {
+export const postObjectById = function (parameters = {}) {
   const domain = parameters.$domain ? parameters.$domain : getDomain()
   const config = parameters.$config
   let path = '/object/{id}'
@@ -3960,25 +3960,25 @@ export const postObjectById = function(parameters = {}) {
     return Promise.reject(new Error('Missing required  parameter: object'))
   }
   if (parameters.$queryParameters) {
-    Object.keys(parameters.$queryParameters).forEach(function(parameterName) {
+    Object.keys(parameters.$queryParameters).forEach(function (parameterName) {
       queryParameters[parameterName] = parameters.$queryParameters[parameterName]
     });
   }
   return request('post', domain + path, body, queryParameters, form, config)
 }
-export const postObjectById_RAW_URL = function() {
+export const postObjectById_RAW_URL = function () {
   return '/object/{id}'
 }
-export const postObjectById_TYPE = function() {
+export const postObjectById_TYPE = function () {
   return 'post'
 }
-export const postObjectByIdURL = function(parameters = {}) {
+export const postObjectByIdURL = function (parameters = {}) {
   let queryParameters = {}
   const domain = parameters.$domain ? parameters.$domain : getDomain()
   let path = '/object/{id}'
   path = path.replace('{id}', `${parameters['id']}`)
   if (parameters.$queryParameters) {
-    Object.keys(parameters.$queryParameters).forEach(function(parameterName) {
+    Object.keys(parameters.$queryParameters).forEach(function (parameterName) {
       queryParameters[parameterName] = parameters.$queryParameters[parameterName]
     })
   }
@@ -3993,7 +3993,7 @@ export const postObjectByIdURL = function(parameters = {}) {
  * raw_url: deleteObjectById_RAW_URL
  * @param id - MongoDB document _id
  */
-export const deleteObjectById = function(parameters = {}) {
+export const deleteObjectById = function (parameters = {}) {
   const domain = parameters.$domain ? parameters.$domain : getDomain()
   const config = parameters.$config
   let path = '/object/{id}'
@@ -4005,25 +4005,25 @@ export const deleteObjectById = function(parameters = {}) {
     return Promise.reject(new Error('Missing required  parameter: id'))
   }
   if (parameters.$queryParameters) {
-    Object.keys(parameters.$queryParameters).forEach(function(parameterName) {
+    Object.keys(parameters.$queryParameters).forEach(function (parameterName) {
       queryParameters[parameterName] = parameters.$queryParameters[parameterName]
     });
   }
   return request('delete', domain + path, body, queryParameters, form, config)
 }
-export const deleteObjectById_RAW_URL = function() {
+export const deleteObjectById_RAW_URL = function () {
   return '/object/{id}'
 }
-export const deleteObjectById_TYPE = function() {
+export const deleteObjectById_TYPE = function () {
   return 'delete'
 }
-export const deleteObjectByIdURL = function(parameters = {}) {
+export const deleteObjectByIdURL = function (parameters = {}) {
   let queryParameters = {}
   const domain = parameters.$domain ? parameters.$domain : getDomain()
   let path = '/object/{id}'
   path = path.replace('{id}', `${parameters['id']}`)
   if (parameters.$queryParameters) {
-    Object.keys(parameters.$queryParameters).forEach(function(parameterName) {
+    Object.keys(parameters.$queryParameters).forEach(function (parameterName) {
       queryParameters[parameterName] = parameters.$queryParameters[parameterName]
     })
   }
@@ -4037,7 +4037,7 @@ export const deleteObjectByIdURL = function(parameters = {}) {
  * method: getPersonCount_TYPE
  * raw_url: getPersonCount_RAW_URL
  */
-export const getPersonCount = function(parameters = {}) {
+export const getPersonCount = function (parameters = {}) {
   const domain = parameters.$domain ? parameters.$domain : getDomain()
   const config = parameters.$config
   let path = '/person/count'
@@ -4045,24 +4045,24 @@ export const getPersonCount = function(parameters = {}) {
   let queryParameters = {}
   let form = {}
   if (parameters.$queryParameters) {
-    Object.keys(parameters.$queryParameters).forEach(function(parameterName) {
+    Object.keys(parameters.$queryParameters).forEach(function (parameterName) {
       queryParameters[parameterName] = parameters.$queryParameters[parameterName]
     });
   }
   return request('get', domain + path, body, queryParameters, form, config)
 }
-export const getPersonCount_RAW_URL = function() {
+export const getPersonCount_RAW_URL = function () {
   return '/person/count'
 }
-export const getPersonCount_TYPE = function() {
+export const getPersonCount_TYPE = function () {
   return 'get'
 }
-export const getPersonCountURL = function(parameters = {}) {
+export const getPersonCountURL = function (parameters = {}) {
   let queryParameters = {}
   const domain = parameters.$domain ? parameters.$domain : getDomain()
   let path = '/person/count'
   if (parameters.$queryParameters) {
-    Object.keys(parameters.$queryParameters).forEach(function(parameterName) {
+    Object.keys(parameters.$queryParameters).forEach(function (parameterName) {
       queryParameters[parameterName] = parameters.$queryParameters[parameterName]
     })
   }
@@ -4081,7 +4081,7 @@ export const getPersonCountURL = function(parameters = {}) {
  * @param query - MongoDB Query as a well formed JSON String, ie {"name":"Bob"}
  * @param populate - Path to a MongoDB reference to populate, ie [{"path":"customer"},{"path":"products"}]
  */
-export const getPerson = function(parameters = {}) {
+export const getPerson = function (parameters = {}) {
   const domain = parameters.$domain ? parameters.$domain : getDomain()
   const config = parameters.$config
   let path = '/person'
@@ -4104,19 +4104,19 @@ export const getPerson = function(parameters = {}) {
     queryParameters['populate'] = parameters['populate']
   }
   if (parameters.$queryParameters) {
-    Object.keys(parameters.$queryParameters).forEach(function(parameterName) {
+    Object.keys(parameters.$queryParameters).forEach(function (parameterName) {
       queryParameters[parameterName] = parameters.$queryParameters[parameterName]
     });
   }
   return request('get', domain + path, body, queryParameters, form, config)
 }
-export const getPerson_RAW_URL = function() {
+export const getPerson_RAW_URL = function () {
   return '/person'
 }
-export const getPerson_TYPE = function() {
+export const getPerson_TYPE = function () {
   return 'get'
 }
-export const getPersonURL = function(parameters = {}) {
+export const getPersonURL = function (parameters = {}) {
   let queryParameters = {}
   const domain = parameters.$domain ? parameters.$domain : getDomain()
   let path = '/person'
@@ -4136,7 +4136,7 @@ export const getPersonURL = function(parameters = {}) {
     queryParameters['populate'] = parameters['populate']
   }
   if (parameters.$queryParameters) {
-    Object.keys(parameters.$queryParameters).forEach(function(parameterName) {
+    Object.keys(parameters.$queryParameters).forEach(function (parameterName) {
       queryParameters[parameterName] = parameters.$queryParameters[parameterName]
     })
   }
@@ -4151,7 +4151,7 @@ export const getPersonURL = function(parameters = {}) {
  * raw_url: postPerson_RAW_URL
  * @param person -
  */
-export const postPerson = function(parameters = {}) {
+export const postPerson = function (parameters = {}) {
   const domain = parameters.$domain ? parameters.$domain : getDomain()
   const config = parameters.$config
   let path = '/person'
@@ -4165,24 +4165,24 @@ export const postPerson = function(parameters = {}) {
     return Promise.reject(new Error('Missing required  parameter: person'))
   }
   if (parameters.$queryParameters) {
-    Object.keys(parameters.$queryParameters).forEach(function(parameterName) {
+    Object.keys(parameters.$queryParameters).forEach(function (parameterName) {
       queryParameters[parameterName] = parameters.$queryParameters[parameterName]
     });
   }
   return request('post', domain + path, body, queryParameters, form, config)
 }
-export const postPerson_RAW_URL = function() {
+export const postPerson_RAW_URL = function () {
   return '/person'
 }
-export const postPerson_TYPE = function() {
+export const postPerson_TYPE = function () {
   return 'post'
 }
-export const postPersonURL = function(parameters = {}) {
+export const postPersonURL = function (parameters = {}) {
   let queryParameters = {}
   const domain = parameters.$domain ? parameters.$domain : getDomain()
   let path = '/person'
   if (parameters.$queryParameters) {
-    Object.keys(parameters.$queryParameters).forEach(function(parameterName) {
+    Object.keys(parameters.$queryParameters).forEach(function (parameterName) {
       queryParameters[parameterName] = parameters.$queryParameters[parameterName]
     })
   }
@@ -4196,7 +4196,7 @@ export const postPersonURL = function(parameters = {}) {
  * method: deletePerson_TYPE
  * raw_url: deletePerson_RAW_URL
  */
-export const deletePerson = function(parameters = {}) {
+export const deletePerson = function (parameters = {}) {
   const domain = parameters.$domain ? parameters.$domain : getDomain()
   const config = parameters.$config
   let path = '/person'
@@ -4204,24 +4204,24 @@ export const deletePerson = function(parameters = {}) {
   let queryParameters = {}
   let form = {}
   if (parameters.$queryParameters) {
-    Object.keys(parameters.$queryParameters).forEach(function(parameterName) {
+    Object.keys(parameters.$queryParameters).forEach(function (parameterName) {
       queryParameters[parameterName] = parameters.$queryParameters[parameterName]
     });
   }
   return request('delete', domain + path, body, queryParameters, form, config)
 }
-export const deletePerson_RAW_URL = function() {
+export const deletePerson_RAW_URL = function () {
   return '/person'
 }
-export const deletePerson_TYPE = function() {
+export const deletePerson_TYPE = function () {
   return 'delete'
 }
-export const deletePersonURL = function(parameters = {}) {
+export const deletePersonURL = function (parameters = {}) {
   let queryParameters = {}
   const domain = parameters.$domain ? parameters.$domain : getDomain()
   let path = '/person'
   if (parameters.$queryParameters) {
-    Object.keys(parameters.$queryParameters).forEach(function(parameterName) {
+    Object.keys(parameters.$queryParameters).forEach(function (parameterName) {
       queryParameters[parameterName] = parameters.$queryParameters[parameterName]
     })
   }
@@ -4236,7 +4236,7 @@ export const deletePersonURL = function(parameters = {}) {
  * raw_url: getPersonById_RAW_URL
  * @param id - MongoDB document _id
  */
-export const getPersonById = function(parameters = {}) {
+export const getPersonById = function (parameters = {}) {
   const domain = parameters.$domain ? parameters.$domain : getDomain()
   const config = parameters.$config
   let path = '/person/{id}'
@@ -4248,25 +4248,25 @@ export const getPersonById = function(parameters = {}) {
     return Promise.reject(new Error('Missing required  parameter: id'))
   }
   if (parameters.$queryParameters) {
-    Object.keys(parameters.$queryParameters).forEach(function(parameterName) {
+    Object.keys(parameters.$queryParameters).forEach(function (parameterName) {
       queryParameters[parameterName] = parameters.$queryParameters[parameterName]
     });
   }
   return request('get', domain + path, body, queryParameters, form, config)
 }
-export const getPersonById_RAW_URL = function() {
+export const getPersonById_RAW_URL = function () {
   return '/person/{id}'
 }
-export const getPersonById_TYPE = function() {
+export const getPersonById_TYPE = function () {
   return 'get'
 }
-export const getPersonByIdURL = function(parameters = {}) {
+export const getPersonByIdURL = function (parameters = {}) {
   let queryParameters = {}
   const domain = parameters.$domain ? parameters.$domain : getDomain()
   let path = '/person/{id}'
   path = path.replace('{id}', `${parameters['id']}`)
   if (parameters.$queryParameters) {
-    Object.keys(parameters.$queryParameters).forEach(function(parameterName) {
+    Object.keys(parameters.$queryParameters).forEach(function (parameterName) {
       queryParameters[parameterName] = parameters.$queryParameters[parameterName]
     })
   }
@@ -4282,7 +4282,7 @@ export const getPersonByIdURL = function(parameters = {}) {
  * @param id - MongoDB document _id
  * @param person -
  */
-export const postPersonById = function(parameters = {}) {
+export const postPersonById = function (parameters = {}) {
   const domain = parameters.$domain ? parameters.$domain : getDomain()
   const config = parameters.$config
   let path = '/person/{id}'
@@ -4300,25 +4300,25 @@ export const postPersonById = function(parameters = {}) {
     return Promise.reject(new Error('Missing required  parameter: person'))
   }
   if (parameters.$queryParameters) {
-    Object.keys(parameters.$queryParameters).forEach(function(parameterName) {
+    Object.keys(parameters.$queryParameters).forEach(function (parameterName) {
       queryParameters[parameterName] = parameters.$queryParameters[parameterName]
     });
   }
   return request('post', domain + path, body, queryParameters, form, config)
 }
-export const postPersonById_RAW_URL = function() {
+export const postPersonById_RAW_URL = function () {
   return '/person/{id}'
 }
-export const postPersonById_TYPE = function() {
+export const postPersonById_TYPE = function () {
   return 'post'
 }
-export const postPersonByIdURL = function(parameters = {}) {
+export const postPersonByIdURL = function (parameters = {}) {
   let queryParameters = {}
   const domain = parameters.$domain ? parameters.$domain : getDomain()
   let path = '/person/{id}'
   path = path.replace('{id}', `${parameters['id']}`)
   if (parameters.$queryParameters) {
-    Object.keys(parameters.$queryParameters).forEach(function(parameterName) {
+    Object.keys(parameters.$queryParameters).forEach(function (parameterName) {
       queryParameters[parameterName] = parameters.$queryParameters[parameterName]
     })
   }
@@ -4333,7 +4333,7 @@ export const postPersonByIdURL = function(parameters = {}) {
  * raw_url: deletePersonById_RAW_URL
  * @param id - MongoDB document _id
  */
-export const deletePersonById = function(parameters = {}) {
+export const deletePersonById = function (parameters = {}) {
   const domain = parameters.$domain ? parameters.$domain : getDomain()
   const config = parameters.$config
   let path = '/person/{id}'
@@ -4345,25 +4345,25 @@ export const deletePersonById = function(parameters = {}) {
     return Promise.reject(new Error('Missing required  parameter: id'))
   }
   if (parameters.$queryParameters) {
-    Object.keys(parameters.$queryParameters).forEach(function(parameterName) {
+    Object.keys(parameters.$queryParameters).forEach(function (parameterName) {
       queryParameters[parameterName] = parameters.$queryParameters[parameterName]
     });
   }
   return request('delete', domain + path, body, queryParameters, form, config)
 }
-export const deletePersonById_RAW_URL = function() {
+export const deletePersonById_RAW_URL = function () {
   return '/person/{id}'
 }
-export const deletePersonById_TYPE = function() {
+export const deletePersonById_TYPE = function () {
   return 'delete'
 }
-export const deletePersonByIdURL = function(parameters = {}) {
+export const deletePersonByIdURL = function (parameters = {}) {
   let queryParameters = {}
   const domain = parameters.$domain ? parameters.$domain : getDomain()
   let path = '/person/{id}'
   path = path.replace('{id}', `${parameters['id']}`)
   if (parameters.$queryParameters) {
-    Object.keys(parameters.$queryParameters).forEach(function(parameterName) {
+    Object.keys(parameters.$queryParameters).forEach(function (parameterName) {
       queryParameters[parameterName] = parameters.$queryParameters[parameterName]
     })
   }
@@ -4377,7 +4377,7 @@ export const deletePersonByIdURL = function(parameters = {}) {
  * method: getPlaceCount_TYPE
  * raw_url: getPlaceCount_RAW_URL
  */
-export const getPlaceCount = function(parameters = {}) {
+export const getPlaceCount = function (parameters = {}) {
   const domain = parameters.$domain ? parameters.$domain : getDomain()
   const config = parameters.$config
   let path = '/place/count'
@@ -4385,24 +4385,24 @@ export const getPlaceCount = function(parameters = {}) {
   let queryParameters = {}
   let form = {}
   if (parameters.$queryParameters) {
-    Object.keys(parameters.$queryParameters).forEach(function(parameterName) {
+    Object.keys(parameters.$queryParameters).forEach(function (parameterName) {
       queryParameters[parameterName] = parameters.$queryParameters[parameterName]
     });
   }
   return request('get', domain + path, body, queryParameters, form, config)
 }
-export const getPlaceCount_RAW_URL = function() {
+export const getPlaceCount_RAW_URL = function () {
   return '/place/count'
 }
-export const getPlaceCount_TYPE = function() {
+export const getPlaceCount_TYPE = function () {
   return 'get'
 }
-export const getPlaceCountURL = function(parameters = {}) {
+export const getPlaceCountURL = function (parameters = {}) {
   let queryParameters = {}
   const domain = parameters.$domain ? parameters.$domain : getDomain()
   let path = '/place/count'
   if (parameters.$queryParameters) {
-    Object.keys(parameters.$queryParameters).forEach(function(parameterName) {
+    Object.keys(parameters.$queryParameters).forEach(function (parameterName) {
       queryParameters[parameterName] = parameters.$queryParameters[parameterName]
     })
   }
@@ -4421,7 +4421,7 @@ export const getPlaceCountURL = function(parameters = {}) {
  * @param query - MongoDB Query as a well formed JSON String, ie {"name":"Bob"}
  * @param populate - Path to a MongoDB reference to populate, ie [{"path":"customer"},{"path":"products"}]
  */
-export const getPlace = function(parameters = {}) {
+export const getPlace = function (parameters = {}) {
   const domain = parameters.$domain ? parameters.$domain : getDomain()
   const config = parameters.$config
   let path = '/place'
@@ -4444,19 +4444,19 @@ export const getPlace = function(parameters = {}) {
     queryParameters['populate'] = parameters['populate']
   }
   if (parameters.$queryParameters) {
-    Object.keys(parameters.$queryParameters).forEach(function(parameterName) {
+    Object.keys(parameters.$queryParameters).forEach(function (parameterName) {
       queryParameters[parameterName] = parameters.$queryParameters[parameterName]
     });
   }
   return request('get', domain + path, body, queryParameters, form, config)
 }
-export const getPlace_RAW_URL = function() {
+export const getPlace_RAW_URL = function () {
   return '/place'
 }
-export const getPlace_TYPE = function() {
+export const getPlace_TYPE = function () {
   return 'get'
 }
-export const getPlaceURL = function(parameters = {}) {
+export const getPlaceURL = function (parameters = {}) {
   let queryParameters = {}
   const domain = parameters.$domain ? parameters.$domain : getDomain()
   let path = '/place'
@@ -4476,7 +4476,7 @@ export const getPlaceURL = function(parameters = {}) {
     queryParameters['populate'] = parameters['populate']
   }
   if (parameters.$queryParameters) {
-    Object.keys(parameters.$queryParameters).forEach(function(parameterName) {
+    Object.keys(parameters.$queryParameters).forEach(function (parameterName) {
       queryParameters[parameterName] = parameters.$queryParameters[parameterName]
     })
   }
@@ -4491,7 +4491,7 @@ export const getPlaceURL = function(parameters = {}) {
  * raw_url: postPlace_RAW_URL
  * @param place -
  */
-export const postPlace = function(parameters = {}) {
+export const postPlace = function (parameters = {}) {
   const domain = parameters.$domain ? parameters.$domain : getDomain()
   const config = parameters.$config
   let path = '/place'
@@ -4505,24 +4505,24 @@ export const postPlace = function(parameters = {}) {
     return Promise.reject(new Error('Missing required  parameter: place'))
   }
   if (parameters.$queryParameters) {
-    Object.keys(parameters.$queryParameters).forEach(function(parameterName) {
+    Object.keys(parameters.$queryParameters).forEach(function (parameterName) {
       queryParameters[parameterName] = parameters.$queryParameters[parameterName]
     });
   }
   return request('post', domain + path, body, queryParameters, form, config)
 }
-export const postPlace_RAW_URL = function() {
+export const postPlace_RAW_URL = function () {
   return '/place'
 }
-export const postPlace_TYPE = function() {
+export const postPlace_TYPE = function () {
   return 'post'
 }
-export const postPlaceURL = function(parameters = {}) {
+export const postPlaceURL = function (parameters = {}) {
   let queryParameters = {}
   const domain = parameters.$domain ? parameters.$domain : getDomain()
   let path = '/place'
   if (parameters.$queryParameters) {
-    Object.keys(parameters.$queryParameters).forEach(function(parameterName) {
+    Object.keys(parameters.$queryParameters).forEach(function (parameterName) {
       queryParameters[parameterName] = parameters.$queryParameters[parameterName]
     })
   }
@@ -4536,7 +4536,7 @@ export const postPlaceURL = function(parameters = {}) {
  * method: deletePlace_TYPE
  * raw_url: deletePlace_RAW_URL
  */
-export const deletePlace = function(parameters = {}) {
+export const deletePlace = function (parameters = {}) {
   const domain = parameters.$domain ? parameters.$domain : getDomain()
   const config = parameters.$config
   let path = '/place'
@@ -4544,24 +4544,24 @@ export const deletePlace = function(parameters = {}) {
   let queryParameters = {}
   let form = {}
   if (parameters.$queryParameters) {
-    Object.keys(parameters.$queryParameters).forEach(function(parameterName) {
+    Object.keys(parameters.$queryParameters).forEach(function (parameterName) {
       queryParameters[parameterName] = parameters.$queryParameters[parameterName]
     });
   }
   return request('delete', domain + path, body, queryParameters, form, config)
 }
-export const deletePlace_RAW_URL = function() {
+export const deletePlace_RAW_URL = function () {
   return '/place'
 }
-export const deletePlace_TYPE = function() {
+export const deletePlace_TYPE = function () {
   return 'delete'
 }
-export const deletePlaceURL = function(parameters = {}) {
+export const deletePlaceURL = function (parameters = {}) {
   let queryParameters = {}
   const domain = parameters.$domain ? parameters.$domain : getDomain()
   let path = '/place'
   if (parameters.$queryParameters) {
-    Object.keys(parameters.$queryParameters).forEach(function(parameterName) {
+    Object.keys(parameters.$queryParameters).forEach(function (parameterName) {
       queryParameters[parameterName] = parameters.$queryParameters[parameterName]
     })
   }
@@ -4576,7 +4576,7 @@ export const deletePlaceURL = function(parameters = {}) {
  * raw_url: getPlaceById_RAW_URL
  * @param id - MongoDB document _id
  */
-export const getPlaceById = function(parameters = {}) {
+export const getPlaceById = function (parameters = {}) {
   const domain = parameters.$domain ? parameters.$domain : getDomain()
   const config = parameters.$config
   let path = '/place/{id}'
@@ -4588,25 +4588,25 @@ export const getPlaceById = function(parameters = {}) {
     return Promise.reject(new Error('Missing required  parameter: id'))
   }
   if (parameters.$queryParameters) {
-    Object.keys(parameters.$queryParameters).forEach(function(parameterName) {
+    Object.keys(parameters.$queryParameters).forEach(function (parameterName) {
       queryParameters[parameterName] = parameters.$queryParameters[parameterName]
     });
   }
   return request('get', domain + path, body, queryParameters, form, config)
 }
-export const getPlaceById_RAW_URL = function() {
+export const getPlaceById_RAW_URL = function () {
   return '/place/{id}'
 }
-export const getPlaceById_TYPE = function() {
+export const getPlaceById_TYPE = function () {
   return 'get'
 }
-export const getPlaceByIdURL = function(parameters = {}) {
+export const getPlaceByIdURL = function (parameters = {}) {
   let queryParameters = {}
   const domain = parameters.$domain ? parameters.$domain : getDomain()
   let path = '/place/{id}'
   path = path.replace('{id}', `${parameters['id']}`)
   if (parameters.$queryParameters) {
-    Object.keys(parameters.$queryParameters).forEach(function(parameterName) {
+    Object.keys(parameters.$queryParameters).forEach(function (parameterName) {
       queryParameters[parameterName] = parameters.$queryParameters[parameterName]
     })
   }
@@ -4622,7 +4622,7 @@ export const getPlaceByIdURL = function(parameters = {}) {
  * @param id - MongoDB document _id
  * @param place -
  */
-export const postPlaceById = function(parameters = {}) {
+export const postPlaceById = function (parameters = {}) {
   const domain = parameters.$domain ? parameters.$domain : getDomain()
   const config = parameters.$config
   let path = '/place/{id}'
@@ -4640,25 +4640,25 @@ export const postPlaceById = function(parameters = {}) {
     return Promise.reject(new Error('Missing required  parameter: place'))
   }
   if (parameters.$queryParameters) {
-    Object.keys(parameters.$queryParameters).forEach(function(parameterName) {
+    Object.keys(parameters.$queryParameters).forEach(function (parameterName) {
       queryParameters[parameterName] = parameters.$queryParameters[parameterName]
     });
   }
   return request('post', domain + path, body, queryParameters, form, config)
 }
-export const postPlaceById_RAW_URL = function() {
+export const postPlaceById_RAW_URL = function () {
   return '/place/{id}'
 }
-export const postPlaceById_TYPE = function() {
+export const postPlaceById_TYPE = function () {
   return 'post'
 }
-export const postPlaceByIdURL = function(parameters = {}) {
+export const postPlaceByIdURL = function (parameters = {}) {
   let queryParameters = {}
   const domain = parameters.$domain ? parameters.$domain : getDomain()
   let path = '/place/{id}'
   path = path.replace('{id}', `${parameters['id']}`)
   if (parameters.$queryParameters) {
-    Object.keys(parameters.$queryParameters).forEach(function(parameterName) {
+    Object.keys(parameters.$queryParameters).forEach(function (parameterName) {
       queryParameters[parameterName] = parameters.$queryParameters[parameterName]
     })
   }
@@ -4673,7 +4673,7 @@ export const postPlaceByIdURL = function(parameters = {}) {
  * raw_url: deletePlaceById_RAW_URL
  * @param id - MongoDB document _id
  */
-export const deletePlaceById = function(parameters = {}) {
+export const deletePlaceById = function (parameters = {}) {
   const domain = parameters.$domain ? parameters.$domain : getDomain()
   const config = parameters.$config
   let path = '/place/{id}'
@@ -4685,25 +4685,25 @@ export const deletePlaceById = function(parameters = {}) {
     return Promise.reject(new Error('Missing required  parameter: id'))
   }
   if (parameters.$queryParameters) {
-    Object.keys(parameters.$queryParameters).forEach(function(parameterName) {
+    Object.keys(parameters.$queryParameters).forEach(function (parameterName) {
       queryParameters[parameterName] = parameters.$queryParameters[parameterName]
     });
   }
   return request('delete', domain + path, body, queryParameters, form, config)
 }
-export const deletePlaceById_RAW_URL = function() {
+export const deletePlaceById_RAW_URL = function () {
   return '/place/{id}'
 }
-export const deletePlaceById_TYPE = function() {
+export const deletePlaceById_TYPE = function () {
   return 'delete'
 }
-export const deletePlaceByIdURL = function(parameters = {}) {
+export const deletePlaceByIdURL = function (parameters = {}) {
   let queryParameters = {}
   const domain = parameters.$domain ? parameters.$domain : getDomain()
   let path = '/place/{id}'
   path = path.replace('{id}', `${parameters['id']}`)
   if (parameters.$queryParameters) {
-    Object.keys(parameters.$queryParameters).forEach(function(parameterName) {
+    Object.keys(parameters.$queryParameters).forEach(function (parameterName) {
       queryParameters[parameterName] = parameters.$queryParameters[parameterName]
     })
   }
@@ -4717,7 +4717,7 @@ export const deletePlaceByIdURL = function(parameters = {}) {
  * method: getProplabelCount_TYPE
  * raw_url: getProplabelCount_RAW_URL
  */
-export const getProplabelCount = function(parameters = {}) {
+export const getProplabelCount = function (parameters = {}) {
   const domain = parameters.$domain ? parameters.$domain : getDomain()
   const config = parameters.$config
   let path = '/proplabel/count'
@@ -4725,24 +4725,24 @@ export const getProplabelCount = function(parameters = {}) {
   let queryParameters = {}
   let form = {}
   if (parameters.$queryParameters) {
-    Object.keys(parameters.$queryParameters).forEach(function(parameterName) {
+    Object.keys(parameters.$queryParameters).forEach(function (parameterName) {
       queryParameters[parameterName] = parameters.$queryParameters[parameterName]
     });
   }
   return request('get', domain + path, body, queryParameters, form, config)
 }
-export const getProplabelCount_RAW_URL = function() {
+export const getProplabelCount_RAW_URL = function () {
   return '/proplabel/count'
 }
-export const getProplabelCount_TYPE = function() {
+export const getProplabelCount_TYPE = function () {
   return 'get'
 }
-export const getProplabelCountURL = function(parameters = {}) {
+export const getProplabelCountURL = function (parameters = {}) {
   let queryParameters = {}
   const domain = parameters.$domain ? parameters.$domain : getDomain()
   let path = '/proplabel/count'
   if (parameters.$queryParameters) {
-    Object.keys(parameters.$queryParameters).forEach(function(parameterName) {
+    Object.keys(parameters.$queryParameters).forEach(function (parameterName) {
       queryParameters[parameterName] = parameters.$queryParameters[parameterName]
     })
   }
@@ -4761,7 +4761,7 @@ export const getProplabelCountURL = function(parameters = {}) {
  * @param query - MongoDB Query as a well formed JSON String, ie {"name":"Bob"}
  * @param populate - Path to a MongoDB reference to populate, ie [{"path":"customer"},{"path":"products"}]
  */
-export const getProplabel = function(parameters = {}) {
+export const getProplabel = function (parameters = {}) {
   const domain = parameters.$domain ? parameters.$domain : getDomain()
   const config = parameters.$config
   let path = '/proplabel'
@@ -4784,19 +4784,19 @@ export const getProplabel = function(parameters = {}) {
     queryParameters['populate'] = parameters['populate']
   }
   if (parameters.$queryParameters) {
-    Object.keys(parameters.$queryParameters).forEach(function(parameterName) {
+    Object.keys(parameters.$queryParameters).forEach(function (parameterName) {
       queryParameters[parameterName] = parameters.$queryParameters[parameterName]
     });
   }
   return request('get', domain + path, body, queryParameters, form, config)
 }
-export const getProplabel_RAW_URL = function() {
+export const getProplabel_RAW_URL = function () {
   return '/proplabel'
 }
-export const getProplabel_TYPE = function() {
+export const getProplabel_TYPE = function () {
   return 'get'
 }
-export const getProplabelURL = function(parameters = {}) {
+export const getProplabelURL = function (parameters = {}) {
   let queryParameters = {}
   const domain = parameters.$domain ? parameters.$domain : getDomain()
   let path = '/proplabel'
@@ -4816,7 +4816,7 @@ export const getProplabelURL = function(parameters = {}) {
     queryParameters['populate'] = parameters['populate']
   }
   if (parameters.$queryParameters) {
-    Object.keys(parameters.$queryParameters).forEach(function(parameterName) {
+    Object.keys(parameters.$queryParameters).forEach(function (parameterName) {
       queryParameters[parameterName] = parameters.$queryParameters[parameterName]
     })
   }
@@ -4831,7 +4831,7 @@ export const getProplabelURL = function(parameters = {}) {
  * raw_url: postProplabel_RAW_URL
  * @param proplabel -
  */
-export const postProplabel = function(parameters = {}) {
+export const postProplabel = function (parameters = {}) {
   const domain = parameters.$domain ? parameters.$domain : getDomain()
   const config = parameters.$config
   let path = '/proplabel'
@@ -4845,24 +4845,24 @@ export const postProplabel = function(parameters = {}) {
     return Promise.reject(new Error('Missing required  parameter: proplabel'))
   }
   if (parameters.$queryParameters) {
-    Object.keys(parameters.$queryParameters).forEach(function(parameterName) {
+    Object.keys(parameters.$queryParameters).forEach(function (parameterName) {
       queryParameters[parameterName] = parameters.$queryParameters[parameterName]
     });
   }
   return request('post', domain + path, body, queryParameters, form, config)
 }
-export const postProplabel_RAW_URL = function() {
+export const postProplabel_RAW_URL = function () {
   return '/proplabel'
 }
-export const postProplabel_TYPE = function() {
+export const postProplabel_TYPE = function () {
   return 'post'
 }
-export const postProplabelURL = function(parameters = {}) {
+export const postProplabelURL = function (parameters = {}) {
   let queryParameters = {}
   const domain = parameters.$domain ? parameters.$domain : getDomain()
   let path = '/proplabel'
   if (parameters.$queryParameters) {
-    Object.keys(parameters.$queryParameters).forEach(function(parameterName) {
+    Object.keys(parameters.$queryParameters).forEach(function (parameterName) {
       queryParameters[parameterName] = parameters.$queryParameters[parameterName]
     })
   }
@@ -4876,7 +4876,7 @@ export const postProplabelURL = function(parameters = {}) {
  * method: deleteProplabel_TYPE
  * raw_url: deleteProplabel_RAW_URL
  */
-export const deleteProplabel = function(parameters = {}) {
+export const deleteProplabel = function (parameters = {}) {
   const domain = parameters.$domain ? parameters.$domain : getDomain()
   const config = parameters.$config
   let path = '/proplabel'
@@ -4884,24 +4884,24 @@ export const deleteProplabel = function(parameters = {}) {
   let queryParameters = {}
   let form = {}
   if (parameters.$queryParameters) {
-    Object.keys(parameters.$queryParameters).forEach(function(parameterName) {
+    Object.keys(parameters.$queryParameters).forEach(function (parameterName) {
       queryParameters[parameterName] = parameters.$queryParameters[parameterName]
     });
   }
   return request('delete', domain + path, body, queryParameters, form, config)
 }
-export const deleteProplabel_RAW_URL = function() {
+export const deleteProplabel_RAW_URL = function () {
   return '/proplabel'
 }
-export const deleteProplabel_TYPE = function() {
+export const deleteProplabel_TYPE = function () {
   return 'delete'
 }
-export const deleteProplabelURL = function(parameters = {}) {
+export const deleteProplabelURL = function (parameters = {}) {
   let queryParameters = {}
   const domain = parameters.$domain ? parameters.$domain : getDomain()
   let path = '/proplabel'
   if (parameters.$queryParameters) {
-    Object.keys(parameters.$queryParameters).forEach(function(parameterName) {
+    Object.keys(parameters.$queryParameters).forEach(function (parameterName) {
       queryParameters[parameterName] = parameters.$queryParameters[parameterName]
     })
   }
@@ -4916,7 +4916,7 @@ export const deleteProplabelURL = function(parameters = {}) {
  * raw_url: getProplabelById_RAW_URL
  * @param id - MongoDB document _id
  */
-export const getProplabelById = function(parameters = {}) {
+export const getProplabelById = function (parameters = {}) {
   const domain = parameters.$domain ? parameters.$domain : getDomain()
   const config = parameters.$config
   let path = '/proplabel/{id}'
@@ -4928,25 +4928,25 @@ export const getProplabelById = function(parameters = {}) {
     return Promise.reject(new Error('Missing required  parameter: id'))
   }
   if (parameters.$queryParameters) {
-    Object.keys(parameters.$queryParameters).forEach(function(parameterName) {
+    Object.keys(parameters.$queryParameters).forEach(function (parameterName) {
       queryParameters[parameterName] = parameters.$queryParameters[parameterName]
     });
   }
   return request('get', domain + path, body, queryParameters, form, config)
 }
-export const getProplabelById_RAW_URL = function() {
+export const getProplabelById_RAW_URL = function () {
   return '/proplabel/{id}'
 }
-export const getProplabelById_TYPE = function() {
+export const getProplabelById_TYPE = function () {
   return 'get'
 }
-export const getProplabelByIdURL = function(parameters = {}) {
+export const getProplabelByIdURL = function (parameters = {}) {
   let queryParameters = {}
   const domain = parameters.$domain ? parameters.$domain : getDomain()
   let path = '/proplabel/{id}'
   path = path.replace('{id}', `${parameters['id']}`)
   if (parameters.$queryParameters) {
-    Object.keys(parameters.$queryParameters).forEach(function(parameterName) {
+    Object.keys(parameters.$queryParameters).forEach(function (parameterName) {
       queryParameters[parameterName] = parameters.$queryParameters[parameterName]
     })
   }
@@ -4962,7 +4962,7 @@ export const getProplabelByIdURL = function(parameters = {}) {
  * @param id - MongoDB document _id
  * @param proplabel -
  */
-export const postProplabelById = function(parameters = {}) {
+export const postProplabelById = function (parameters = {}) {
   const domain = parameters.$domain ? parameters.$domain : getDomain()
   const config = parameters.$config
   let path = '/proplabel/{id}'
@@ -4980,25 +4980,25 @@ export const postProplabelById = function(parameters = {}) {
     return Promise.reject(new Error('Missing required  parameter: proplabel'))
   }
   if (parameters.$queryParameters) {
-    Object.keys(parameters.$queryParameters).forEach(function(parameterName) {
+    Object.keys(parameters.$queryParameters).forEach(function (parameterName) {
       queryParameters[parameterName] = parameters.$queryParameters[parameterName]
     });
   }
   return request('post', domain + path, body, queryParameters, form, config)
 }
-export const postProplabelById_RAW_URL = function() {
+export const postProplabelById_RAW_URL = function () {
   return '/proplabel/{id}'
 }
-export const postProplabelById_TYPE = function() {
+export const postProplabelById_TYPE = function () {
   return 'post'
 }
-export const postProplabelByIdURL = function(parameters = {}) {
+export const postProplabelByIdURL = function (parameters = {}) {
   let queryParameters = {}
   const domain = parameters.$domain ? parameters.$domain : getDomain()
   let path = '/proplabel/{id}'
   path = path.replace('{id}', `${parameters['id']}`)
   if (parameters.$queryParameters) {
-    Object.keys(parameters.$queryParameters).forEach(function(parameterName) {
+    Object.keys(parameters.$queryParameters).forEach(function (parameterName) {
       queryParameters[parameterName] = parameters.$queryParameters[parameterName]
     })
   }
@@ -5013,7 +5013,7 @@ export const postProplabelByIdURL = function(parameters = {}) {
  * raw_url: deleteProplabelById_RAW_URL
  * @param id - MongoDB document _id
  */
-export const deleteProplabelById = function(parameters = {}) {
+export const deleteProplabelById = function (parameters = {}) {
   const domain = parameters.$domain ? parameters.$domain : getDomain()
   const config = parameters.$config
   let path = '/proplabel/{id}'
@@ -5025,25 +5025,25 @@ export const deleteProplabelById = function(parameters = {}) {
     return Promise.reject(new Error('Missing required  parameter: id'))
   }
   if (parameters.$queryParameters) {
-    Object.keys(parameters.$queryParameters).forEach(function(parameterName) {
+    Object.keys(parameters.$queryParameters).forEach(function (parameterName) {
       queryParameters[parameterName] = parameters.$queryParameters[parameterName]
     });
   }
   return request('delete', domain + path, body, queryParameters, form, config)
 }
-export const deleteProplabelById_RAW_URL = function() {
+export const deleteProplabelById_RAW_URL = function () {
   return '/proplabel/{id}'
 }
-export const deleteProplabelById_TYPE = function() {
+export const deleteProplabelById_TYPE = function () {
   return 'delete'
 }
-export const deleteProplabelByIdURL = function(parameters = {}) {
+export const deleteProplabelByIdURL = function (parameters = {}) {
   let queryParameters = {}
   const domain = parameters.$domain ? parameters.$domain : getDomain()
   let path = '/proplabel/{id}'
   path = path.replace('{id}', `${parameters['id']}`)
   if (parameters.$queryParameters) {
-    Object.keys(parameters.$queryParameters).forEach(function(parameterName) {
+    Object.keys(parameters.$queryParameters).forEach(function (parameterName) {
       queryParameters[parameterName] = parameters.$queryParameters[parameterName]
     })
   }
@@ -5057,7 +5057,7 @@ export const deleteProplabelByIdURL = function(parameters = {}) {
  * method: getTransactionCount_TYPE
  * raw_url: getTransactionCount_RAW_URL
  */
-export const getTransactionCount = function(parameters = {}) {
+export const getTransactionCount = function (parameters = {}) {
   const domain = parameters.$domain ? parameters.$domain : getDomain()
   const config = parameters.$config
   let path = '/transaction/count'
@@ -5065,24 +5065,24 @@ export const getTransactionCount = function(parameters = {}) {
   let queryParameters = {}
   let form = {}
   if (parameters.$queryParameters) {
-    Object.keys(parameters.$queryParameters).forEach(function(parameterName) {
+    Object.keys(parameters.$queryParameters).forEach(function (parameterName) {
       queryParameters[parameterName] = parameters.$queryParameters[parameterName]
     });
   }
   return request('get', domain + path, body, queryParameters, form, config)
 }
-export const getTransactionCount_RAW_URL = function() {
+export const getTransactionCount_RAW_URL = function () {
   return '/transaction/count'
 }
-export const getTransactionCount_TYPE = function() {
+export const getTransactionCount_TYPE = function () {
   return 'get'
 }
-export const getTransactionCountURL = function(parameters = {}) {
+export const getTransactionCountURL = function (parameters = {}) {
   let queryParameters = {}
   const domain = parameters.$domain ? parameters.$domain : getDomain()
   let path = '/transaction/count'
   if (parameters.$queryParameters) {
-    Object.keys(parameters.$queryParameters).forEach(function(parameterName) {
+    Object.keys(parameters.$queryParameters).forEach(function (parameterName) {
       queryParameters[parameterName] = parameters.$queryParameters[parameterName]
     })
   }
@@ -5101,7 +5101,7 @@ export const getTransactionCountURL = function(parameters = {}) {
  * @param query - MongoDB Query as a well formed JSON String, ie {"name":"Bob"}
  * @param populate - Path to a MongoDB reference to populate, ie [{"path":"customer"},{"path":"products"}]
  */
-export const getTransaction = function(parameters = {}) {
+export const getTransaction = function (parameters = {}) {
   const domain = parameters.$domain ? parameters.$domain : getDomain()
   const config = parameters.$config
   let path = '/transaction'
@@ -5124,19 +5124,19 @@ export const getTransaction = function(parameters = {}) {
     queryParameters['populate'] = parameters['populate']
   }
   if (parameters.$queryParameters) {
-    Object.keys(parameters.$queryParameters).forEach(function(parameterName) {
+    Object.keys(parameters.$queryParameters).forEach(function (parameterName) {
       queryParameters[parameterName] = parameters.$queryParameters[parameterName]
     });
   }
   return request('get', domain + path, body, queryParameters, form, config)
 }
-export const getTransaction_RAW_URL = function() {
+export const getTransaction_RAW_URL = function () {
   return '/transaction'
 }
-export const getTransaction_TYPE = function() {
+export const getTransaction_TYPE = function () {
   return 'get'
 }
-export const getTransactionURL = function(parameters = {}) {
+export const getTransactionURL = function (parameters = {}) {
   let queryParameters = {}
   const domain = parameters.$domain ? parameters.$domain : getDomain()
   let path = '/transaction'
@@ -5156,7 +5156,7 @@ export const getTransactionURL = function(parameters = {}) {
     queryParameters['populate'] = parameters['populate']
   }
   if (parameters.$queryParameters) {
-    Object.keys(parameters.$queryParameters).forEach(function(parameterName) {
+    Object.keys(parameters.$queryParameters).forEach(function (parameterName) {
       queryParameters[parameterName] = parameters.$queryParameters[parameterName]
     })
   }
@@ -5171,7 +5171,7 @@ export const getTransactionURL = function(parameters = {}) {
  * raw_url: postTransaction_RAW_URL
  * @param transaction -
  */
-export const postTransaction = function(parameters = {}) {
+export const postTransaction = function (parameters = {}) {
   const domain = parameters.$domain ? parameters.$domain : getDomain()
   const config = parameters.$config
   let path = '/transaction'
@@ -5185,24 +5185,24 @@ export const postTransaction = function(parameters = {}) {
     return Promise.reject(new Error('Missing required  parameter: transaction'))
   }
   if (parameters.$queryParameters) {
-    Object.keys(parameters.$queryParameters).forEach(function(parameterName) {
+    Object.keys(parameters.$queryParameters).forEach(function (parameterName) {
       queryParameters[parameterName] = parameters.$queryParameters[parameterName]
     });
   }
   return request('post', domain + path, body, queryParameters, form, config)
 }
-export const postTransaction_RAW_URL = function() {
+export const postTransaction_RAW_URL = function () {
   return '/transaction'
 }
-export const postTransaction_TYPE = function() {
+export const postTransaction_TYPE = function () {
   return 'post'
 }
-export const postTransactionURL = function(parameters = {}) {
+export const postTransactionURL = function (parameters = {}) {
   let queryParameters = {}
   const domain = parameters.$domain ? parameters.$domain : getDomain()
   let path = '/transaction'
   if (parameters.$queryParameters) {
-    Object.keys(parameters.$queryParameters).forEach(function(parameterName) {
+    Object.keys(parameters.$queryParameters).forEach(function (parameterName) {
       queryParameters[parameterName] = parameters.$queryParameters[parameterName]
     })
   }
@@ -5216,7 +5216,7 @@ export const postTransactionURL = function(parameters = {}) {
  * method: deleteTransaction_TYPE
  * raw_url: deleteTransaction_RAW_URL
  */
-export const deleteTransaction = function(parameters = {}) {
+export const deleteTransaction = function (parameters = {}) {
   const domain = parameters.$domain ? parameters.$domain : getDomain()
   const config = parameters.$config
   let path = '/transaction'
@@ -5224,24 +5224,24 @@ export const deleteTransaction = function(parameters = {}) {
   let queryParameters = {}
   let form = {}
   if (parameters.$queryParameters) {
-    Object.keys(parameters.$queryParameters).forEach(function(parameterName) {
+    Object.keys(parameters.$queryParameters).forEach(function (parameterName) {
       queryParameters[parameterName] = parameters.$queryParameters[parameterName]
     });
   }
   return request('delete', domain + path, body, queryParameters, form, config)
 }
-export const deleteTransaction_RAW_URL = function() {
+export const deleteTransaction_RAW_URL = function () {
   return '/transaction'
 }
-export const deleteTransaction_TYPE = function() {
+export const deleteTransaction_TYPE = function () {
   return 'delete'
 }
-export const deleteTransactionURL = function(parameters = {}) {
+export const deleteTransactionURL = function (parameters = {}) {
   let queryParameters = {}
   const domain = parameters.$domain ? parameters.$domain : getDomain()
   let path = '/transaction'
   if (parameters.$queryParameters) {
-    Object.keys(parameters.$queryParameters).forEach(function(parameterName) {
+    Object.keys(parameters.$queryParameters).forEach(function (parameterName) {
       queryParameters[parameterName] = parameters.$queryParameters[parameterName]
     })
   }
@@ -5256,7 +5256,7 @@ export const deleteTransactionURL = function(parameters = {}) {
  * raw_url: getTransactionById_RAW_URL
  * @param id - MongoDB document _id
  */
-export const getTransactionById = function(parameters = {}) {
+export const getTransactionById = function (parameters = {}) {
   const domain = parameters.$domain ? parameters.$domain : getDomain()
   const config = parameters.$config
   let path = '/transaction/{id}'
@@ -5268,25 +5268,25 @@ export const getTransactionById = function(parameters = {}) {
     return Promise.reject(new Error('Missing required  parameter: id'))
   }
   if (parameters.$queryParameters) {
-    Object.keys(parameters.$queryParameters).forEach(function(parameterName) {
+    Object.keys(parameters.$queryParameters).forEach(function (parameterName) {
       queryParameters[parameterName] = parameters.$queryParameters[parameterName]
     });
   }
   return request('get', domain + path, body, queryParameters, form, config)
 }
-export const getTransactionById_RAW_URL = function() {
+export const getTransactionById_RAW_URL = function () {
   return '/transaction/{id}'
 }
-export const getTransactionById_TYPE = function() {
+export const getTransactionById_TYPE = function () {
   return 'get'
 }
-export const getTransactionByIdURL = function(parameters = {}) {
+export const getTransactionByIdURL = function (parameters = {}) {
   let queryParameters = {}
   const domain = parameters.$domain ? parameters.$domain : getDomain()
   let path = '/transaction/{id}'
   path = path.replace('{id}', `${parameters['id']}`)
   if (parameters.$queryParameters) {
-    Object.keys(parameters.$queryParameters).forEach(function(parameterName) {
+    Object.keys(parameters.$queryParameters).forEach(function (parameterName) {
       queryParameters[parameterName] = parameters.$queryParameters[parameterName]
     })
   }
@@ -5302,7 +5302,7 @@ export const getTransactionByIdURL = function(parameters = {}) {
  * @param id - MongoDB document _id
  * @param transaction -
  */
-export const postTransactionById = function(parameters = {}) {
+export const postTransactionById = function (parameters = {}) {
   const domain = parameters.$domain ? parameters.$domain : getDomain()
   const config = parameters.$config
   let path = '/transaction/{id}'
@@ -5320,25 +5320,25 @@ export const postTransactionById = function(parameters = {}) {
     return Promise.reject(new Error('Missing required  parameter: transaction'))
   }
   if (parameters.$queryParameters) {
-    Object.keys(parameters.$queryParameters).forEach(function(parameterName) {
+    Object.keys(parameters.$queryParameters).forEach(function (parameterName) {
       queryParameters[parameterName] = parameters.$queryParameters[parameterName]
     });
   }
   return request('post', domain + path, body, queryParameters, form, config)
 }
-export const postTransactionById_RAW_URL = function() {
+export const postTransactionById_RAW_URL = function () {
   return '/transaction/{id}'
 }
-export const postTransactionById_TYPE = function() {
+export const postTransactionById_TYPE = function () {
   return 'post'
 }
-export const postTransactionByIdURL = function(parameters = {}) {
+export const postTransactionByIdURL = function (parameters = {}) {
   let queryParameters = {}
   const domain = parameters.$domain ? parameters.$domain : getDomain()
   let path = '/transaction/{id}'
   path = path.replace('{id}', `${parameters['id']}`)
   if (parameters.$queryParameters) {
-    Object.keys(parameters.$queryParameters).forEach(function(parameterName) {
+    Object.keys(parameters.$queryParameters).forEach(function (parameterName) {
       queryParameters[parameterName] = parameters.$queryParameters[parameterName]
     })
   }
@@ -5353,7 +5353,7 @@ export const postTransactionByIdURL = function(parameters = {}) {
  * raw_url: deleteTransactionById_RAW_URL
  * @param id - MongoDB document _id
  */
-export const deleteTransactionById = function(parameters = {}) {
+export const deleteTransactionById = function (parameters = {}) {
   const domain = parameters.$domain ? parameters.$domain : getDomain()
   const config = parameters.$config
   let path = '/transaction/{id}'
@@ -5365,25 +5365,25 @@ export const deleteTransactionById = function(parameters = {}) {
     return Promise.reject(new Error('Missing required  parameter: id'))
   }
   if (parameters.$queryParameters) {
-    Object.keys(parameters.$queryParameters).forEach(function(parameterName) {
+    Object.keys(parameters.$queryParameters).forEach(function (parameterName) {
       queryParameters[parameterName] = parameters.$queryParameters[parameterName]
     });
   }
   return request('delete', domain + path, body, queryParameters, form, config)
 }
-export const deleteTransactionById_RAW_URL = function() {
+export const deleteTransactionById_RAW_URL = function () {
   return '/transaction/{id}'
 }
-export const deleteTransactionById_TYPE = function() {
+export const deleteTransactionById_TYPE = function () {
   return 'delete'
 }
-export const deleteTransactionByIdURL = function(parameters = {}) {
+export const deleteTransactionByIdURL = function (parameters = {}) {
   let queryParameters = {}
   const domain = parameters.$domain ? parameters.$domain : getDomain()
   let path = '/transaction/{id}'
   path = path.replace('{id}', `${parameters['id']}`)
   if (parameters.$queryParameters) {
-    Object.keys(parameters.$queryParameters).forEach(function(parameterName) {
+    Object.keys(parameters.$queryParameters).forEach(function (parameterName) {
       queryParameters[parameterName] = parameters.$queryParameters[parameterName]
     })
   }
@@ -5397,7 +5397,7 @@ export const deleteTransactionByIdURL = function(parameters = {}) {
  * method: getUnitCount_TYPE
  * raw_url: getUnitCount_RAW_URL
  */
-export const getUnitCount = function(parameters = {}) {
+export const getUnitCount = function (parameters = {}) {
   const domain = parameters.$domain ? parameters.$domain : getDomain()
   const config = parameters.$config
   let path = '/unit/count'
@@ -5405,24 +5405,24 @@ export const getUnitCount = function(parameters = {}) {
   let queryParameters = {}
   let form = {}
   if (parameters.$queryParameters) {
-    Object.keys(parameters.$queryParameters).forEach(function(parameterName) {
+    Object.keys(parameters.$queryParameters).forEach(function (parameterName) {
       queryParameters[parameterName] = parameters.$queryParameters[parameterName]
     });
   }
   return request('get', domain + path, body, queryParameters, form, config)
 }
-export const getUnitCount_RAW_URL = function() {
+export const getUnitCount_RAW_URL = function () {
   return '/unit/count'
 }
-export const getUnitCount_TYPE = function() {
+export const getUnitCount_TYPE = function () {
   return 'get'
 }
-export const getUnitCountURL = function(parameters = {}) {
+export const getUnitCountURL = function (parameters = {}) {
   let queryParameters = {}
   const domain = parameters.$domain ? parameters.$domain : getDomain()
   let path = '/unit/count'
   if (parameters.$queryParameters) {
-    Object.keys(parameters.$queryParameters).forEach(function(parameterName) {
+    Object.keys(parameters.$queryParameters).forEach(function (parameterName) {
       queryParameters[parameterName] = parameters.$queryParameters[parameterName]
     })
   }
@@ -5441,7 +5441,7 @@ export const getUnitCountURL = function(parameters = {}) {
  * @param query - MongoDB Query as a well formed JSON String, ie {"name":"Bob"}
  * @param populate - Path to a MongoDB reference to populate, ie [{"path":"customer"},{"path":"products"}]
  */
-export const getUnit = function(parameters = {}) {
+export const getUnit = function (parameters = {}) {
   const domain = parameters.$domain ? parameters.$domain : getDomain()
   const config = parameters.$config
   let path = '/unit'
@@ -5464,19 +5464,19 @@ export const getUnit = function(parameters = {}) {
     queryParameters['populate'] = parameters['populate']
   }
   if (parameters.$queryParameters) {
-    Object.keys(parameters.$queryParameters).forEach(function(parameterName) {
+    Object.keys(parameters.$queryParameters).forEach(function (parameterName) {
       queryParameters[parameterName] = parameters.$queryParameters[parameterName]
     });
   }
   return request('get', domain + path, body, queryParameters, form, config)
 }
-export const getUnit_RAW_URL = function() {
+export const getUnit_RAW_URL = function () {
   return '/unit'
 }
-export const getUnit_TYPE = function() {
+export const getUnit_TYPE = function () {
   return 'get'
 }
-export const getUnitURL = function(parameters = {}) {
+export const getUnitURL = function (parameters = {}) {
   let queryParameters = {}
   const domain = parameters.$domain ? parameters.$domain : getDomain()
   let path = '/unit'
@@ -5496,7 +5496,7 @@ export const getUnitURL = function(parameters = {}) {
     queryParameters['populate'] = parameters['populate']
   }
   if (parameters.$queryParameters) {
-    Object.keys(parameters.$queryParameters).forEach(function(parameterName) {
+    Object.keys(parameters.$queryParameters).forEach(function (parameterName) {
       queryParameters[parameterName] = parameters.$queryParameters[parameterName]
     })
   }
@@ -5511,7 +5511,7 @@ export const getUnitURL = function(parameters = {}) {
  * raw_url: postUnit_RAW_URL
  * @param unit -
  */
-export const postUnit = function(parameters = {}) {
+export const postUnit = function (parameters = {}) {
   const domain = parameters.$domain ? parameters.$domain : getDomain()
   const config = parameters.$config
   let path = '/unit'
@@ -5525,24 +5525,24 @@ export const postUnit = function(parameters = {}) {
     return Promise.reject(new Error('Missing required  parameter: unit'))
   }
   if (parameters.$queryParameters) {
-    Object.keys(parameters.$queryParameters).forEach(function(parameterName) {
+    Object.keys(parameters.$queryParameters).forEach(function (parameterName) {
       queryParameters[parameterName] = parameters.$queryParameters[parameterName]
     });
   }
   return request('post', domain + path, body, queryParameters, form, config)
 }
-export const postUnit_RAW_URL = function() {
+export const postUnit_RAW_URL = function () {
   return '/unit'
 }
-export const postUnit_TYPE = function() {
+export const postUnit_TYPE = function () {
   return 'post'
 }
-export const postUnitURL = function(parameters = {}) {
+export const postUnitURL = function (parameters = {}) {
   let queryParameters = {}
   const domain = parameters.$domain ? parameters.$domain : getDomain()
   let path = '/unit'
   if (parameters.$queryParameters) {
-    Object.keys(parameters.$queryParameters).forEach(function(parameterName) {
+    Object.keys(parameters.$queryParameters).forEach(function (parameterName) {
       queryParameters[parameterName] = parameters.$queryParameters[parameterName]
     })
   }
@@ -5556,7 +5556,7 @@ export const postUnitURL = function(parameters = {}) {
  * method: deleteUnit_TYPE
  * raw_url: deleteUnit_RAW_URL
  */
-export const deleteUnit = function(parameters = {}) {
+export const deleteUnit = function (parameters = {}) {
   const domain = parameters.$domain ? parameters.$domain : getDomain()
   const config = parameters.$config
   let path = '/unit'
@@ -5564,24 +5564,24 @@ export const deleteUnit = function(parameters = {}) {
   let queryParameters = {}
   let form = {}
   if (parameters.$queryParameters) {
-    Object.keys(parameters.$queryParameters).forEach(function(parameterName) {
+    Object.keys(parameters.$queryParameters).forEach(function (parameterName) {
       queryParameters[parameterName] = parameters.$queryParameters[parameterName]
     });
   }
   return request('delete', domain + path, body, queryParameters, form, config)
 }
-export const deleteUnit_RAW_URL = function() {
+export const deleteUnit_RAW_URL = function () {
   return '/unit'
 }
-export const deleteUnit_TYPE = function() {
+export const deleteUnit_TYPE = function () {
   return 'delete'
 }
-export const deleteUnitURL = function(parameters = {}) {
+export const deleteUnitURL = function (parameters = {}) {
   let queryParameters = {}
   const domain = parameters.$domain ? parameters.$domain : getDomain()
   let path = '/unit'
   if (parameters.$queryParameters) {
-    Object.keys(parameters.$queryParameters).forEach(function(parameterName) {
+    Object.keys(parameters.$queryParameters).forEach(function (parameterName) {
       queryParameters[parameterName] = parameters.$queryParameters[parameterName]
     })
   }
@@ -5596,7 +5596,7 @@ export const deleteUnitURL = function(parameters = {}) {
  * raw_url: getUnitById_RAW_URL
  * @param id - MongoDB document _id
  */
-export const getUnitById = function(parameters = {}) {
+export const getUnitById = function (parameters = {}) {
   const domain = parameters.$domain ? parameters.$domain : getDomain()
   const config = parameters.$config
   let path = '/unit/{id}'
@@ -5608,25 +5608,25 @@ export const getUnitById = function(parameters = {}) {
     return Promise.reject(new Error('Missing required  parameter: id'))
   }
   if (parameters.$queryParameters) {
-    Object.keys(parameters.$queryParameters).forEach(function(parameterName) {
+    Object.keys(parameters.$queryParameters).forEach(function (parameterName) {
       queryParameters[parameterName] = parameters.$queryParameters[parameterName]
     });
   }
   return request('get', domain + path, body, queryParameters, form, config)
 }
-export const getUnitById_RAW_URL = function() {
+export const getUnitById_RAW_URL = function () {
   return '/unit/{id}'
 }
-export const getUnitById_TYPE = function() {
+export const getUnitById_TYPE = function () {
   return 'get'
 }
-export const getUnitByIdURL = function(parameters = {}) {
+export const getUnitByIdURL = function (parameters = {}) {
   let queryParameters = {}
   const domain = parameters.$domain ? parameters.$domain : getDomain()
   let path = '/unit/{id}'
   path = path.replace('{id}', `${parameters['id']}`)
   if (parameters.$queryParameters) {
-    Object.keys(parameters.$queryParameters).forEach(function(parameterName) {
+    Object.keys(parameters.$queryParameters).forEach(function (parameterName) {
       queryParameters[parameterName] = parameters.$queryParameters[parameterName]
     })
   }
@@ -5642,7 +5642,7 @@ export const getUnitByIdURL = function(parameters = {}) {
  * @param id - MongoDB document _id
  * @param unit -
  */
-export const postUnitById = function(parameters = {}) {
+export const postUnitById = function (parameters = {}) {
   const domain = parameters.$domain ? parameters.$domain : getDomain()
   const config = parameters.$config
   let path = '/unit/{id}'
@@ -5660,25 +5660,25 @@ export const postUnitById = function(parameters = {}) {
     return Promise.reject(new Error('Missing required  parameter: unit'))
   }
   if (parameters.$queryParameters) {
-    Object.keys(parameters.$queryParameters).forEach(function(parameterName) {
+    Object.keys(parameters.$queryParameters).forEach(function (parameterName) {
       queryParameters[parameterName] = parameters.$queryParameters[parameterName]
     });
   }
   return request('post', domain + path, body, queryParameters, form, config)
 }
-export const postUnitById_RAW_URL = function() {
+export const postUnitById_RAW_URL = function () {
   return '/unit/{id}'
 }
-export const postUnitById_TYPE = function() {
+export const postUnitById_TYPE = function () {
   return 'post'
 }
-export const postUnitByIdURL = function(parameters = {}) {
+export const postUnitByIdURL = function (parameters = {}) {
   let queryParameters = {}
   const domain = parameters.$domain ? parameters.$domain : getDomain()
   let path = '/unit/{id}'
   path = path.replace('{id}', `${parameters['id']}`)
   if (parameters.$queryParameters) {
-    Object.keys(parameters.$queryParameters).forEach(function(parameterName) {
+    Object.keys(parameters.$queryParameters).forEach(function (parameterName) {
       queryParameters[parameterName] = parameters.$queryParameters[parameterName]
     })
   }
@@ -5693,7 +5693,7 @@ export const postUnitByIdURL = function(parameters = {}) {
  * raw_url: deleteUnitById_RAW_URL
  * @param id - MongoDB document _id
  */
-export const deleteUnitById = function(parameters = {}) {
+export const deleteUnitById = function (parameters = {}) {
   const domain = parameters.$domain ? parameters.$domain : getDomain()
   const config = parameters.$config
   let path = '/unit/{id}'
@@ -5705,25 +5705,25 @@ export const deleteUnitById = function(parameters = {}) {
     return Promise.reject(new Error('Missing required  parameter: id'))
   }
   if (parameters.$queryParameters) {
-    Object.keys(parameters.$queryParameters).forEach(function(parameterName) {
+    Object.keys(parameters.$queryParameters).forEach(function (parameterName) {
       queryParameters[parameterName] = parameters.$queryParameters[parameterName]
     });
   }
   return request('delete', domain + path, body, queryParameters, form, config)
 }
-export const deleteUnitById_RAW_URL = function() {
+export const deleteUnitById_RAW_URL = function () {
   return '/unit/{id}'
 }
-export const deleteUnitById_TYPE = function() {
+export const deleteUnitById_TYPE = function () {
   return 'delete'
 }
-export const deleteUnitByIdURL = function(parameters = {}) {
+export const deleteUnitByIdURL = function (parameters = {}) {
   let queryParameters = {}
   const domain = parameters.$domain ? parameters.$domain : getDomain()
   let path = '/unit/{id}'
   path = path.replace('{id}', `${parameters['id']}`)
   if (parameters.$queryParameters) {
-    Object.keys(parameters.$queryParameters).forEach(function(parameterName) {
+    Object.keys(parameters.$queryParameters).forEach(function (parameterName) {
       queryParameters[parameterName] = parameters.$queryParameters[parameterName]
     })
   }

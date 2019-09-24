@@ -42,42 +42,34 @@
 </template>
 
 <script>
-import { mapGetters, mapState, mapMutations } from 'vuex';
-import FormSchema from '@formschema/native';
-import HELPERS from '../../helpers';
+import { mapGetters, mapState, mapMutations } from "vuex";
+import FormSchema from "@formschema/native";
+import HELPERS from "../../helpers";
 
 export default {
   mixins: [HELPERS],
   data() {
     return {
-      model:{},
+      model: {}
     };
   },
   components: {
-    FormSchema,
+    FormSchema
   },
   computed: {
-    ...mapState('dialogs', [
-      'createDialog',
-    ]),
-    ...mapGetters('api', [
-      'schema',
-    ]),
+    ...mapState("dialogs", ["createDialog"]),
+    ...mapGetters("api", ["schema"])
   },
   methods: {
-    ...mapMutations('app', [
-      'loginMut',
-    ]),
-    ...mapMutations('dialogs', [
-      'closeDialog',
-    ]),
+    ...mapMutations("app", ["loginMut"]),
+    ...mapMutations("dialogs", ["closeDialog"]),
     discard() {
-      this.closeDialog('createDialog');
+      this.closeDialog("createDialog");
     },
     submit() {
-      this.closeDialog('createDialog');
-    },
-  },
+      this.closeDialog("createDialog");
+    }
+  }
 };
 </script>
 

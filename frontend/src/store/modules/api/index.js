@@ -11,7 +11,7 @@ const state = {
 };
 
 const $config = {
-  withCredentials: true
+  withCredentials: true,
 };
 
 /* eslint no-param-reassign: ["error", { "props": false }] */
@@ -46,7 +46,7 @@ const mutations = {
 const actions = {
   init({ state, commit }) {
     commit('setLoading', 'Loading Database Configuration.');
-    state.apilib.get( { $config } ).then((res) => {
+    state.apilib.get({ $config }).then((res) => {
       if (res.data.data && res.data.data.length > 0) {
         const sa = res.data.data;
         for (let i = 0; i < sa.length; i++) {
@@ -58,7 +58,7 @@ const actions = {
   },
   get({ state, commit }, { type, id, sort, skip, limit, query, populate }) {
     let p = {};
-    let t = type.charAt(0).toUpperCase() + type.slice(1);
+    const t = type.charAt(0).toUpperCase() + type.slice(1);
     return new Promise((resolve, reject) => {
       if (type && id) {
         commit('setLoading', `Getting ${type} ${id} from Database`);
@@ -71,15 +71,15 @@ const actions = {
         commit('setLoadingFinished');
         resolve(res);
       })
-      .catch((error) => {
-        commit('setLoadingFinished');
-        reject(error);
-      });
+        .catch((error) => {
+          commit('setLoadingFinished');
+          reject(error);
+        });
     });
   },
   post({ state, commit }, { type, id, body }) {
     let p = {};
-    let t = type.charAt(0).toUpperCase() + type.slice(1);
+    const t = type.charAt(0).toUpperCase() + type.slice(1);
     return new Promise((resolve, reject) => {
       if (type && id) {
         commit('setLoading', `Updating ${type} ${id} to Database`);
@@ -92,15 +92,15 @@ const actions = {
         commit('setLoadingFinished');
         resolve(res);
       })
-      .catch((error) => {
-        commit('setLoadingFinished');
-        reject(error);
-      });
+        .catch((error) => {
+          commit('setLoadingFinished');
+          reject(error);
+        });
     });
   },
   delete({ state, commit }, { type, id }) {
     let p = {};
-    let t = type.charAt(0).toUpperCase() + type.slice(1);
+    const t = type.charAt(0).toUpperCase() + type.slice(1);
     return new Promise((resolve, reject) => {
       if (type && id) {
         commit('setLoading', `Deleting ${type} ${id} in Database`);
@@ -110,10 +110,10 @@ const actions = {
         commit('setLoadingFinished');
         resolve(res);
       })
-      .catch((error) => {
-        commit('setLoadingFinished');
-        reject(error);
-      });
+        .catch((error) => {
+          commit('setLoadingFinished');
+          reject(error);
+        });
     });
   },
 };
