@@ -56,13 +56,13 @@ const CONFIG = {
 };
 
 const MAPS = {
-  "collect_collect":{
-    "edit.date":"editdate",
-    "edit.time":"edittime",
-    "edit.name":"editname",
-    "title":"name_0",
-    "description":"description_0",
-    "current_owner.lref":"collector_people"
+  collect_collect: {
+    'edit.date': 'editdate',
+    'edit.time': 'edittime',
+    'edit.name': 'editname',
+    title: 'name_0',
+    description: 'description_0',
+    'current_owner.lref': 'collector_people',
   },
 };
 
@@ -109,8 +109,8 @@ export default {
         return APIS.ADLIB.BASE.get('', {
           params: {
             database: db,
-            search: `priref=${id}`
-          }
+            search: `priref=${id}`,
+          },
         }).then((response) => {
           this.$log('response', response.data);
           return Promise.resolve(response.data);
@@ -128,7 +128,7 @@ export default {
           params: {
             database: db,
             search: query,
-          }
+          },
         }).then((response) => {
           this.$log('response', response.data);
           return Promise.resolve(response.data);
@@ -204,9 +204,9 @@ export default {
         // this.$debug('Data', data);
         return Promise.resolve(data);
       })
-      .catch((res) => {
-        Promise.reject('Could not receive data', res);
-      });
+        .catch((res) => {
+          Promise.reject('Could not receive data', res);
+        });
     },
     typeicon(typ) {
       if (typ) {
@@ -261,23 +261,21 @@ export default {
       return `${d}/${m}/${y} ${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}`;
     },
     mapRecord(source, target, record) {
-      let t = {};
-      let map = MAPS[`${source}_${target}`];
-      let keys = Object.keys(map);
+      const t = {};
+      const map = MAPS[`${source}_${target}`];
+      const keys = Object.keys(map);
       console.log(map, keys, record);
-      for (var i = 0; i < keys.length; i++) {
-        if(record[keys[i]] && map[keys[i]].split('_').length == 1) {
-          t[map[keys[i]]] = record[keys[i]]
-        }
-        else if (record[keys[i]] && map[keys[i]].split('_')[1] == '0') {
-          t[map[keys[i]].split('_')[0]] = record[keys[i]][0]
-        }
-        else if (record[keys[i]] &&  map[keys[i]].split('_')[1] && map[keys[i]].split('_')[1] != '0') {
-          t[map[keys[i]].split('_')[0]] = `${map[keys[i]].split('_')[1]}_${record[keys[i]]}`
+      for (let i = 0; i < keys.length; i++) {
+        if (record[keys[i]] && map[keys[i]].split('_').length === 1) {
+          t[map[keys[i]]] = record[keys[i]];
+        } else if (record[keys[i]] && map[keys[i]].split('_')[1] === '0') {
+          t[map[keys[i]].split('_')[0]] = record[keys[i]][0];
+        } else if (record[keys[i]] && map[keys[i]].split('_')[1] && map[keys[i]].split('_')[1] !== '0') {
+          t[map[keys[i]].split('_')[0]] = `${map[keys[i]].split('_')[1]}_${record[keys[i]]}`;
         }
       }
       return t;
-    }
+    },
   },
   created() {
     this.$info('Helpers', 'created');

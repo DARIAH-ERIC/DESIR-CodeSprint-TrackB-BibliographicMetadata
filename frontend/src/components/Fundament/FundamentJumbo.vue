@@ -8,22 +8,13 @@
 </template>
 
 <script>
-
-  export default {
-    data() {
-      return {
-      };
-    },
-    props: [
-      'src',
-      'caption',
-      'subtitle',
-    ],
-    name: 'FundamentJumbo',
-  };
+export default {
+  data() {
+    return {};
+  },
+  props: ["src", "caption", "subtitle"],
+  name: "FundamentJumbo"
+};
 </script>
 <style scoped>
-
-
-
 </style>

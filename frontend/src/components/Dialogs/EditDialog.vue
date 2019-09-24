@@ -52,59 +52,47 @@
 </template>
 
 <script>
-import { mapGetters, mapState, mapMutations, mapActions } from 'vuex';
+import { mapGetters, mapState, mapMutations, mapActions } from "vuex";
 
-import HELPERS from '../../helpers';
-import fundamentcard from '../Fundament/FundamentCard';
+import HELPERS from "../../helpers";
+import fundamentcard from "../Fundament/FundamentCard";
 
 export default {
   mixins: [HELPERS],
   data() {
     return {
-      model:null,
+      model: null
     };
   },
   components: {
-    fundamentcard,
+    fundamentcard
   },
   computed: {
-    ...mapGetters('entries', [
-      'getEntry',
-    ]),
-    ...mapState('dialogs', [
-      'editDialog',
-    ]),
+    ...mapGetters("entries", ["getEntry"]),
+    ...mapState("dialogs", ["editDialog"])
   },
   methods: {
-    ...mapMutations('dialogs', [
-      'closeDialog',
-    ]),
-    ...mapMutations('entries', [
-      'setEntry',
-    ]),
+    ...mapMutations("dialogs", ["closeDialog"]),
+    ...mapMutations("entries", ["setEntry"]),
     discard() {
-      this.closeDialog('editDialog');
+      this.closeDialog("editDialog");
     },
     submit() {
-      this.setEntry({no: this.editDialog.idx, obj: this.editDialog.model});
-      this.closeDialog('editDialog');
+      this.setEntry({ no: this.editDialog.idx, obj: this.editDialog.model });
+      this.closeDialog("editDialog");
     },
-    ...mapActions('api', [
-      'get',
-      'post',
-      'delete',
-    ]),
+    ...mapActions("api", ["get", "post", "delete"]),
   },
   watch: {
     // whenever question changes, this function will run
-    editDialog: function (old, newid) {
+    editDialog: function () {
       this.model = this.getEntry(this.editDialog.id);
-    }
+    },
   },
   created() {
-    //do something after creating vue instance
+    // do something after creating vue instance
     this.model = this.getEntry(this.editDialog.id);
-  }
+  },
 };
 </script>
 

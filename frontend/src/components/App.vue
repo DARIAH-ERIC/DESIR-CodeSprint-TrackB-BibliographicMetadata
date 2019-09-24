@@ -10,38 +10,34 @@
 </template>
 
 <script>
-import axios from 'axios';
-import { mapActions, mapMutations } from 'vuex';
-import fundamentnav from './Fundament/FundamentNav';
-import fundamentfooter from './Fundament/FundamentFooter';
-import dialogs from './Dialogs/Dialogs';
+import axios from "axios";
+import { mapActions, mapMutations } from "vuex";
+import fundamentnav from "./Fundament/FundamentNav";
+import fundamentfooter from "./Fundament/FundamentFooter";
+import dialogs from "./Dialogs/Dialogs";
 /* eslint no-console: ["error", { allow: ["log"] }] */
 /* eslint no-return-assign: "off" */
 
 export default {
   data() {
-    return {
-    };
+    return {};
   },
-  name: 'App',
+  name: "App",
   components: {
     fundamentnav,
     fundamentfooter,
-    dialogs,
+    dialogs
   },
   methods: {
-    ...mapActions('api', [
-      'init',
-    ]),
-    ...mapMutations('app', [
-      'setConfig',
-    ]),
+    ...mapActions("api", ["init"]),
+    ...mapMutations("app", ["setConfig"])
   },
   created() {
-    axios.get('/nav.json')
+    axios
+      .get("/nav.json")
       .then(res => this.setConfig(res.data))
       .catch(error => this.$log(error));
     this.init();
-  },
+  }
 };
 </script>

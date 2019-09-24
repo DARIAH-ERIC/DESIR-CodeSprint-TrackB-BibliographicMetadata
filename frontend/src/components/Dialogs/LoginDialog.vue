@@ -21,51 +21,41 @@
 </template>
 
 <script>
-import { mapGetters, mapState, mapMutations, mapActions } from 'vuex';
-import HELPERS from '../../helpers';
+import { mapGetters, mapState, mapMutations, mapActions } from "vuex";
+import HELPERS from "../../helpers";
 
 export default {
   mixins: [HELPERS],
   data() {
     return {
-      username: '',
-      password: '',
+      username: "",
+      password: ""
     };
   },
   computed: {
-    ...mapState('dialogs', [
-      'loginDialog',
-    ]),
-    ...mapGetters('api', [
-      'f',
-    ]),
+    ...mapState("dialogs", ["loginDialog"]),
+    ...mapGetters("api", ["f"])
   },
   methods: {
-    ...mapActions('api', [
-      'init',
-    ]),
-    ...mapMutations('app', [
-      'loginMut',
-    ]),
-    ...mapMutations('dialogs', [
-      'closeDialog',
-    ]),
+    ...mapActions("api", ["init"]),
+    ...mapMutations("app", ["loginMut"]),
+    ...mapMutations("dialogs", ["closeDialog"]),
     discard() {
-      this.closeDialog('loginDialog');
+      this.closeDialog("loginDialog");
     },
     login() {
-      this.f('postLogin')({
+      this.f("postLogin")({
         user: {
           username: this.username,
-          password: this.password,
-        },
+          password: this.password
+        }
       }).then(() => {
         this.loginMut();
         this.init();
-        this.closeDialog('loginDialog');
+        this.closeDialog("loginDialog");
       });
-    },
-  },
+    }
+  }
 };
 </script>
 

@@ -20,40 +20,31 @@
 </template>
 
 <script>
-import { mapGetters, mapState, mapMutations } from 'vuex';
-import HELPERS from '../../helpers';
+import { mapGetters, mapState, mapMutations } from "vuex";
+import HELPERS from "../../helpers";
 
 export default {
   data() {
-    return {
-    };
+    return {};
   },
   mixins: [HELPERS],
   computed: {
-    ...mapState('dialogs', [
-      'logoutDialog',
-    ]),
-    ...mapGetters('api', [
-      'f',
-    ]),
+    ...mapState("dialogs", ["logoutDialog"]),
+    ...mapGetters("api", ["f"])
   },
   methods: {
-    ...mapMutations('app', [
-      'logoutMut',
-    ]),
-    ...mapMutations('dialogs', [
-      'closeDialog',
-    ]),
+    ...mapMutations("app", ["logoutMut"]),
+    ...mapMutations("dialogs", ["closeDialog"]),
     discard() {
-      this.closeDialog('logoutDialog');
+      this.closeDialog("logoutDialog");
     },
     logout() {
-      this.f('getLogout')().then(() => {
+      this.f("getLogout")().then(() => {
         this.logoutMut();
-        this.closeDialog('logoutDialog');
+        this.closeDialog("logoutDialog");
       });
-    },
-  },
+    }
+  }
 };
 </script>
 
