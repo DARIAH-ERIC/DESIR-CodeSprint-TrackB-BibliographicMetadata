@@ -39,7 +39,7 @@ export default {
   },
   methods: {
     importPage: function () {
-      this.$router.push({ name: "entries", params: { lang: "en" } });
+      this.$router.push({ name: "import", params: { lang: "en" } });
     }
   }
 };
