@@ -72,13 +72,18 @@ export default {
         o.push(this.entries[i]);
       }
       if (!o.length) {
-          this.snackbar = true;
-          this.snackText = "No entries to submit!";
-          return;
+        this.snackbar = true;
+        this.snackText = "No entries to submit!";
+        return;
       }
       console.log("store items: " + o);
+
+      let formData = new FormData();
+      formData.append('entries', o);
+      formData.append('user', this.username);
+      formData.append('key', this.userkey);
       axios
-        .post("/store", o)
+        .post("/store", formData)
         .then(function(response) {
           currentObj.snackbar = true;
           currentObj.snackText = "Submission successful";
@@ -95,6 +100,7 @@ export default {
   },
   computed: {
     ...mapState("entries", ["entries"]),
+    ...mapState("app", ["username", "userkey"]),
     ...mapGetters("entries", ["isValid"])
   },
   created() {

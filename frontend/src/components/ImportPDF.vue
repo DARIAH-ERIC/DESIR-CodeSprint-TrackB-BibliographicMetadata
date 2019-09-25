@@ -399,7 +399,6 @@ export default {
     };
   },
   computed: {
-    ...mapGetters("api", ["types"])
   },
   methods: {
     ...mapMutations("entries", ["setEntry"]),

@@ -17,6 +17,7 @@
           <v-layout column justify-space-between>
             <v-list>
               <v-list-tile>
+                <div v-if="username">{{ username }}</div>
                 <!-- <v-btn icon @click.stop="toggleAppMode()">
                   <v-icon>view_day</v-icon>
                 </v-btn>
@@ -134,7 +135,7 @@
 </template>
 
 <script>
-import { mapActions, mapMutations } from "vuex";
+import { mapActions, mapMutations, mapState } from "vuex";
 
 /* eslint no-console: ["error", { allow: ["log"] }] */
 /* eslint no-return-assign: "off" */
@@ -158,6 +159,9 @@ export default {
       "toggleDrawer",
       "toggleNavbar"
     ])
+  },
+  computed: {
+    ...mapState("app", ["username"])
   },
   created() {}
 };

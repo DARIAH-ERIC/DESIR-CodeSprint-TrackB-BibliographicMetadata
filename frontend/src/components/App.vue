@@ -29,7 +29,6 @@ export default {
     dialogs
   },
   methods: {
-    ...mapActions("api", ["init"]),
     ...mapMutations("app", ["setConfig"])
   },
   created() {
@@ -37,7 +36,6 @@ export default {
       .get("/nav.json")
       .then(res => this.setConfig(res.data))
       .catch(error => this.$log(error));
-    this.init();
   }
 };
 </script>

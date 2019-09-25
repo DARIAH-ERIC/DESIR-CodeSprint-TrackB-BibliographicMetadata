@@ -30,19 +30,16 @@ export default {
   mixins: [HELPERS],
   computed: {
     ...mapState("dialogs", ["logoutDialog"]),
-    ...mapGetters("api", ["f"])
   },
   methods: {
-    ...mapMutations("app", ["logoutMut"]),
+    ...mapMutations("app", ["logoutUser"]),
     ...mapMutations("dialogs", ["closeDialog"]),
     discard() {
       this.closeDialog("logoutDialog");
     },
     logout() {
-      this.f("getLogout")().then(() => {
-        this.logoutMut();
-        this.closeDialog("logoutDialog");
-      });
+      this.logoutUser();
+      this.closeDialog("logoutDialog");
     }
   }
 };

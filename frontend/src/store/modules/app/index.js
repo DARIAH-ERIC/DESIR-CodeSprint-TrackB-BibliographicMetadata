@@ -9,6 +9,8 @@ const state = {
   miniVariant: false,
   rightDrawer: false,
   loggedin: false,
+  username: null,
+  userkey: null,
 };
 
 const getters = {
@@ -16,13 +18,17 @@ const getters = {
 };
 
 const mutations = {
+  loginUser(s, { user, key }) {
+    s.username = user;
+    s.userkey = key;
+    s.loggedin = true;
+  },
   setConfig(s, config) {
     s.config = config;
   },
-  loginMut(s) {
-    s.loggedin = true;
-  },
-  logoutMut(s) {
+  logoutUser(s) {
+    s.username = null;
+    s.userkey = null;
     s.loggedin = false;
   },
   toggleNavDrawerMini(s) {
