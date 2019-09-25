@@ -18,7 +18,7 @@
             <v-btn
               text
               icon
-              @click="openEditDialog($store.state.entries.entries[props.item.idx])"
+              @click="openEditDialog(props.item)"
             >
               <v-icon>edit</v-icon>
             </v-btn>
@@ -30,7 +30,7 @@
           </td>
         </template>
       </v-data-table>
-      <v-btn @click="submitAll">submit</v-btn>
+      <v-btn @click="submitAll">Submit to BibSonomy</v-btn>
     </v-container>
   </div>
 </template>
@@ -60,7 +60,7 @@ export default {
     };
   },
   methods: {
-    ...mapMutations("entries", ["setEntry"]),
+    ...mapMutations("entries", ["changeEntry", "deleteEntry"]),
     ...mapMutations("dialogs", ["openEditDialog"]),
     submitAll() {
       let o = [];
@@ -72,7 +72,7 @@ export default {
     },
     itemDelete(idx) {
       console.log("delete item: " + idx);
-      this.entries.splice(idx, 1);
+      this.deleteEntry({idx: idx});
     }
   },
   computed: {

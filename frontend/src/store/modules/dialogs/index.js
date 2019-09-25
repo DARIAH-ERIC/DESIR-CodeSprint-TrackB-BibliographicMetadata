@@ -4,7 +4,7 @@
 const state = {
   loginDialog: { status: false },
   logoutDialog: { status: false },
-  editDialog: { status: false, model: {} },
+  editDialog: { status: false, model: null },
   importDialog: { status: false },
 };
 
