@@ -78,12 +78,14 @@ export default {
       }
       console.log("store items: " + o);
 
-      let formData = new FormData();
-      formData.append('entries', o);
-      formData.append('user', this.username);
-      formData.append('key', this.userkey);
+      let config = {
+        headers: {
+          user: this.username,
+          key: this.userkey,
+        }
+      }
       axios
-        .post("/store", formData)
+        .post("/store", o, config)
         .then(function(response) {
           currentObj.snackbar = true;
           currentObj.snackText = "Submission successful";
