@@ -422,21 +422,15 @@ export default {
     },
     submitText(e) {
       e.preventDefault();
-
       let currentObj = this;
 
+      let formData = new FormData();
+      formData.append('text', this.text);
       this.axios
-        .post(this.dropzoneOptions.url, {
-          text: this.text
-        })
-
+        .post(this.dropzoneOptions.url, formData)
         .then(function(response) {
-          currentObj.results(this.text, response.data);
+          currentObj.results(currentObj.text, response.data);
         })
-
-        .catch(function(error) {
-          currentObj.loadTestdata();
-        });
     }
   },
   computed: {},
