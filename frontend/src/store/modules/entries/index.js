@@ -45,7 +45,7 @@ const mutations = {
         pos = i;
       }
     }
-    if (pos) {
+    if (pos !== null) {
       s.entries.splice(pos, 1);
     }
   },
