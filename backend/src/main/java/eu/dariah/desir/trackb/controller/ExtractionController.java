@@ -59,12 +59,20 @@ public class ExtractionController {
 	 * @param wrapper The wrapper of all YetAnotherBibliographicItems retrieved from the frontend
 	 * @return The JSON string we send back to the frontend, either error is true or false
 	 */
-    @PostMapping(value="/store", consumes=MediaType.APPLICATION_JSON_UTF8_VALUE, produces=MediaType.APPLICATION_JSON_UTF8_VALUE)
+    @PostMapping(value="/store", produces=MediaType.APPLICATION_JSON_UTF8_VALUE) //consumes=MediaType.APPLICATION_JSON_UTF8_VALUE,
     @ResponseBody
-    public String storeInBibSonomy(@RequestBody String wrapper) {
+    public String storeInBibSonomy(@RequestBody String wrapper,
+                                   @RequestParam(value = "user", required = false) String user,
+                                   @RequestParam(value = "key", required = false) String key) {
+
         try {
             LOG.debug("wrapper json received: " + wrapper);
-            final List<String> result = adaptor.storeItems(JsonHelper.convert(wrapper));
+            List<String> result = null;
+            if (user != null && key != null){
+                result = adaptor.storeItems(JsonHelper.convert(wrapper), user, key);
+            } else{
+                result = adaptor.storeItems(JsonHelper.convert(wrapper));
+            }
             LOG.debug("stored " + result.size() + " items in BibSonomy");
 
             //check if BibSonomy accepted all items

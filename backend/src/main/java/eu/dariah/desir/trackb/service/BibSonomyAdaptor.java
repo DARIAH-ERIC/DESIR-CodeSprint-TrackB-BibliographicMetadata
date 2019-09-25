@@ -71,12 +71,31 @@ public class BibSonomyAdaptor {
             throw new NullPointerException("BibSonomy is not initialized ! Check your username/password in the " +
                     "properties file.");
         }
+
         // convert model
         final List<Post<? extends Resource>> posts = converter.convertToPosts(items, this.bibsonomyApiUser);
         // call API
         final List<String> hashs = bibsonomy.createPosts(posts);
         return hashs;
 	}
+
+    /**
+     * Store items in BibSonomy using directly provided user and key information.
+     *
+     * @param items
+     * @return The hashes (identifiers) of the created items.
+     */
+    public List<String> storeItems(final List<YetAnotherBibliographicItem> items, String user, String key) throws NullPointerException {
+
+        final RestLogicFactory rlf = new RestLogicFactory(this.bibsonomyApiUrl);
+        this.bibsonomy = rlf.getLogicAccess(user, key);
+
+        // convert model
+        final List<Post<? extends Resource>> posts = converter.convertToPosts(items, user);
+        // call API
+        final List<String> hashs = bibsonomy.createPosts(posts);
+        return hashs;
+    }
 
 
     /**
