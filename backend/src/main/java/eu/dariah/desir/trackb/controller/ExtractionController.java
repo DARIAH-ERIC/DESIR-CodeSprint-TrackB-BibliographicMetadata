@@ -13,10 +13,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -56,27 +53,32 @@ public class ExtractionController {
 	}
 
 	/**
-	 * @param wrapper The wrapper of all YetAnotherBibliographicItems retrieved from the frontend
+	 * @param entries The wrapper of all YetAnotherBibliographicItems retrieved from the frontend
 	 * @return The JSON string we send back to the frontend, either error is true or false
 	 */
     @PostMapping(value="/store", produces=MediaType.APPLICATION_JSON_UTF8_VALUE) //consumes=MediaType.APPLICATION_JSON_UTF8_VALUE,
     @ResponseBody
-    public String storeInBibSonomy(@RequestBody String wrapper,
-                                   @RequestParam(value = "user", required = false) String user,
-                                   @RequestParam(value = "key", required = false) String key) {
+    public String storeInBibSonomy(@RequestHeader(value="user") String user,
+                                   @RequestHeader(value="key") String key,
+                                   @RequestBody String entries) {
 
         try {
-            LOG.debug("wrapper json received: " + wrapper);
+            LOG.debug("entries: " + entries);
+            LOG.debug("user: " + user);
+            LOG.debug("key: " + key);
+
             List<String> result = null;
-            if (user != null && key != null){
-                result = adaptor.storeItems(JsonHelper.convert(wrapper), user, key);
+            if (user.equals("null") || key.equals("null")){
+                LOG.debug("use user and key information from properties file");
+                result = adaptor.storeItems(JsonHelper.convert(entries));
             } else{
-                result = adaptor.storeItems(JsonHelper.convert(wrapper));
+                LOG.debug("use user and key information from login");
+                result = adaptor.storeItems(JsonHelper.convert(entries), user, key);
             }
             LOG.debug("stored " + result.size() + " items in BibSonomy");
 
             //check if BibSonomy accepted all items
-            int itemsCountWrapper = StringUtils.countMatches("entryType", wrapper);
+            int itemsCountWrapper = StringUtils.countMatches("entryType", entries);
             int failedUploads = itemsCountWrapper - result.size();
 
             LOG.debug("itemsCountWrapper: " + itemsCountWrapper);
