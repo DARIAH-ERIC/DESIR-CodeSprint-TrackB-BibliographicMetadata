@@ -72,7 +72,6 @@ export default {
     close() {
       this.closeDialog("editDialog");
     },
-    ...mapActions("api", ["get", "post", "delete"]),
   },
   watch: {
   },

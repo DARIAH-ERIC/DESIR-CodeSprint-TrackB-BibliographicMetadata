@@ -58,7 +58,6 @@ export default {
   },
   computed: {
     ...mapState("dialogs", ["createDialog"]),
-    ...mapGetters("api", ["schema"])
   },
   methods: {
     ...mapMutations("app", ["loginMut"]),

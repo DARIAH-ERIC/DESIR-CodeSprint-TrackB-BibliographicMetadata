@@ -55,7 +55,6 @@ export default {
   },
   computed: {
     ...mapState("dialogs", ["importDialog"]),
-    ...mapGetters("api", ["schema"])
   },
   methods: {
     ...mapMutations("dialogs", ["closeDialog"]),
@@ -65,7 +64,6 @@ export default {
     submit() {
       this.closeDialog("importDialog");
     },
-    ...mapActions("api", ["get", "post", "delete"]),
     onFileChange(e) {
       this.$info("Load", "onFileChange(e)", e);
       const files = e.target.files || e.dataTransfer.files;

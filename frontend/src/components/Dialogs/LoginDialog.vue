@@ -2,11 +2,11 @@
     <v-dialog v-model="loginDialog.status" id="askForStore" max-width="500px">
       <v-card>
         <v-card-title>
-          VCHC DATABASE LOGIN
+          BibSonomy Login
         </v-card-title>
         <v-card-text>
           <v-text-field v-model="username" type="text" label="Username"></v-text-field>
-          <v-text-field v-model="password" type="password" label="Password"></v-text-field>
+          <v-text-field v-model="userkey" type="text" label="API Key"></v-text-field>
         </v-card-text>
         <v-card-actions>
         <v-btn @click="login" large color="primary">
@@ -29,31 +29,21 @@ export default {
   data() {
     return {
       username: "",
-      password: ""
+      userkey: ""
     };
   },
   computed: {
     ...mapState("dialogs", ["loginDialog"]),
-    ...mapGetters("api", ["f"])
   },
   methods: {
-    ...mapActions("api", ["init"]),
-    ...mapMutations("app", ["loginMut"]),
+    ...mapMutations("app", ["loginUser"]),
     ...mapMutations("dialogs", ["closeDialog"]),
     discard() {
       this.closeDialog("loginDialog");
     },
     login() {
-      this.f("postLogin")({
-        user: {
-          username: this.username,
-          password: this.password
-        }
-      }).then(() => {
-        this.loginMut();
-        this.init();
-        this.closeDialog("loginDialog");
-      });
+      this.loginUser({user: this.username, key: this.userkey});
+      this.closeDialog("loginDialog");
     }
   }
 };

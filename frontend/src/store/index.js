@@ -5,7 +5,6 @@ import VueAxios from 'vue-axios';
 import createLogger from 'vuex/dist/logger';
 import app from './modules/app/index';
 import dialogs from './modules/dialogs/index';
-import api from './modules/api/index';
 import entries from './modules/entries/index';
 import plugins from './plugins';
 
@@ -22,7 +21,6 @@ export default new Vuex.Store({
   modules: {
     app,
     dialogs,
-    api,
     entries,
   },
   plugins,
