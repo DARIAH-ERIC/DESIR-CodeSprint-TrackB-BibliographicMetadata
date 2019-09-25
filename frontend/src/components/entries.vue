@@ -15,11 +15,7 @@
             >Item missing {{ isValid(props.item.idx) }}.</v-alert>
           </td>
           <td>
-            <v-btn
-              text
-              icon
-              @click="openEditDialog(props.item)"
-            >
+            <v-btn text icon @click="openEditDialog(props.item)">
               <v-icon>edit</v-icon>
             </v-btn>
           </td>
@@ -30,8 +26,12 @@
           </td>
         </template>
       </v-data-table>
-      <v-btn @click="submitAll">Submit to BibSonomy</v-btn>
+      <v-btn @click="submitAll" v-if="$store.state.entries.entries.length">Submit to BibSonomy</v-btn>
     </v-container>
+    <v-snackbar v-model="snackbar" :timeout="timeout">
+      {{ snackText }}
+      <v-btn color="red" text @click="snackbar = false">Close</v-btn>
+    </v-snackbar>
   </div>
 </template>
 
@@ -48,6 +48,9 @@ export default {
   components: {},
   data() {
     return {
+      snackbar: false,
+      snackText: "",
+      timeout: 5000,
       view: {},
       data: [],
       headers: [
@@ -63,16 +66,31 @@ export default {
     ...mapMutations("entries", ["changeEntry", "deleteEntry"]),
     ...mapMutations("dialogs", ["openEditDialog"]),
     submitAll() {
+      let currentObj = this;
       let o = [];
       for (var i = 0; i < this.entries.length; i++) {
         o.push(this.entries[i]);
       }
+      if (!o.length) {
+          this.snackbar = true;
+          this.snackText = "No entries to submit!";
+          return;
+      }
       console.log("store items: " + o);
-      axios.post("/store", o);
+      axios
+        .post("/store", o)
+        .then(function(response) {
+          currentObj.snackbar = true;
+          currentObj.snackText = "Submission successful";
+        })
+        .catch(function(error) {
+          currentObj.snackbar = true;
+          currentObj.snackText = error.message;
+        });
     },
     itemDelete(idx) {
       console.log("delete item: " + idx);
-      this.deleteEntry({idx: idx});
+      this.deleteEntry({ idx: idx });
     }
   },
   computed: {

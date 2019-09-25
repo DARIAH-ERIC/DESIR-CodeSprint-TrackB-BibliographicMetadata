@@ -7,39 +7,15 @@
     ></fundamentjumbo>
     <v-container grid-list-md>
       <v-layout justify-space-around row wrap>
-        <fundamentsectiondiv icon="description" caption="GROBID"></fundamentsectiondiv>
-        <v-flex xs12 sm6>
-          <fundamentcard caption="Extraction bibliographic Information from PDF with GROBID.">
+        <v-flex xs12 sm12>
+          <fundamentcard caption="Bibliography Extractor for BibSonomy">
+            <p class="card-text">Extraction bibliographic information from files and text and upload to your BibSonomy. Powered by GROBID.</p>
             <p class="card-text">
-              <v-btn @click="openDialog('importDialog')" color="primary">EXTRACT</v-btn>
-            </p>
-          </fundamentcard>
-        </v-flex>
-        <v-flex xs12 sm6>
-          <fundamentcard caption="Extraction bibliographic Information from Text File with GROBID.">
-            <p class="card-text"></p>
-            <p class="card-text">
-              <v-btn @click="openDialog('importDialog')" color="primary">EXTRACT</v-btn>
+              <v-btn @click="importPage" color="primary">Start extracting now!</v-btn>
             </p>
           </fundamentcard>
         </v-flex>
         <fundamentsectiondiv icon="device_hub" caption="Bibsonomy"></fundamentsectiondiv>
-        <!-- <v-flex xs12 sm6>
-            <fundamentcard
-              caption="Anlegen einer neuen Person."
-              :link="{ name: 'store', params: { lang: 'en' }}"
-            >
-              <p class="card-text"></p>
-            </fundamentcard>
-          </v-flex>
-          <v-flex xs12 sm6>
-            <fundamentcard
-              caption="Anlegen eines neuen Thesauruseintrags."
-              :link="{ name: 'create', params: { lang: 'en' }}"
-            >
-              <p class="card-text"></p>
-            </fundamentcard>
-        </v-flex>-->
       </v-layout>
     </v-container>
   </div>
@@ -62,7 +38,9 @@ export default {
     return {};
   },
   methods: {
-    ...mapMutations("dialogs", ["openDialog"])
+    importPage: function () {
+      this.$router.push({ name: "import", params: { lang: "en" } });
+    }
   }
 };
 </script>
