@@ -1,8 +1,12 @@
 package eu.dariah.desir.trackb.controller;
 
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
 import java.security.InvalidParameterException;
 import java.util.List;
+import org.apache.commons.lang3.StringUtils;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -62,6 +66,19 @@ public class ExtractionController {
             LOG.debug("wrapper json received: " + wrapper);
             final List<String> result = adaptor.storeItems(JsonHelper.convert(wrapper));
             LOG.debug("stored " + result.size() + " items in BibSonomy");
+
+            //check if BibSonomy accepted all items
+            int itemsCountWrapper = StringUtils.countMatches("entryType", wrapper);
+            int failedUploads = itemsCountWrapper - result.size();
+
+            LOG.debug("itemsCountWrapper: " + itemsCountWrapper);
+            //LOG.debug("failed to save " + failedUploads + " items to BibSonomy.");
+
+            if (failedUploads > 0){
+                LOG.error("BibSonomy did not accept " + failedUploads + " out of " + itemsCountWrapper + " items.");
+                return getJsonError("BibSonomy did not accept " + failedUploads + " out of " + itemsCountWrapper + " items.");
+            }
+
             return SUCCESSFUL_JSON;
         } catch(Exception e) {
             LOG.error("Failed to extract items", e);
@@ -95,22 +112,44 @@ public class ExtractionController {
 			// handle file or text
 			if (file != null) {
 				final String fileName = file.getOriginalFilename();
-				final File jsonFile;
-				try {
-				    //tomcat
-					jsonFile = new File(System.getProperty("java.io.tmpdir") + "/" + fileName);
-                    file.transferTo(jsonFile);
+                final File jsonFile;
 
-					LOG.info("Successfully uploaded " + fileName + " into " + jsonFile.getAbsolutePath());
-				} catch (Exception e) {
-					LOG.error("Failed to upload " + fileName + " => " + e.getMessage());
-					return getJsonError("Failed to upload " + fileName + " => " + e.getMessage());
-				}
-				try {
-					items = me.extractItems(jsonFile);
-				} catch(Exception e) {
-				    return getJsonError("exception " + e + " while extracting items");
-				}
+				LOG.debug("fileName: " + fileName);
+
+				// check if pdf or txt file
+                if (fileName.contains(".pdf")) {
+                    LOG.debug("identified pdf file");
+                    try {
+                        //tomcat
+                        jsonFile = new File(System.getProperty("java.io.tmpdir") + "/" + fileName);
+                        file.transferTo(jsonFile);
+
+                        LOG.info("Successfully uploaded " + fileName + " into " + jsonFile.getAbsolutePath());
+                    } catch (Exception e) {
+                        LOG.error("Failed to upload " + fileName + " => " + e.getMessage());
+                        return getJsonError("Failed to upload " + fileName + " => " + e.getMessage());
+                    }
+                    try {
+                        items = me.extractItems(jsonFile);
+                    } catch (Exception e) {
+                        return getJsonError("exception " + e + " while extracting items");
+                    }
+                } else{
+                    // read text file
+                    LOG.debug("identified text file");
+                    String content = "";
+                    try {
+                        content = new String(file.getBytes());
+                    } catch(Exception e){
+                        return getJsonError("exception " + e + " while extracting items");
+                    }
+
+                    try {
+                        items = me.extractItems(content);
+                    } catch(Exception e) {
+                        return getJsonError("exception " + e + " while extracting items");
+                    }
+                }
 			} else {
 				try {
 					items = me.extractItems(text);
