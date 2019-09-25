@@ -1,17 +1,27 @@
 <template>
   <div class>
     <v-container grid-list-md>
+      <fundamentcard caption="Load test data">
+        <v-btn @click="loadTestdata">testdata</v-btn>
+      </fundamentcard>
       <fundamentcard caption="Load PDF from disk">
-        <div>
-          <p>Post PDF to API</p>
-        </div>
         <vue-dropzone
           ref="myVueDropzone"
           id="file"
           :options="dropzoneOptions"
           v-on:vdropzone-success="results"
-          v-on:vdropzone-complete="noresults"
         ></vue-dropzone>
+      </fundamentcard>
+      <fundamentcard caption="Paste text">
+        <v-textarea
+          name="textinput"
+          label="Your text"
+          prepend-icon="comment"
+          color="deep-purple"
+          v-model="text"
+          auto-grow
+        ></v-textarea>
+        <v-btn @click="submitText">Submit Text</v-btn>
       </fundamentcard>
     </v-container>
   </div>
@@ -37,6 +47,7 @@ export default {
   },
   data() {
     return {
+      text: null,
       dropzoneOptions: {
         url: "/extract",
         thumbnailWidth: 150,
@@ -401,13 +412,31 @@ export default {
       console.log(file, res);
       this.$router.push({ name: "entries", params: { lang: "en" } });
     },
-    noresults(file) {
-      // for (var i = 0; i < this.testdata.length; i++) {
-      //   this.testdata[i].idx = i;
-      //   this.testdata[i].tags = [];
-      //   this.setEntry({no: i , obj: this.testdata[i]});
-      // }
-      // this.$router.push({ name: 'entries', params: { lang:  'en'  }});
+    loadTestdata() {
+      for (var i = 0; i < this.testdata.length; i++) {
+        this.testdata[i].idx = i;
+        this.testdata[i].tags = [];
+        this.setEntry({ no: i, obj: this.testdata[i] });
+      }
+      this.$router.push({ name: "entries", params: { lang: "en" } });
+    },
+    submitText(e) {
+      e.preventDefault();
+
+      let currentObj = this;
+
+      this.axios
+        .post(this.dropzoneOptions.url, {
+          text: this.text
+        })
+
+        .then(function(response) {
+          currentObj.results(this.text, response.data);
+        })
+
+        .catch(function(error) {
+          currentObj.loadTestdata();
+        });
     }
   },
   computed: {},
