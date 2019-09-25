@@ -9,13 +9,20 @@ const state = {
 
 const getters = {
   getEntry: state => id => state.entries[id],
-  isValid: state => (id) => {
+  isValid: state => (idx) => {
+    let pos = null;
+    for (let i = 0; i < state.entries.length; i++) {
+      if (idx === state.entries[i].idx) {
+        pos = i;
+      }
+    }
+
     const res = [];
     for (let i = 0; i < state.required.length; i++) {
-      console.log(id, res);
-      if (!state.entries[id][state.required[i]]) res.push(state.required[i]);
+      console.log(pos, res);
+      if (!state.entries[pos][state.required[i]]) res.push(state.required[i]);
     }
-    if (state.entries[id].tags.length < 1) res.push('tags');
+    if (state.entries[pos].tags.length < 1) res.push('tags');
     return res;
   },
 };
@@ -23,6 +30,24 @@ const getters = {
 const mutations = {
   setEntry(s, { no, obj }) {
     s.entries[no] = obj;
+  },
+  changeEntry(s, { idx, obj }) {
+    for (let i = 0; i < s.entries.length; i++) {
+      if (idx === s.entries[i].idx) {
+        s.entries[i] = obj;
+      }
+    }
+  },
+  deleteEntry(s, { idx }) {
+    let pos = null;
+    for (let i = 0; i < s.entries.length; i++) {
+      if (idx === s.entries[i].idx) {
+        pos = i;
+      }
+    }
+    if (pos) {
+      s.entries.splice(pos, 1);
+    }
   },
 };
 

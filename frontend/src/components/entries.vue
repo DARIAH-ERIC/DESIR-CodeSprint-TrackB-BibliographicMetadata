@@ -1,18 +1,12 @@
 <template>
   <div class>
     <v-container grid-list-md>
-      <h3>Entries Found</h3>
+      <h3>Extracted Entries</h3>
       <v-data-table :headers="headers" :items="$store.state.entries.entries" class="elevation-1">
         <template slot="items" slot-scope="props">
           <td>{{ props.item.title }}</td>
           <td>{{ props.item.entryType }}</td>
           <td>{{ props.item.year }}</td>
-          <td>
-            <v-btn
-              @click="openEditDialog($store.state.entries.entries[props.item.idx])"
-              color="info"
-            >Edit</v-btn>
-          </td>
           <td>
             <v-alert :value="isValid(props.item.idx).length==0" type="success">Item ready to submit.</v-alert>
             <v-alert
@@ -20,9 +14,23 @@
               type="warning"
             >Item missing {{ isValid(props.item.idx) }}.</v-alert>
           </td>
+          <td>
+            <v-btn
+              text
+              icon
+              @click="openEditDialog(props.item)"
+            >
+              <v-icon>edit</v-icon>
+            </v-btn>
+          </td>
+          <td>
+            <v-btn text icon @click="itemDelete(props.item.idx)" color="red">
+              <v-icon>delete</v-icon>
+            </v-btn>
+          </td>
         </template>
       </v-data-table>
-      <v-btn @click="submitAll">submit</v-btn>
+      <v-btn @click="submitAll">Submit to BibSonomy</v-btn>
     </v-container>
   </div>
 </template>
@@ -46,21 +54,25 @@ export default {
         { text: "booktitle", value: "booktitle" },
         { text: "entryType", value: "entryType" },
         { text: "year", value: "year" },
-        { text: "edit", value: "" },
-        { text: "status", value: "" }
+        { text: "status", value: "" },
+        { text: "edit", value: "" }
       ]
     };
   },
   methods: {
-    ...mapMutations("entries", ["setEntry"]),
+    ...mapMutations("entries", ["changeEntry", "deleteEntry"]),
     ...mapMutations("dialogs", ["openEditDialog"]),
     submitAll() {
       let o = [];
       for (var i = 0; i < this.entries.length; i++) {
         o.push(this.entries[i]);
       }
-      console.log(o);
+      console.log("store items: " + o);
       axios.post("/store", o);
+    },
+    itemDelete(idx) {
+      console.log("delete item: " + idx);
+      this.deleteEntry({idx: idx});
     }
   },
   computed: {

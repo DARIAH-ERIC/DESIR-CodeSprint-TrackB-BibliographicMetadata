@@ -9,14 +9,11 @@
       >
       <v-card>
         <v-toolbar card dark color="primary">
-          <v-btn icon dark @click.native="discard">
+          <v-btn icon dark @click.native="close">
             <v-icon>close</v-icon>
           </v-btn>
           <v-toolbar-title>Edit imported Entry No {{ editDialog.model.idx }}</v-toolbar-title>
           <v-spacer></v-spacer>
-          <v-toolbar-items>
-            <v-btn dark flat @click.native="submit">Save</v-btn>
-          </v-toolbar-items>
           <v-menu bottom right offset-y>
           </v-menu>
         </v-toolbar>
@@ -42,7 +39,6 @@
             <v-text-field v-model="editDialog.model.authors" label="Authors" required :rules="[v => !!v || 'Item is required']"></v-text-field>
             <v-text-field v-model="editDialog.model.editors" label="Editors" required :rules="[v => !!v || 'Item is required']"></v-text-field>
             <v-combobox   v-model="editDialog.model.tags" :items="editDialog.model.tags" chips label="Tags" multiple :rules="[v => !!v || 'Item is required']"></v-combobox>
-            <v-btn @click="submit">submit</v-btn>
           </v-form>
         </v-card-text>
         <v-card-actions>
@@ -61,7 +57,6 @@ export default {
   mixins: [HELPERS],
   data() {
     return {
-      model: null
     };
   },
   components: {
@@ -73,25 +68,16 @@ export default {
   },
   methods: {
     ...mapMutations("dialogs", ["closeDialog"]),
-    ...mapMutations("entries", ["setEntry"]),
-    discard() {
-      this.closeDialog("editDialog");
-    },
-    submit() {
-      this.setEntry({ no: this.editDialog.idx, obj: this.editDialog.model });
+    ...mapMutations("entries", ["changeEntry"]),
+    close() {
       this.closeDialog("editDialog");
     },
     ...mapActions("api", ["get", "post", "delete"]),
   },
   watch: {
-    // whenever question changes, this function will run
-    editDialog: function () {
-      this.model = this.getEntry(this.editDialog.id);
-    },
   },
   created() {
     // do something after creating vue instance
-    this.model = this.getEntry(this.editDialog.id);
   },
 };
 </script>
