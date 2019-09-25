@@ -4,7 +4,7 @@
       <fundamentcard caption="Load test data">
         <v-btn @click="loadTestdata">testdata</v-btn>
       </fundamentcard>
-      <fundamentcard caption="Load PDF from disk">
+      <fundamentcard caption="Load file from disk (PDF/TXT)">
         <vue-dropzone
           ref="myVueDropzone"
           id="file"
