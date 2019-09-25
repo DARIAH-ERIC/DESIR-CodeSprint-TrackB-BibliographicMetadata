@@ -24,7 +24,7 @@
             </v-btn>
           </td>
           <td>
-            <v-btn text icon @click="itemdelete(props.item.idx)" color="red">
+            <v-btn text icon @click="itemDelete(props.item.idx)" color="red">
               <v-icon>delete</v-icon>
             </v-btn>
           </td>
