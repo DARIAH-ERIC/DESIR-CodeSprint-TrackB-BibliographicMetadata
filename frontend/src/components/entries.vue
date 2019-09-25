@@ -1,7 +1,7 @@
 <template>
   <div class>
     <v-container grid-list-md>
-      <h3>Entries Found</h3>
+      <h3>Extracted Entries</h3>
       <v-data-table :headers="headers" :items="$store.state.entries.entries" class="elevation-1">
         <template slot="items" slot-scope="props">
           <td>{{ props.item.title }}</td>
