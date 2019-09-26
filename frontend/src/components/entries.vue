@@ -2,7 +2,7 @@
   <div class>
     <v-container grid-list-md>
       <h3>Extracted Entries</h3>
-      <v-data-table :headers="headers" :items="$store.state.entries.entries" class="elevation-1">
+      <v-data-table :headers="headers" :items="entries" class="elevation-1">
         <template slot="items" slot-scope="props">
           <td>{{ props.item.title }}</td>
           <td>{{ props.item.entryType }}</td>
@@ -20,13 +20,13 @@
             </v-btn>
           </td>
           <td>
-            <v-btn text icon @click="itemDelete(props.item.idx)" color="red">
-              <v-icon>delete</v-icon>
+            <v-btn text icon @click="itemDelete(props.item.idx)">
+              <v-icon color="red">delete</v-icon>
             </v-btn>
           </td>
         </template>
       </v-data-table>
-      <v-btn @click="submitAll" v-if="$store.state.entries.entries.length">Submit to BibSonomy</v-btn>
+      <v-btn @click="submitAll" v-if="entries.length">Submit to BibSonomy</v-btn>
     </v-container>
     <v-snackbar v-model="snackbar" :timeout="timeout">
       {{ snackText }}
@@ -81,9 +81,9 @@ export default {
       let config = {
         headers: {
           user: this.username,
-          key: this.userkey,
+          key: this.userkey
         }
-      }
+      };
       axios
         .post("/store", o, config)
         .then(function(response) {

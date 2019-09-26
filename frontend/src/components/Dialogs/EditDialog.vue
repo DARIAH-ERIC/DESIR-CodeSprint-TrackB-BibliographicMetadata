@@ -7,7 +7,7 @@
         transition="dialog-bottom-transition"
         scrollable
       >
-      <v-card>
+      <v-card v-if="editDialog.model">
         <v-toolbar card dark color="primary">
           <v-btn icon dark @click.native="close">
             <v-icon>close</v-icon>
@@ -17,7 +17,7 @@
           <v-menu bottom right offset-y>
           </v-menu>
         </v-toolbar>
-        <v-card-text v-if="editDialog.model.idx">
+        <v-card-text>
           <v-form ref="form" lazy-validation >
             <v-text-field v-model="editDialog.model.entryType" label="Entry Type" required :rules="[v => !!v || 'Item is required']"></v-text-field>
             <v-text-field v-model="editDialog.model.address" label="Adress"></v-text-field>
@@ -63,12 +63,10 @@ export default {
     fundamentcard
   },
   computed: {
-    ...mapGetters("entries", ["getEntry"]),
     ...mapState("dialogs", ["editDialog"])
   },
   methods: {
     ...mapMutations("dialogs", ["closeDialog"]),
-    ...mapMutations("entries", ["changeEntry"]),
     close() {
       this.closeDialog("editDialog");
     },
