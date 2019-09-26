@@ -66,7 +66,7 @@ export default {
     };
   },
   methods: {
-    ...mapMutations("entries", ["changeEntry", "deleteEntry"]),
+    ...mapMutations("entries", ["deleteEntry"]),
     ...mapMutations("dialogs", ["openEditDialog"]),
     submitAll() {
       let currentObj = this;

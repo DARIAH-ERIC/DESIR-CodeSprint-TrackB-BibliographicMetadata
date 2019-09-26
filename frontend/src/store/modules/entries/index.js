@@ -8,6 +8,7 @@ const state = {
 };
 
 const getters = {
+  getEntries: state => state.entries,
   getEntry: state => id => state.entries[id],
   isValid: state => (idx) => {
     let pos = null;
@@ -29,7 +30,7 @@ const getters = {
 
 const mutations = {
   setEntry(s, { no, obj }) {
-    s.entries[no] = obj;
+    s.entries.splice(no, 1, obj);
   },
   changeEntry(s, { idx, obj }) {
     for (let i = 0; i < s.entries.length; i++) {
