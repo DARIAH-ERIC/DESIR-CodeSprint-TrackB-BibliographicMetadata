@@ -6,6 +6,10 @@ using [GROBID](https://github.com/kermitt2/grobid) and to store it in
 the [DESIR Code Sprint](http://desircodesprint.sciencesconf.org/) in
 Berlin (31.7.-2.8.2018).
 
+## Online Version
+
+There is an online version of this tool available here: https://grobid-biblio-bibsonomy.herokuapp.com
+
 ## Installation and Setup
 
 The tool consists of a Java-based backend (server) and a Node.js-based
