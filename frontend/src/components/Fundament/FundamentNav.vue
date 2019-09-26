@@ -8,7 +8,7 @@
         :class="$store.state.app.config.color"
         dark
         app
-      >
+      >    
         <v-container
           fill-height
           @mouseover.stop="setNavDrawerMaxi()"
@@ -16,8 +16,11 @@
         >
           <v-layout column justify-space-between>
             <v-list>
-              <v-list-tile>
-                <div v-if="username">{{ username }}</div>
+              <v-list-tile >
+                <div v-if="username" color="">
+                  <v-icon large>person</v-icon>
+                  {{ username }}
+                </div>
                 <!-- <v-btn icon @click.stop="toggleAppMode()">
                   <v-icon>view_day</v-icon>
                 </v-btn>

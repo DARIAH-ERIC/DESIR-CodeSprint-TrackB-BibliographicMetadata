@@ -1,4 +1,5 @@
 <template lang="html">
+  <div>
     <v-dialog v-model="logoutDialog.status" id="askForStore" max-width="500px">
       <v-card>
         <v-card-title>
@@ -17,6 +18,10 @@
       </v-card-actions>
       </v-card>
     </v-dialog>
+      <v-snackbar v-model="snackbar" :timeout="timeout">
+      You were logged out
+    </v-snackbar>
+  </div>
 </template>
 
 <script>
@@ -25,7 +30,10 @@ import HELPERS from "../../helpers";
 
 export default {
   data() {
-    return {};
+    return {
+      snackbar: true,
+      timeout: 3000,
+    };
   },
   mixins: [HELPERS],
   computed: {
@@ -40,6 +48,7 @@ export default {
     logout() {
       this.logoutUser();
       this.closeDialog("logoutDialog");
+      this.snackbar = true;
     }
   }
 };

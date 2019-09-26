@@ -26,7 +26,10 @@
           </td>
         </template>
       </v-data-table>
-      <v-btn @click="submitAll" v-if="entries.length">Submit to BibSonomy</v-btn>
+      <div v-if="entries.length" > 
+        <v-btn @click="submitAll" v-if="username && userkey">Submit to BibSonomy</v-btn>
+        <v-sheet v-else class="text-center">Please log in to submit items to BibSonomy</v-sheet>
+      </div>
     </v-container>
     <v-snackbar v-model="snackbar" :timeout="timeout">
       {{ snackText }}
