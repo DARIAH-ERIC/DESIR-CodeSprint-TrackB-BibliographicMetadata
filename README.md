@@ -62,7 +62,11 @@ grobid.home.path=/Users/YourUserName/Work/Grobid/grobid-home/
 
 To start the application use
 ``` sh
-mvn -Dspring.config.location=file:/....../DESIR-CodeSprint/trackB/backend/application.properties spring-boot:run 
+mvn spring-boot:run 
+```
+Or (if you want to use your local installation of GROBID):
+``` sh
+mvn -Dspring.config.location=file:/....../DESIR-CodeSprint/trackB/backend/application.properties spring-boot:run
 ```
 
 where you replace
