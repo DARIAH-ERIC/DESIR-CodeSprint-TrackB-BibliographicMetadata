@@ -8,7 +8,7 @@ Berlin (31.7.-2.8.2018).
 
 ## Online Version
 
-There is an online version of this tool available here: https://grobid-biblio-bibsonomy.herokuapp.com
+There is an online version of this tool available here: http://track-b.desir.dariah.eu/
 
 ## Installation and Setup
 
@@ -44,6 +44,7 @@ npm run build
 GROBID can be used with a local installation or using the REST-based
 web api.
 
+#### When using GROBID locally (by default it uses a public API)
 For a local installation the GROBID model files must be downloaded
 (e.g.,
 https://dl.bintray.com/rookies/maven/org/grobid/grobid-home/0.5.5/grobid-home-0.5.5.zip)
@@ -55,13 +56,7 @@ application root and set the correct paths and keys:
 
 ``` properties
 grobid.home.path=/Users/YourUserName/Work/Grobid/grobid-home/
-bibsonomy.api.user=YourUserName
-bibsonomy.api.key=foo
 ```
-
-You can get your BibSonomy API key from the [settings
-page](https://www.bibsonomy.org/settings?selTab=1#selTab1). **Do not
-put your API key into a public repository.**
 
 ## Starting
 
@@ -85,13 +80,23 @@ and add it to the install folder.  This is in order to let the
 ### Create executable
 In the build folder:
 ``` sh
+mvn clean package
+```
+Or (if you want to use your local installation of GROBID):
+``` sh
 mvn -Dspring.config.location=file:/....../DESIR-CodeSprint/trackB/backend/application.properties clean package
 ```
 Copy the executable (`.jar`) to the installation folder.
 
+#### Centos 7
 Create a symbolic link (`ln -s`) from `/opt/trackB/trackB.jar` to
 `/etc/init.d/trackB` to be able to launch the tool as a service
 (usable for CentOS 6.x servers for example).
+#### Ubuntu 18.04
+Set the owner of the files (for simplicity, I use the same user as for apache2 on Ubuntu):
+`sudo chown -R www-data:www-data /opt/trackB`
+Make a copy of the configuration file `install-files/trackB.service` to `/etc/systemd/system/`. Of course, change
+ the path to the jar file and the correct user to launch the command. 
 
 ### Start the service
 ```service trackB start```
@@ -140,6 +145,10 @@ that helps you to organize your scientific work. Use BibSonomy to
 collect publications and bookmarks, to collaborate with your
 colleagues, and to discover interesting researches for your daily
 work.
+
+You can get your BibSonomy API key from the [settings
+page](https://www.bibsonomy.org/settings?selTab=1#selTab1). **Do not
+put your API key into a public repository.**
 
 ### GROBID
 
